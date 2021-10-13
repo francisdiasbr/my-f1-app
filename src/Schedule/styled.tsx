@@ -7,8 +7,8 @@ export const Mytable = styled.table`
   border-collapse: collapse;
   border-spacing: 30px;
   border-radius: 30px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
+  border: 2px solid #FF8700;
+  color:#FF8700;
   margin: 0 1em;
   padding: 0.25em 1em; 
   text-align: center;
@@ -16,7 +16,6 @@ export const Mytable = styled.table`
   
 `
 export const Text1 = styled.h1`
-  background-color: papayawhip;
   font-size: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
@@ -30,7 +29,7 @@ export const Container = styled.div`
   width: 100%;
 `
 export const HeaderTable = styled.th`
-  color: red;
+  color: BLACK;
   font-weight: bold;
 `
 
