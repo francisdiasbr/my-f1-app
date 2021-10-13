@@ -21,13 +21,13 @@ const Positions = () => {
 	}
 	return (
 		<div>
-			<h1>Pontuação na última corrida</h1>
+			<h1>Número de pontos na corrida</h1>
+			<label>Posição</label>
 			<Input
 				name="posição"
 				onChange={handlePositionChange}
 				type="text">
 			</Input>
-			<label>Posição</label>
 			<Button
 				onClick={handlePositionSubmit}
 				type="button">
