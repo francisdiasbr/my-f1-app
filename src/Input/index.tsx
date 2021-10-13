@@ -4,8 +4,8 @@ import styled from "styled-components";
 const StyledInput = styled.input`
     background: transparent;
     border-radius: 3px;
-    border: 2px solid palevioletred;
-    color: palevioletred;
+    border: 2px solid #FF8700;
+    color: #FF8700;
     margin: 0 1em;
     padding: 0.25em 1em;
 `
