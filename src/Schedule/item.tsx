@@ -2,20 +2,23 @@ import { CellTable } from './styled'
 
 interface ScheduleItemProps {
   name: string;
-  code: string;
   country: string;
+  racedate: string;
+  racewinner: string;
 }
 
 const ScheduleItem = ({
   name,
-  code,
-  country
+  country,
+  racedate,
+  racewinner
 }: ScheduleItemProps) => {
   return (
     <tr>
       <CellTable>{name}</CellTable>
-      <CellTable>{code}</CellTable>
       <CellTable>{country}</CellTable>
+      <CellTable>{racedate}</CellTable>
+      <CellTable>{racewinner}</CellTable>
     </tr>
   )
 }
