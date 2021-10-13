@@ -10,18 +10,21 @@ const Schedule = () => {
       <Mytable>
         <tr>
           <HeaderTable>Circuito</HeaderTable>
-          <HeaderTable>Código</HeaderTable>
           <HeaderTable>País</HeaderTable>
+          <HeaderTable>Data da corrida</HeaderTable>
+          <HeaderTable>Vencedor</HeaderTable>
         </tr>
         <ScheduleItem
           name="Spa-Francorchamps"
-          code="BEL"
           country="Bélgica"
+          racedate="29/08/2021"
+          racewinner="Max Verstappen"
         />
         <ScheduleItem
           name="Interlagos"
-          code="BRA"
           country="Brasil"
+          racedate="14/11/2021"
+          racewinner="TBD"
         />
       </Mytable>
     </Container>
