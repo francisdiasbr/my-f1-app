@@ -8,14 +8,14 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 const Button = styled.button<ButtonProps>`
   background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
+  border-radius: 4px;
+  border: 2px solid #005fdb;
+  color: #000;
   margin: 0 1em;
   padding: 0.25em 1em;
 
   ${props => props.primary && css`
-    background: palevioletred;
+    background: #FF8700;
     color: white;
   `}
 `;
