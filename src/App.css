@@ -4,7 +4,9 @@ body{
   display: flex;
   flex-direction: column;
 }
-
+#root {
+  width: 100%;
+}
 .App {
   padding: 20px;
   width: calc(100% - 40px);

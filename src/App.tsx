@@ -1,5 +1,6 @@
 import React from 'react'
-import Circuits from './Circuits'
+import Circuits from './Races'
+import Pilots from './Pilots'
 import Positions from './Positions'
 import Schedule from './Schedule'
 import Topbar from './Topbar'
@@ -13,6 +14,7 @@ function App() {
       <Container>
         <p>teste</p>
         <Circuits />
+        <Pilots />
         <Schedule />
       </Container>
       <Container>

@@ -4,11 +4,11 @@ import { get } from 'lodash'
 import { Input } from '../Input'
 import { Button } from '../Button'
 
-const Circuits = () => {
+const Races = () => {
   // circuit states
-  const [circuitCountry, setCircuitCountry] = React.useState('')
-  const [circuitName, setCircuitName] = React.useState('')
+  const [raceCountry, setCircuitCountry] = React.useState('')
   const [raceDate, setRaceDate] = React.useState('')
+  const [circuitName, setCircuitName] = React.useState('')
   const [raceWinner, setRaceWinner] = React.useState('')
   // circuit handles
   const handleCircuitNameChange = (event: any) => {
@@ -27,7 +27,7 @@ const Circuits = () => {
   const handleCircuitSubmit = async () => {
     const circuitBody = {
       name: circuitName,
-      country: circuitCountry,
+      country: raceCountry,
       date: raceDate,
       winner: raceWinner
       
@@ -53,7 +53,7 @@ const Circuits = () => {
       </Input>
       <label>País do circuito</label>
       <Input
-        name="circuitCountry"
+        name="raceCountry"
         onChange={handleCountryChange}
         type="text">
       </Input>
@@ -79,4 +79,4 @@ const Circuits = () => {
   )
 }
 
-export default Circuits
+export default Races
