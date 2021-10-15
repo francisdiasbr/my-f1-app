@@ -1,8 +1,14 @@
+import { map } from 'lodash'
 import React from 'react'
 import ScheduleItem from './item'
 import { Container, HeaderTable, MyTable, Text1 } from './styled'
 
-const Schedule = () => {
+type ScheduleType = {
+  circuitList: Array<any>;
+}
+
+const Schedule = ({ circuitList }: ScheduleType) => {
+  console.log('circuitList', circuitList)
   return (
     <Container>
       <Text1>Grandes Prêmios</Text1>
@@ -14,18 +20,18 @@ const Schedule = () => {
           <HeaderTable>Data da corrida</HeaderTable>
           <HeaderTable>Vencedor</HeaderTable>
         </tr>
-        <ScheduleItem
-          name="Spa-Francorchamps"
-          country="Bélgica"
-          racedate="29/08/2021"
-          racewinner="Max Verstappen"
-        />
-        <ScheduleItem
-          name="Interlagos"
-          country="Brasil"
-          racedate="14/11/2021"
-          racewinner="TBD"
-        />
+        <tbody>
+          {map(circuitList, (item, key) => {
+            return (
+              <ScheduleItem
+                name={item?.name}
+                country={item?.country}
+                racedate="N/D"
+                racewinner={item?.fastestlap}
+              />
+            )
+          })}
+        </tbody>
       </MyTable>
     </Container>
   )
