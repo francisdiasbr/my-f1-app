@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 //representa a tabela cumulativa de dados inseridos. 
 
-export const Mytable = styled.table`
+export const MyTable = styled.table`
   background: transparent;
   border-collapse: collapse;
   border-spacing: 30px;

@@ -1,13 +1,13 @@
 import React from 'react'
 import ScheduleItem from './item'
-import { Container, HeaderTable, Mytable, Text1 } from './styled'
+import { Container, HeaderTable, MyTable, Text1 } from './styled'
 
 const Schedule = () => {
   return (
     <Container>
-      <Text1>disclaimer sobre a tabela</Text1>
+      <Text1>Grandes Prêmios</Text1>
       <br></br>
-      <Mytable>
+      <MyTable>
         <tr>
           <HeaderTable>Circuito</HeaderTable>
           <HeaderTable>País</HeaderTable>
@@ -26,7 +26,7 @@ const Schedule = () => {
           racedate="14/11/2021"
           racewinner="TBD"
         />
-      </Mytable>
+      </MyTable>
     </Container>
   )
 }
