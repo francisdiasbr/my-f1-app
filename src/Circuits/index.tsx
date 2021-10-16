@@ -1,80 +1,163 @@
-import React from 'react'
-import axios from 'axios'
-import { Input } from '../Input'
-import { Button } from '../Button'
+import axios from "axios";
+import React from "react";
+import { map } from "lodash";
+import { get } from "lodash";
+import { Button } from "../Button";
+import { Input } from "../Input";
+import CircuitItem, { CircuitItemProps } from "./item";
+import {
+  Container,
+  ContentWrap,
+  HeaderTable,
+  Heading1,
+  InputWrap,
+  MyTable,
+  Text1,
+} from "../Styleguide/styled";
 
 const Circuits = () => {
+  // list circuit state
+  const [circuitList, setCircuitList] = React.useState([]);
   // form circuit states
-  const [circuitCity, setCircuitCity] = React.useState('')
-  const [circuitCountry, setCircuitCountry] = React.useState('')
-  const [circuitFastestLap, setCircuitFastestLap] = React.useState('')
-  const [circuitName, setCircuitName] = React.useState('')
+  const [circuitCity, setCircuitCity] = React.useState("");
+  const [circuitCountry, setCircuitCountry] = React.useState("");
+  const [circuitFastestLapPilot, setCircuitFastestLapPilot] =
+    React.useState("");
+  const [circuitFastestLapTime, setCircuitFastestLapTime] = React.useState("");
+  const [circuitFastestLapYear, setCircuitFastestLapYear] = React.useState("");
+  const [circuitName, setCircuitName] = React.useState("");
+
+  // função que carrega os pilotos da API
+  const loadCircuitFromApi = async () => {
+    // carregar os circuits da api
+    const requestCircuits = await axios.get("http://localhost:3001/circuits/");
+    // prepara o dado dos circuitos (data)
+    const resultCircuits = get(requestCircuits, "data", []);
+    // salvar os circuitos no circuitList
+    setCircuitList(resultCircuits);
+  };
 
   // circuit handles
   const handleCircuitCityChange = (event: any) => {
-    setCircuitCity(event.target.value)
-  }
+    setCircuitCity(event.target.value);
+  };
   const handleCircuitCountryChange = (event: any) => {
-    setCircuitCountry(event.target.value)
-  }
-  const handleCircuitFastestLapChange = (event: any) => {
-    setCircuitFastestLap(event.target.value)
-  }
+    setCircuitCountry(event.target.value);
+  };
+  const handleCircuitFastestLapTimeChange = (event: any) => {
+    setCircuitFastestLapTime(event.target.value);
+  };
+  const handleCircuitFastestLapPilotChange = (event: any) => {
+    setCircuitFastestLapPilot(event.target.value);
+  };
+  const handleCircuitFastestLapYearChange = (event: any) => {
+    setCircuitFastestLapYear(event.target.value);
+  };
   const handleCircuitNameChange = (event: any) => {
-    setCircuitName(event.target.value)
-  }
-
+    setCircuitName(event.target.value);
+  };
   // circuit button submit
   const handleCircuitSubmit = async () => {
     // define o modelo de dados a ser salvo
     const circuitBody = {
-      name: circuitName,
-      country: circuitCountry,
-      city: circuitCity,
-      fastestlap: circuitFastestLap
-    }
+      circuitname: circuitName,
+      circuitcountry: circuitCountry,
+      circuitcity: circuitCity,
+      circuitfastestlaptime: circuitFastestLapTime,
+      circuitfastestlapyear: circuitFastestLapYear,
+      circuitfastestlappilot: circuitFastestLapPilot,
+    };
     // salva (post) o novo circuito
-    await axios.post('http://localhost:3001/circuits/', circuitBody)
+    await axios.post("http://localhost:3001/circuits/", circuitBody);
     // chama a função de carregar os circuitos para atualizar a tabela
-    // loadCircuitFromApi()
-  }
-  
-  // 
-  return (
-    <div>
-      <h1>Circuitos F1</h1>
-      <label>Nome do circuito</label>
-      <Input
-        name="circuitName"
-        onChange={handleCircuitNameChange}
-        type="text">
-      </Input>
-      <label>País</label>
-      <Input
-        name="circuitCountry"
-        onChange={handleCircuitCountryChange}
-        type="text">
-      </Input>
-      <label>Cidade</label>
-      <Input
-        name="circuitCity"
-        onChange={handleCircuitCityChange}
-        type="text">
-      </Input>
-      <label>Volta mais rápida</label>
-      <Input
-        name="circuitFastestLap"
-        onChange={handleCircuitFastestLapChange}
-        type="text">
-      </Input>
-      <Button
-        onClick={handleCircuitSubmit}
-        primary={true}
-        type="button">
-        Enviar
-      </Button>
-    </div>
-  )
-}
+    loadCircuitFromApi();
+  };
 
-export default Circuits
+  //toda vez que a pág carrega
+  React.useEffect(() => {
+    // chama a função de carregar os circuitos
+    loadCircuitFromApi();
+  }, []);
+  return (
+    <Container>
+      <Heading1>Circuitos</Heading1>
+      <ContentWrap>
+        <InputWrap>
+          <label>Nome do circuito</label>
+          <Input
+            name="circuitName"
+            onChange={handleCircuitNameChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>País</label>
+          <Input
+            name="circuitCountry"
+            onChange={handleCircuitCountryChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>Cidade</label>
+          <Input
+            name="circuitCity"
+            onChange={handleCircuitCityChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>Volta mais rápida (tempo)</label>
+          <Input
+            name="circuitFastestLapTime"
+            onChange={handleCircuitFastestLapTimeChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>Volta mais rápida (ano)</label>
+          <Input
+            name="circuitFastestLapYear"
+            onChange={handleCircuitFastestLapYearChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>Volta mais rápida (piloto)</label>
+          <Input
+            name="circuitFastestLapPilot"
+            onChange={handleCircuitFastestLapPilotChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <Button onClick={handleCircuitSubmit} primary={true} type="button">
+            Enviar
+          </Button>
+        </InputWrap>
+      </ContentWrap>
+      <Text1>Circuitos</Text1>
+      <ContentWrap>
+        <MyTable>
+          <tr>
+            <HeaderTable>Nome</HeaderTable>
+            <HeaderTable>País</HeaderTable>
+            <HeaderTable>Cidade</HeaderTable>
+            <HeaderTable>Volta mais rápida (tempo)</HeaderTable>
+            <HeaderTable>Volta mais rápida (ano)</HeaderTable>
+            <HeaderTable>Volta mais rápida (piloto)</HeaderTable>
+          </tr>
+          <tbody>
+            {map(circuitList, (item: CircuitItemProps, key) => {
+              return (
+                <CircuitItem
+                  circuitname={item?.circuitname}
+                  circuitcountry={item?.circuitcountry}
+                  circuitcity={item?.circuitcity}
+                  circuitfastestlaptime={item?.circuitfastestlaptime}
+                  circuitfastestlapyear={item?.circuitfastestlapyear}
+                  circuitfastestlappilot={item?.circuitfastestlappilot}
+                />
+              );
+            })}
+          </tbody>
+        </MyTable>
+      </ContentWrap>
+    </Container>
+  );
+};
+export default Circuits;
