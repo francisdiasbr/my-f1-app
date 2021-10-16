@@ -2,17 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-    background: transparent;
-    border-radius: 3px;
-    border: 2px solid #FF8700;
-    color: #FF8700;
-    margin: 0 1em;
-    padding: 0.25em 1em;
-`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid #ff8700;
+  color: #ff8700;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+`;
 const Input = (props: any) => {
-    return (
-        <StyledInput {...props}></StyledInput>
-    )
-}
+  return <StyledInput {...props}></StyledInput>;
+};
 
-export {Input}
+export { Input };

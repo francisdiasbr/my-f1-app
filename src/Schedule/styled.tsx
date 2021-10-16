@@ -1,19 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-//representa a tabela cumulativa de dados inseridos. 
+//representa a tabela cumulativa de dados inseridos.
 
 export const MyTable = styled.table`
   background: transparent;
   border-collapse: collapse;
   border-spacing: 30px;
   border-radius: 30px;
-  border: 2px solid #FF8700;
-  color:#FF8700;
+  border: 2px solid black;
+  color: black;
   margin: 0 1em;
-  padding: 0.25em 1em; 
+  padding: 0.25em 1em;
   text-align: center;
   width: 600px;
-  
 `
 export const Text1 = styled.h1`
   font-size: 20px;

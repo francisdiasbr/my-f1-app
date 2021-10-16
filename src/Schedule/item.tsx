@@ -1,17 +1,17 @@
-import { CellTable } from './styled'
+import { CellTable } from "../Styleguide/styled"
 
 interface ScheduleItemProps {
-  name: string;
-  country: string;
-  racedate: string;
-  racewinner: string;
+  name: string
+  country: string
+  racedate: string
+  racewinner: string
 }
 
 const ScheduleItem = ({
   name,
   country,
   racedate,
-  racewinner
+  racewinner,
 }: ScheduleItemProps) => {
   return (
     <tr>
@@ -24,4 +24,3 @@ const ScheduleItem = ({
 }
 
 export default ScheduleItem
-

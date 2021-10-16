@@ -1,10 +1,10 @@
-import axios from "axios";
-import React from "react";
-import { map } from "lodash";
-import { get } from "lodash";
-import { Button } from "../Button";
-import { Input } from "../Input";
-import TeamItem, { TeamItemProps } from "./item";
+import axios from 'axios'
+import React from 'react'
+import { map } from 'lodash'
+import { get } from 'lodash'
+import { Button } from '../Button'
+import { Input } from '../Input'
+import TeamItem, { TeamItemProps } from './item'
 import {
   Container,
   ContentWrap,
@@ -13,40 +13,40 @@ import {
   InputWrap,
   MyTable,
   Text1,
-} from "../Styleguide/styled";
+} from '../Styleguide/styled'
 
 const Teams = () => {
   // list team state
-  const [teamList, setTeamList] = React.useState([]);
+  const [teamList, setTeamList] = React.useState([])
   // team states
-  const [teamName, setTeamName] = React.useState("");
-  const [teamPreviousName, setTeamPreviousName] = React.useState("");
-  const [teamFirstRace, setTeamFirstRace] = React.useState("");
-  const [teamEngine, setTeamEngine] = React.useState("");
+  const [teamName, setTeamName] = React.useState('')
+  const [teamPreviousName, setTeamPreviousName] = React.useState('')
+  const [teamFirstRace, setTeamFirstRace] = React.useState('')
+  const [teamEngine, setTeamEngine] = React.useState('')
 
   // função que carrega os teams da API
   const loadTeamFromApi = async () => {
     // carregar os teams da api
-    const requestTeam = await axios.get("http://localhost:3001/teams/");
+    const requestTeam = await axios.get('http://localhost:3001/teams/')
     // prepara o dado dos pilotos (data)
-    const resultTeam = get(requestTeam, "data", []);
+    const resultTeam = get(requestTeam, 'data', [])
     // salvar as equipes no teamsList
-    setTeamList(resultTeam);
-  };
+    setTeamList(resultTeam)
+  }
 
   // team handles
   const handleTeamNameChange = (event: any) => {
-    setTeamName(event.target.value);
-  };
+    setTeamName(event.target.value)
+  }
   const handleTeamPreviousNameChange = (event: any) => {
-    setTeamPreviousName(event.target.value);
-  };
+    setTeamPreviousName(event.target.value)
+  }
   const handleTeamFirstRaceChange = (event: any) => {
-    setTeamFirstRace(event.target.value);
-  };
+    setTeamFirstRace(event.target.value)
+  }
   const handleTeamEngineChange = (event: any) => {
-    setTeamEngine(event.target.value);
-  };
+    setTeamEngine(event.target.value)
+  }
   // team button submit
   const handleTeamSubmit = async () => {
     // define o modelo de dados a ser salvo
@@ -55,18 +55,18 @@ const Teams = () => {
       teampreviousname: teamPreviousName,
       teamfirstrace: teamFirstRace,
       teamengine: teamEngine,
-    };
+    }
     // salva (post) a nova equipe
-    await axios.post("http://localhost:3001/teams/", teamBody);
+    await axios.post('http://localhost:3001/teams/', teamBody)
     // chama a função de carregar as equipes para atualizar a tabela
-    loadTeamFromApi();
-  };
+    loadTeamFromApi()
+  }
 
   // toda vez que a página carregar
   React.useEffect(() => {
     // chama a função de carregar as equipes
-    loadTeamFromApi();
-  }, []);
+    loadTeamFromApi()
+  }, [])
   return (
     <Container>
       <Heading1>Equipes</Heading1>
@@ -74,33 +74,33 @@ const Teams = () => {
         <InputWrap>
           <label>Nome</label>
           <Input
-            name="teamName"
+            name='teamName'
             onChange={handleTeamNameChange}
-            type="text"
+            type='text'
           ></Input>
           <br></br>
           <label>Nome anterior</label>
           <Input
-            name="teamPreviousName"
+            name='teamPreviousName'
             onChange={handleTeamPreviousNameChange}
-            type="text"
+            type='text'
           ></Input>
           <br></br>
           <label>Primeiro GP</label>
           <Input
-            name="teamFirstRace"
+            name='teamFirstRace'
             onChange={handleTeamFirstRaceChange}
-            type="text"
+            type='text'
           ></Input>
           <br></br>
           <label>Motor</label>
           <Input
-            name="teamEngine"
+            name='teamEngine'
             onChange={handleTeamEngineChange}
-            type="text"
+            type='text'
           ></Input>
           <br></br>
-          <Button onClick={handleTeamSubmit} primary={true} type="button">
+          <Button onClick={handleTeamSubmit} primary={true} type='button'>
             Enviar
           </Button>
         </InputWrap>
@@ -122,12 +122,12 @@ const Teams = () => {
                 teamfirstrace={item?.teamfirstrace}
                 teamengine={item?.teamengine}
               />
-            );
+            )
           })}
         </tbody>
       </MyTable>
     </Container>
-  );
-};
+  )
+}
 
-export default Teams;
+export default Teams
