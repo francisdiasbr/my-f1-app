@@ -1,91 +1,134 @@
-import React from 'react'
-import axios from 'axios'
-import { get } from 'lodash'
-import { Input } from '../Input'
-import { Button } from '../Button'
-import Schedule from '../Schedule'
+import React from "react";
+import axios from "axios";
+import { get, map } from "lodash";
+import { Button } from "../Button";
+import { Input } from "../Input";
+import {
+  Container,
+  ContentWrap,
+  HeaderTable,
+  Heading1,
+  InputWrap,
+  MyTable,
+  Text1,
+} from "../Styleguide/styled";
+import RaceItem, { RaceItemProps } from "./item";
 
 const Races = () => {
-  // list circuit state
-  const [circuitList, setCircuitList] = React.useState([])
-  // circuit states
-  const [raceDate, setRaceDate] = React.useState('')
-  const [circuitName, setCircuitName] = React.useState('')
-  const [raceWinner, setRaceWinner] = React.useState('')
+  // list race state
+  const [raceList, setRaceList] = React.useState([]);
+  // form race states
+  const [circuitCountry, setCircuitCountry] = React.useState("");
+  const [circuitName, setCircuitName] = React.useState("");
+  const [raceDate, setRaceDate] = React.useState("");
+  const [raceWinner, setRaceWinner] = React.useState("");
 
-  // função de carregar os circuitos da API
-  const loadCircuitFromApi = async () => {
-    // carregar os circuitos da api
-    const requestCircuits = await axios.get('http://localhost:3001/circuits/')
-    // prepara o dado dos circuitos (data)
-    const resultCircuits = get(requestCircuits, 'data', [])
-    // salvar os circuitos no circuitList
-    setCircuitList(resultCircuits)
-  }
+  // função que carrega as corridas da API
+  const loadRaceFromApi = async () => {
+    // carregar as corridas da api
+    const requestRaces = await axios.get("http://localhost:3001/races/");
+    // prepara o dado das corridas (data)
+    const resultRaces = get(requestRaces, "data", []);
+    // salvar as corridas no raceList
+    setRaceList(resultRaces);
+  };
 
   // circuit handles
   const handleCircuitNameChange = (event: any) => {
-    setCircuitName(event.target.value)
-  }
+    setCircuitName(event.target.value);
+  };
+  const handleCircuitCountryChange = (event: any) => {
+    setCircuitCountry(event.target.value);
+  };
   const handleRaceDateChange = (event: any) => {
-    setRaceDate(event.target.value)
-  }
+    setRaceDate(event.target.value);
+  };
   const handleRaceWinnerChange = (event: any) => {
-    setRaceWinner(event.target.value)
-  }
+    setRaceWinner(event.target.value);
+  };
+
   // circuit submit
   const handleRaceSubmit = async () => {
     const raceBody = {
-      name: circuitName,
-      date: raceDate,
-      winner: raceWinner
-      
-    }
-    const response1 = await axios.post('http://localhost:3001/races/', raceBody)
-    const result1 = get(response1, 'data')
-    console.log('result1', result1)
+      circuitname: circuitName,
+      circuitcountry: circuitCountry,
+      racedate: raceDate,
+      racewinner: raceWinner,
+    };
+    // salva (post) a nova corrida
+    await axios.post("http://localhost:3001/races/", raceBody);
+    // chama a função de carregar as corridas para atualizar a tabela
+    loadRaceFromApi();
+  };
 
-    const response2 = await axios.get('http://localhost:3001/races/')
-    const result2 = get(response2, 'data', 0)
-    console.log('result2', result2)
-  }
   // toda a vez que a página carregar
   React.useEffect(() => {
-    // chama a função de carregar os circuitos
-    loadCircuitFromApi()
-  }, [])
+    // chama a função de carregar as corridas
+    loadRaceFromApi();
+  }, []);
 
-  // 
+  //
   return (
-    <div>
-      <h1>Grandes Prêmios</h1>
-      <label>Nome do circuito</label>
-      <Input
-        name="circuitName"
-        onChange={handleCircuitNameChange}
-        type="text">
-      </Input>
-      <label>Data da corrida</label>
-      <Input
-        name="raceDate"
-        onChange={handleRaceDateChange}
-        type="text">
-      </Input>
-      <label>Vencedor</label>
-      <Input
-        name="raceWinner"
-        onChange={handleRaceWinnerChange}
-        type="text">
-      </Input>
-      <Button
-        onClick={handleRaceSubmit}
-        primary={true}
-        type="button">
-        Enviar
-      </Button>
-      <Schedule circuitList={circuitList} />
-    </div>
-  )
-}
+    <Container>
+      <Heading1>Corridas</Heading1>
+      <ContentWrap>
+        <InputWrap>
+          <label>Corrida</label>
+          <Input
+            name="circuitName"
+            onChange={handleCircuitNameChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>País</label>
+          <Input
+            name="circuitCountry"
+            onChange={handleCircuitCountryChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>Data da corrida</label>
+          <Input
+            name="raceDate"
+            onChange={handleRaceDateChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <label>Vencedor</label>
+          <Input
+            name="raceWinner"
+            onChange={handleRaceWinnerChange}
+            type="text"
+          ></Input>
+          <br></br>
+          <Button onClick={handleRaceSubmit} primary={true} type="button">
+            Enviar
+          </Button>
+        </InputWrap>
+        <Text1>Corridas</Text1>
+        <MyTable>
+          <tr>
+            <HeaderTable>Nome</HeaderTable>
+            <HeaderTable>País</HeaderTable>
+            <HeaderTable>Data da corrida</HeaderTable>
+            <HeaderTable>Vencedor</HeaderTable>
+          </tr>
+          <tbody>
+            {map(raceList, (item: RaceItemProps, key) => {
+              return (
+                <RaceItem
+                  circuitname={item?.circuitname}
+                  circuitcountry={item?.circuitcountry}
+                  racedate={item?.racedate}
+                  racewinner={item?.racewinner}
+                />
+              );
+            })}
+          </tbody>
+        </MyTable>
+      </ContentWrap>
+    </Container>
+  );
+};
 
-export default Races
+export default Races;
