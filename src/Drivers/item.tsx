@@ -1,13 +1,13 @@
-import { CellTable } from "../Styleguide/styled";
+import { CellTable } from '../Styleguide/styled'
 
 export type DriverItemProps = {
-  name: string;
-  nickname: string;
-  birth: string;
-  country: string;
-  team: string;
-  lastwin: string;
-};
+  name: string
+  nickname: string
+  birth: string
+  country: string
+  team: string
+  lastwin: string
+}
 
 const DriverItem = ({
   name,
@@ -26,7 +26,7 @@ const DriverItem = ({
       <CellTable>{team}</CellTable>
       <CellTable>{lastwin}</CellTable>
     </tr>
-  );
-};
+  )
+}
 
-export default DriverItem;
+export default DriverItem

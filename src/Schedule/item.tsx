@@ -1,4 +1,4 @@
-import { CellTable } from "../Styleguide/styled"
+import { CellTable, TableRow } from '../Styleguide/styled'
 
 interface ScheduleItemProps {
   name: string
@@ -14,12 +14,12 @@ const ScheduleItem = ({
   racewinner,
 }: ScheduleItemProps) => {
   return (
-    <tr>
+    <TableRow>
       <CellTable>{name}</CellTable>
       <CellTable>{country}</CellTable>
       <CellTable>{racedate}</CellTable>
       <CellTable>{racewinner}</CellTable>
-    </tr>
+    </TableRow>
   )
 }
 

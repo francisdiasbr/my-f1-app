@@ -1,9 +1,9 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  primary?: boolean;
-  type: any;
+  primary?: boolean
+  type: any
 }
 
 const Button = styled.button<ButtonProps>`
@@ -13,8 +13,8 @@ const Button = styled.button<ButtonProps>`
   color: #000;
   display: flex;
   flex-direction: column;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+  height: 40px;
+  padding: 8px 16px 0px 16px;
 
   ${(props) =>
     props.primary &&
@@ -22,6 +22,6 @@ const Button = styled.button<ButtonProps>`
       background: #ff8700;
       color: white;
     `}
-`;
+`
 
-export { Button };
+export { Button }

@@ -8,21 +8,25 @@ import TeamItem, { TeamItemProps } from './item'
 import {
   Container,
   ContentWrap,
+  FormTitle,
   HeaderTable,
-  Heading1,
+  InputField,
+  InputTag,
   InputWrap,
   MyTable,
-  Text1,
+  TableBody,
+  TableRow,
+  TableTitle,
 } from '../Styleguide/styled'
 
 const Teams = () => {
   // list team state
   const [teamList, setTeamList] = React.useState([])
   // team states
+  const [teamEngine, setTeamEngine] = React.useState('')
+  const [teamFirstRace, setTeamFirstRace] = React.useState('')
   const [teamName, setTeamName] = React.useState('')
   const [teamPreviousName, setTeamPreviousName] = React.useState('')
-  const [teamFirstRace, setTeamFirstRace] = React.useState('')
-  const [teamEngine, setTeamEngine] = React.useState('')
 
   // função que carrega os teams da API
   const loadTeamFromApi = async () => {
@@ -69,63 +73,67 @@ const Teams = () => {
   }, [])
   return (
     <Container>
-      <Heading1>Equipes</Heading1>
+      <FormTitle>Equipes</FormTitle>
       <ContentWrap>
         <InputWrap>
-          <label>Nome</label>
-          <Input
-            name='teamName'
-            onChange={handleTeamNameChange}
-            type='text'
-          ></Input>
-          <br></br>
-          <label>Nome anterior</label>
-          <Input
-            name='teamPreviousName'
-            onChange={handleTeamPreviousNameChange}
-            type='text'
-          ></Input>
-          <br></br>
-          <label>Primeiro GP</label>
-          <Input
-            name='teamFirstRace'
-            onChange={handleTeamFirstRaceChange}
-            type='text'
-          ></Input>
-          <br></br>
-          <label>Motor</label>
-          <Input
-            name='teamEngine'
-            onChange={handleTeamEngineChange}
-            type='text'
-          ></Input>
-          <br></br>
+          <InputField>
+            <InputTag>Nome</InputTag>
+            <Input
+              name='teamName'
+              onChange={handleTeamNameChange}
+              type='text'
+            ></Input>
+          </InputField>
+          <InputField>
+            <InputTag>Nome anterior</InputTag>
+            <Input
+              name='teamPreviousName'
+              onChange={handleTeamPreviousNameChange}
+              type='text'
+            ></Input>
+          </InputField>
+          <InputField>
+            <InputTag>Primeiro GP</InputTag>
+            <Input
+              name='teamFirstRace'
+              onChange={handleTeamFirstRaceChange}
+              type='text'
+            ></Input>
+          </InputField>
+          <InputField>
+            <InputTag>Motor</InputTag>
+            <Input
+              name='teamEngine'
+              onChange={handleTeamEngineChange}
+              type='text'
+            ></Input>
+          </InputField>
           <Button onClick={handleTeamSubmit} primary={true} type='button'>
             Enviar
           </Button>
         </InputWrap>
+        <TableTitle>Equipes</TableTitle>
+        <MyTable>
+          <TableRow>
+            <HeaderTable>Nome</HeaderTable>
+            <HeaderTable>Nome anterior</HeaderTable>
+            <HeaderTable>Primeiro GP</HeaderTable>
+            <HeaderTable>Motor</HeaderTable>
+          </TableRow>
+          <TableBody>
+            {map(teamList, (item: TeamItemProps, key) => {
+              return (
+                <TeamItem
+                  teamname={item?.teamname}
+                  teampreviousname={item?.teampreviousname}
+                  teamfirstrace={item?.teamfirstrace}
+                  teamengine={item?.teamengine}
+                />
+              )
+            })}
+          </TableBody>
+        </MyTable>
       </ContentWrap>
-      <Text1>Equipes</Text1>
-      <MyTable>
-        <tr>
-          <HeaderTable>Nome</HeaderTable>
-          <HeaderTable>Nome anterior</HeaderTable>
-          <HeaderTable>Primeiro GP</HeaderTable>
-          <HeaderTable>Motor</HeaderTable>
-        </tr>
-        <tbody>
-          {map(teamList, (item: TeamItemProps, key) => {
-            return (
-              <TeamItem
-                teamname={item?.teamname}
-                teampreviousname={item?.teampreviousname}
-                teamfirstrace={item?.teamfirstrace}
-                teamengine={item?.teamengine}
-              />
-            )
-          })}
-        </tbody>
-      </MyTable>
     </Container>
   )
 }

@@ -1,11 +1,11 @@
-import { CellTable } from "../Styleguide/styled";
+import { CellTable, TableRow } from '../Styleguide/styled'
 
 export type TeamItemProps = {
-  teamname: string;
-  teampreviousname: string;
-  teamfirstrace: string;
-  teamengine: string;
-};
+  teamname: string
+  teampreviousname: string
+  teamfirstrace: string
+  teamengine: string
+}
 
 const TeamItem = ({
   teamname,
@@ -14,13 +14,13 @@ const TeamItem = ({
   teamengine,
 }: TeamItemProps) => {
   return (
-    <tr>
+    <TableRow>
       <CellTable>{teamname}</CellTable>
       <CellTable>{teampreviousname}</CellTable>
       <CellTable>{teamfirstrace}</CellTable>
       <CellTable>{teamengine}</CellTable>
-    </tr>
-  );
-};
+    </TableRow>
+  )
+}
 
-export default TeamItem;
+export default TeamItem

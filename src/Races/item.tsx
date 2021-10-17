@@ -1,11 +1,11 @@
-import { CellTable } from "../Styleguide/styled";
+import { CellTable } from '../Styleguide/styled'
 
 export type RaceItemProps = {
-  circuitname: string;
-  circuitcountry: string;
-  racedate: string;
-  racewinner: string;
-};
+  circuitname: string
+  circuitcountry: string
+  racedate: string
+  racewinner: string
+}
 
 const RaceItem = ({
   circuitname,
@@ -20,7 +20,7 @@ const RaceItem = ({
       <CellTable>{racedate}</CellTable>
       <CellTable>{racewinner}</CellTable>
     </tr>
-  );
-};
+  )
+}
 
-export default RaceItem;
+export default RaceItem

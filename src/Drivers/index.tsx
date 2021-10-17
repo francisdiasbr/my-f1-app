@@ -1,60 +1,63 @@
-import axios from "axios";
-import React from "react";
-import { get } from "lodash";
-import { map } from "lodash";
-import DriverItem, { DriverItemProps } from "./item";
-import { Button } from "../Button";
-import { Input } from "../Input";
+import axios from 'axios'
+import React from 'react'
+import { get } from 'lodash'
+import { map } from 'lodash'
+import DriverItem, { DriverItemProps } from './item'
+import { Button } from '../Button'
+import { Input } from '../Input'
 import {
   Container,
   ContentWrap,
+  FormTitle,
   HeaderTable,
-  Heading1,
   InputWrap,
+  InputTag,
   MyTable,
-  Text1,
-} from "../Styleguide/styled";
+  TableTitle,
+  TableRow,
+  TableBody,
+} from '../Styleguide/styled'
 
 const Drivers = () => {
   // list driver state
-  const [driverList, setDriverList] = React.useState([]);
+  const [driverList, setDriverList] = React.useState([])
   // pilot states
-  const [driverBirth, setDriverBirth] = React.useState("");
-  const [driverCountry, setDriverCountry] = React.useState("");
-  const [driverLastWin, setDriverLastWin] = React.useState("");
-  const [driverName, setDriverName] = React.useState("");
-  const [driverNickname, setDriverNickname] = React.useState("");
-  const [driverTeam, setDriverTeam] = React.useState("");
+  const [driverBirth, setDriverBirth] = React.useState('')
+  const [driverCountry, setDriverCountry] = React.useState('')
+  const [driverLastWin, setDriverLastWin] = React.useState('')
+  const [driverName, setDriverName] = React.useState('')
+  const [driverNickname, setDriverNickname] = React.useState('')
+  const [driverTeam, setDriverTeam] = React.useState('')
 
   // função que carrega os pilotos da API
   const loadDriverFromApi = async () => {
     // carrega os pilotos da api
-    const requestDriver = await axios.get("http://localhost:3001/drivers/");
+    const requestDriver = await axios.get('http://localhost:3001/drivers/')
     // prepara o dado dos pilotos (data)
-    const resultDriver = get(requestDriver, "data", []);
+    const resultDriver = get(requestDriver, 'data', [])
     // salva os pilotos no driverList
-    setDriverList(resultDriver);
-  };
+    setDriverList(resultDriver)
+  }
 
   // driver handles
   const handleDriverBirthChange = (event: any) => {
-    setDriverBirth(event.target.value);
-  };
+    setDriverBirth(event.target.value)
+  }
   const handleDriverCountryChange = (event: any) => {
-    setDriverCountry(event.target.value);
-  };
+    setDriverCountry(event.target.value)
+  }
   const handleDriverLastWinChange = (event: any) => {
-    setDriverLastWin(event.target.value);
-  };
+    setDriverLastWin(event.target.value)
+  }
   const handleDriverNameChange = (event: any) => {
-    setDriverName(event.target.value);
-  };
+    setDriverName(event.target.value)
+  }
   const handleDriverNicknameChange = (event: any) => {
-    setDriverNickname(event.target.value);
-  };
+    setDriverNickname(event.target.value)
+  }
   const handleDriverTeamChange = (event: any) => {
-    setDriverTeam(event.target.value);
-  };
+    setDriverTeam(event.target.value)
+  }
   // driver button submit
   const handleDriverSubmit = async () => {
     // define o modelo de dados a ser salvo
@@ -65,80 +68,74 @@ const Drivers = () => {
       country: driverCountry,
       team: driverTeam,
       lastwin: driverLastWin,
-    };
+    }
     // salva o novo piloto
-    await axios.post("http://localhost:3001/drivers/", driverBody);
+    await axios.post('http://localhost:3001/drivers/', driverBody)
     // função de carregar os pilotos para atualizar a tabela
-    loadDriverFromApi();
-  };
+    loadDriverFromApi()
+  }
   // toda a vez que a página carregar
   React.useEffect(() => {
     // chama a função de carregar os pilotos
-    loadDriverFromApi();
-  }, []);
+    loadDriverFromApi()
+  }, [])
   return (
     <Container>
-      <Heading1>Pilotos</Heading1>
+      <FormTitle>Pilotos</FormTitle>
       <ContentWrap>
         <InputWrap>
-          <label>Nome</label>
+          <InputTag>Nome</InputTag>
           <Input
-            name="driverName"
+            name='driverName'
             onChange={handleDriverNameChange}
-            type="text"
+            type='text'
           ></Input>
-          <br></br>
-          <label>Apelido</label>
+          <InputTag>Apelido</InputTag>
           <Input
-            name="driverNickname"
+            name='driverNickname'
             onChange={handleDriverNicknameChange}
-            type="text"
+            type='text'
           ></Input>
-          <br></br>
-          <label>Data de Nascimento</label>
+          <InputTag>Data de Nascimento</InputTag>
           <Input
-            name="driverBirth"
+            name='driverBirth'
             onChange={handleDriverBirthChange}
-            type="text"
+            type='text'
           ></Input>
-          <br></br>
-          <label>País</label>
+          <InputTag>País</InputTag>
           <Input
-            name="driverCountry"
+            name='driverCountry'
             onChange={handleDriverCountryChange}
-            type="text"
+            type='text'
           ></Input>
-          <br></br>
-          <label>Equipe</label>
+          <InputTag>Equipe</InputTag>
           <Input
-            name="driverTeam"
+            name='driverTeam'
             onChange={handleDriverTeamChange}
-            type="text"
+            type='text'
           ></Input>
-          <br></br>
-          <label>Última Vitória</label>
+          <InputTag>Última Vitória</InputTag>
           <Input
-            name="driverLastWin"
+            name='driverLastWin'
             onChange={handleDriverLastWinChange}
-            type="text"
+            type='text'
           ></Input>
-          <br></br>
-          <Button onClick={handleDriverSubmit} primary={true} type="button">
+          <Button onClick={handleDriverSubmit} primary={true} type='button'>
             Enviar
           </Button>
         </InputWrap>
       </ContentWrap>
-      <Text1>Pilotos</Text1>
+      <TableTitle>Pilotos</TableTitle>
       <MyTable>
-        <tr>
+        <TableRow>
           <HeaderTable>Nome</HeaderTable>
           <HeaderTable>Apelido</HeaderTable>
           <HeaderTable>Data de Nascimento</HeaderTable>
           <HeaderTable>País</HeaderTable>
           <HeaderTable>Equipe</HeaderTable>
           <HeaderTable>Última Vitória</HeaderTable>
-        </tr>
-        <tbody>
+        </TableRow>
+        <TableBody>
           {map(driverList, (item: DriverItemProps, key) => {
             return (
               <DriverItem
@@ -149,12 +146,12 @@ const Drivers = () => {
                 team={item?.team}
                 lastwin={item?.lastwin}
               />
-            );
+            )
           })}
-        </tbody>
+        </TableBody>
       </MyTable>
     </Container>
-  );
-};
+  )
+}
 
-export default Drivers;
+export default Drivers

@@ -1,13 +1,13 @@
-import { CellTable } from "../Styleguide/styled";
+import { CellTable } from '../Styleguide/styled'
 
 export type CircuitItemProps = {
-  circuitname: string;
-  circuitcountry: string;
-  circuitcity: string;
-  circuitfastestlaptime: string;
-  circuitfastestlapyear: string;
-  circuitfastestlappilot: string;
-};
+  circuitname: string
+  circuitcountry: string
+  circuitcity: string
+  circuitfastestlaptime: string
+  circuitfastestlapyear: string
+  circuitfastestlapdriver: string
+}
 
 const CircuitItem = ({
   circuitname,
@@ -15,7 +15,7 @@ const CircuitItem = ({
   circuitcity,
   circuitfastestlaptime,
   circuitfastestlapyear,
-  circuitfastestlappilot,
+  circuitfastestlapdriver,
 }: CircuitItemProps) => {
   return (
     <tr>
@@ -24,9 +24,9 @@ const CircuitItem = ({
       <CellTable>{circuitcity}</CellTable>
       <CellTable>{circuitfastestlaptime}</CellTable>
       <CellTable>{circuitfastestlapyear}</CellTable>
-      <CellTable>{circuitfastestlappilot}</CellTable>
+      <CellTable>{circuitfastestlapdriver}</CellTable>
     </tr>
-  );
-};
+  )
+}
 
-export default CircuitItem;
+export default CircuitItem

@@ -1,33 +1,51 @@
-import React from "react";
-import { Heading1, TopbarContainer } from "../Styleguide/styled";
-import { Link } from "react-router-dom";
+import React from 'react'
+import {
+  FormTitle,
+  TopbarContainer,
+  TopbarLogo,
+  TopbarMenu,
+} from '../Styleguide/styled'
+import { Link } from 'react-router-dom'
+import { Button } from '@naturacosmeticos/natds-react'
 
 const Topbar = () => {
   return (
     <TopbarContainer>
-      <Link to="/">
-        <Heading1>F1 Stats 2021</Heading1>
-      </Link>
-      <Link to="/apostas">
-        <Heading1>PALPITES</Heading1>
-      </Link>
-      <Link to="/circuitos">
-        <Heading1>CIRCUITOS</Heading1>
-      </Link>
-      <Link to="/corridas">
-        <Heading1>CORRIDAS</Heading1>
-      </Link>
-      <Link to="/pilotos">
-        <Heading1>PILOTOS</Heading1>
-      </Link>
-      <Link to="/equipes">
-        <Heading1>EQUIPES</Heading1>
-      </Link>
-      <Link to="/calculadora">
-        <Heading1>CALCULADORA</Heading1>
-      </Link>
+      <Button
+        iconPosition='left'
+        iconName='outlined-product-vegan'
+        showIcon={true}
+        onClick={() => console.log('newtopbar')}
+      >
+        TOPBAR
+      </Button>
+      <TopbarLogo>
+        <Link to='/'>
+          <FormTitle>F1 Stats 2021</FormTitle>
+        </Link>
+      </TopbarLogo>
+      <TopbarMenu>
+        <Link to='/apostas'>
+          <FormTitle>PALPITES</FormTitle>
+        </Link>
+        <Link to='/circuitos'>
+          <FormTitle>CIRCUITOS</FormTitle>
+        </Link>
+        <Link to='/corridas'>
+          <FormTitle>CORRIDAS</FormTitle>
+        </Link>
+        <Link to='/pilotos'>
+          <FormTitle>PILOTOS</FormTitle>
+        </Link>
+        <Link to='/equipes'>
+          <FormTitle>EQUIPES</FormTitle>
+        </Link>
+        <Link to='/calculadora'>
+          <FormTitle>CALCULADORA</FormTitle>
+        </Link>
+      </TopbarMenu>
     </TopbarContainer>
-  );
-};
+  )
+}
 
-export default Topbar;
+export default Topbar
