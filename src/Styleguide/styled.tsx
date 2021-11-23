@@ -1,40 +1,9 @@
 import styled from 'styled-components'
 
-// Divs input formulários
+// Cards
 
-export const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`
-
-export const ContentWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`
-
-export const InputField = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  width: 100%;
-
-  @media (min-width: 720px) {
-    flex-direction: column;
-    width: 50%;
-  }
-`
-export const InputWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  width: 100%;
-
-  @media (min-width: 720px) {
-    flex-direction: row;
-  }
+export const Card = styled.div`
+  margin: 10px 0px;
 `
 
 // Divs margins
@@ -43,59 +12,60 @@ export const MarginContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: #005fdb;
   font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  width: calc(100% - 40px);
+  margin: 10px 0px;
+  max-width: 600px;
+  width: calc(100% - 10px);
 `
-
 // Divs topbar
 
 export const TopbarContainer = styled.div`
-  position: sticky;
+  margin: 10px 0px;
+  max-width: 600px;
   width: 100%;
 `
 
 export const TopbarLogo = styled.div`
-  align-content: space-around;
-  align-items: center;
   display: flex;
-  position: sticky;
+  margin: 10px 0px;
+  max-width: 600px;
+  justify-content: space-evenly;
   width: 100%;
 `
 
 export const TopbarMenu = styled.div`
   align-content: space-around;
   align-items: center;
-  background-color: #ff8700;
+  background-color: papayawhip;
   display: flex;
   flex-direction: row;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  gap: 40px;
-  height: 40px;
   justify-content: space-evenly;
-  padding: 10px;
-  position: sticky;
-  width: calc(100% - 20px);
+  margin: 10px 0px;
+  max-width: 600px;
+  width: 100%;
 `
 
 // Headings
 
 export const FormTitle = styled.h1`
-  font-size: 14px;
+  font-size: 16px;
 `
 
 export const TableTitle = styled.h1`
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
 `
 
 export const ResultTitle = styled.h2`
   color: black;
   font-size: 14px;
+  justify-content: center;
   margin: 0px;
+  text-align: center;
 `
 
 // Labels
@@ -103,7 +73,8 @@ export const ResultTitle = styled.h2`
 export const InputTag = styled.label`
   font-size: 14px;
   color: gray;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
 `
 
 // Tables
@@ -112,12 +83,11 @@ export const MyTable = styled.table`
   border-collapse: collapse;
   border-spacing: 30px;
   border-radius: 30px;
-  border: 2px solid black;
+  border: 1px solid black;
   color: black;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+  margin: 0 1;
   table-layout: fixed;
-  width: 100%;
+  width: calc(100% - 10px);
 `
 export const TableBody = styled.tbody`
   width: 100%;
@@ -125,6 +95,7 @@ export const TableBody = styled.tbody`
 
 export const CellTable = styled.td`
   color: black;
+  text-align: center;
 `
 
 export const HeaderTable = styled.th`

@@ -2,14 +2,16 @@ import React from 'react'
 import axios from 'axios'
 import { get, map } from 'lodash'
 import { Button } from '../Button'
-import { Input } from '../Input'
 import {
   Container,
   ContentWrap,
-  HeaderTable,
-  FormTitle,
+  Input,
   InputField,
   InputWrap,
+} from '../Input/index'
+import {
+  HeaderTable,
+  FormTitle,
   InputTag,
   MyTable,
   TableBody,

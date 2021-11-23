@@ -3,14 +3,8 @@ import axios from 'axios'
 import { get } from 'lodash'
 import { Button } from '../Button'
 import { Input } from '../Input'
-import {
-  Container,
-  FormTitle,
-  InputField,
-  InputTag,
-  InputWrap,
-  ResultTitle,
-} from '../Styleguide/styled'
+import { FormTitle, InputTag, ResultTitle } from '../Styleguide/styled'
+import { Container, InputField, InputWrap } from '../Input/index'
 
 const Positions = () => {
   // position states

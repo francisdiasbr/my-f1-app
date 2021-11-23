@@ -6,19 +6,10 @@ import {
   TopbarMenu,
 } from '../Styleguide/styled'
 import { Link } from 'react-router-dom'
-import { Button } from '@naturacosmeticos/natds-react'
 
 const Topbar = () => {
   return (
     <TopbarContainer>
-      <Button
-        iconPosition='left'
-        iconName='outlined-product-vegan'
-        showIcon={true}
-        onClick={() => console.log('newtopbar')}
-      >
-        TOPBAR
-      </Button>
       <TopbarLogo>
         <Link to='/'>
           <FormTitle>F1 Stats 2021</FormTitle>

@@ -1,17 +1,43 @@
-import React from 'react'
 import styled from 'styled-components'
 
-const StyledInput = styled.input`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid #ff8700;
-  color: #ff8700;
-  margin: 0 1em;
-  padding: 0.25em 1em;
-  margin-bottom: 16px;
-`
-const Input = (props: any) => {
-  return <StyledInput {...props}></StyledInput>
-}
+// Divs input formulários
 
-export { Input }
+export const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  max-width: 600px;
+  width: 100%;
+`
+
+export const ContentWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  max-width: 600px;
+  width: 100%;
+`
+export const Input = styled.input`
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid #03265a;
+  color: black;
+  margin: 10px 2px;
+`
+
+export const InputField = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  max-width: 600px;
+  width: calc(100% - 10px);
+`
+export const InputWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 10px 0px;
+  max-width: 600px;
+  width: calc(100% - 10 px);
+`

@@ -4,15 +4,12 @@ import { map } from 'lodash'
 import { get } from 'lodash'
 import { Button } from '../Button'
 import { Input } from '../Input'
+import { Container, ContentWrap, InputField, InputWrap } from '../Input/index'
 import TeamItem, { TeamItemProps } from './item'
 import {
-  Container,
-  ContentWrap,
   FormTitle,
   HeaderTable,
-  InputField,
   InputTag,
-  InputWrap,
   MyTable,
   TableBody,
   TableRow,
