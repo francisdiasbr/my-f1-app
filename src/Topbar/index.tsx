@@ -6,14 +6,18 @@ import {
   TopbarMenu,
 } from '../Styleguide/styled'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const MyCustomImage = styled.img`
+  width: 50%;
+`
 
 const Topbar = () => {
   return (
     <TopbarContainer>
       <TopbarLogo>
-        <Link to='/'>
-          <FormTitle>F1 Stats 2021</FormTitle>
-        </Link>
+        <FormTitle>F1 Stats 2021</FormTitle>
+        <MyCustomImage alt='Logo' src='/f1car.jpeg' />
       </TopbarLogo>
       <TopbarMenu>
         <Link to='/apostas'>

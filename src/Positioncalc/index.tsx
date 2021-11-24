@@ -2,9 +2,15 @@ import React from 'react'
 import axios from 'axios'
 import { get } from 'lodash'
 import { Button } from '../Button'
-import { Input } from '../Input'
-import { FormTitle, InputTag, ResultTitle } from '../Styleguide/styled'
-import { Container, InputField, InputWrap } from '../Input/index'
+import {
+  Container,
+  FormTitle,
+  Input,
+  InputField,
+  InputTag,
+  InputWrap,
+  ResultTitle,
+} from '../Styleguide/styled'
 
 const Positions = () => {
   // position states

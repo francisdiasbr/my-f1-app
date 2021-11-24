@@ -5,13 +5,11 @@ import { Button } from '../Button'
 import {
   Container,
   ContentWrap,
+  FormTitle,
+  HeaderTable,
   Input,
   InputField,
   InputWrap,
-} from '../Input/index'
-import {
-  HeaderTable,
-  FormTitle,
   InputTag,
   MyTable,
   TableBody,

@@ -3,8 +3,8 @@ import React from 'react'
 import ScheduleItem from './item'
 import {
   Container,
-  HeaderTable,
   FormTitle,
+  HeaderTable,
   MyTable,
   TableBody,
   TableRow,

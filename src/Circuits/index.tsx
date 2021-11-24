@@ -3,18 +3,20 @@ import React from 'react'
 import { map } from 'lodash'
 import { get } from 'lodash'
 import { Button } from '../Button'
-import { Input } from '../Input'
 import CircuitItem, { CircuitItemProps } from './item'
 import {
+  Container,
+  ContentWrap,
+  InputWrap,
   HeaderTable,
   FormTitle,
+  Input,
   InputTag,
   MyTable,
   TableBody,
   TableRow,
   TableTitle,
 } from '../Styleguide/styled'
-import { Container, ContentWrap, InputWrap } from '../Input/index'
 
 const Circuits = () => {
   // list circuit state

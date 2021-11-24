@@ -13,43 +13,56 @@ export const MarginContainer = styled.div`
   color: #005fdb;
   font-size: 16px;
   margin: 10px 0px;
-  max-width: 600px;
+  max-width: 800px;
   width: calc(100% - 10px);
+
+  @media (min-width: 800px) {
+    flex-direction: column;
+    position: relative;
+  }
 `
 // Divs topbar
 
 export const TopbarContainer = styled.div`
   margin: 10px 0px;
-  max-width: 600px;
+  max-width: 980px;
   width: 100%;
 `
 
 export const TopbarLogo = styled.div`
   display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 10px 0px;
-  max-width: 600px;
-  justify-content: space-evenly;
+  max-width: 980px;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
 `
 
 export const TopbarMenu = styled.div`
   align-content: space-around;
   align-items: center;
-  background-color: papayawhip;
+  background-color: transparent;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   justify-content: space-evenly;
   margin: 10px 0px;
-  max-width: 600px;
+  max-width: 980px;
   width: 100%;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
 `
 
 // Headings
 
 export const FormTitle = styled.h1`
   font-size: 16px;
+  color: maroon;
 `
 
 export const TableTitle = styled.h1`
@@ -108,4 +121,46 @@ export const HeaderTable = styled.th`
 export const TableRow = styled.tr`
   text-align: center;
   width: 100%;
+`
+
+// Divs input formulários
+
+export const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  max-width: 980px;
+  width: 100%;
+`
+
+export const ContentWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  max-width: 980px;
+  width: 100%;
+`
+export const Input = styled.input`
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid #03265a;
+  color: black;
+  margin: 10px 2px;
+`
+
+export const InputField = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  max-width: 980px;
+  width: calc(100% - 10px);
+`
+export const InputWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 10px 0px;
+  max-width: 980px;
+  width: calc(100% - 10 px);
 `
