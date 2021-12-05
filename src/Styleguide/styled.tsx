@@ -31,8 +31,6 @@ export const TopbarContainer = styled.div`
 
 export const TopbarLogo = styled.div`
   display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 10px 0px;
   max-width: 980px;
   align-items: center;
@@ -46,8 +44,6 @@ export const TopbarMenu = styled.div`
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   justify-content: space-evenly;
   margin: 10px 0px;
   max-width: 980px;
@@ -67,7 +63,6 @@ export const FormTitle = styled.h1`
 
 export const TableTitle = styled.h1`
   font-size: 16px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
   justify-content: left;
   text-align: left;

@@ -7,6 +7,7 @@ import {
 } from '../Styleguide/styled'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import PageTitle from '../PageTitle'
 
 const MyCustomImage = styled.img`
   width: 50%;
@@ -16,7 +17,7 @@ const Topbar = () => {
   return (
     <TopbarContainer>
       <TopbarLogo>
-        <FormTitle>F1 Stats 2021</FormTitle>
+        <PageTitle />
         <MyCustomImage alt='Logo' src='/f1car.jpeg' />
       </TopbarLogo>
       <TopbarMenu>

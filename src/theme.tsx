@@ -1,3 +1,7 @@
 import {CreateTheme} from 'prensa'
 
-export const theme = CreateTheme({})
+export const theme = CreateTheme({
+    colors: { 
+        primary: '#FF9900'
+    }
+})
