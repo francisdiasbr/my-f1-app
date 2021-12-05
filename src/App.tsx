@@ -1,5 +1,5 @@
 import React from 'react'
-import { ThemeProvider from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import Circuits from './Circuits'
 import Drivers from './Drivers'
 import Positions from './Positioncalc'
@@ -9,11 +9,12 @@ import Topbar from './Topbar'
 import { MarginContainer } from './Styleguide/styled'
 import { Route } from 'react-router-dom'
 import './App.css'
+import { theme } from './theme'
 
 export const App = () => {
   return (
     <>
-     <ThemeProvider >
+     <ThemeProvider theme={theme}>
       <Topbar />
       <MarginContainer>
         <Route path='/circuitos' component={Circuits} />
