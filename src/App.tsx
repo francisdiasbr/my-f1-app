@@ -11,6 +11,7 @@ import './App.css'
 
 export const App = () => {
   return (
+    <>
       <Topbar />
       <MarginContainer>
         <Route path='/circuitos' component={Circuits} />
@@ -19,5 +20,6 @@ export const App = () => {
         <Route path='/equipes' component={Teams} />
         <Route path='/calculadora' component={Positions} />
       </MarginContainer>
+    </>
   )
 }
