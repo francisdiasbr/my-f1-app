@@ -1,4 +1,5 @@
 import React from 'react'
+import { ThemeProvider from 'styled-components'
 import Circuits from './Circuits'
 import Drivers from './Drivers'
 import Positions from './Positioncalc'
@@ -12,6 +13,7 @@ import './App.css'
 export const App = () => {
   return (
     <>
+     <ThemeProvider >
       <Topbar />
       <MarginContainer>
         <Route path='/circuitos' component={Circuits} />
@@ -20,6 +22,7 @@ export const App = () => {
         <Route path='/equipes' component={Teams} />
         <Route path='/calculadora' component={Positions} />
       </MarginContainer>
+      </ThemeProvider>
     </>
   )
 }
