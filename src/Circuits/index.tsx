@@ -7,11 +7,11 @@ import CircuitItem, { CircuitItemProps } from './item'
 import {
   Container,
   ContentWrap,
-  InputWrap,
-  HeaderTable,
   FormTitle,
+  HeaderTable,
   Input,
   InputTag,
+  InputWrap,
   MyTable,
   TableBody,
   TableRow,
