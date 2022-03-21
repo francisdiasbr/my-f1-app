@@ -1,4 +1,1 @@
-- Estilizar topbar responsivo
-- Estilizar form de GP's responsivo
-- Corrigir o Warning da tabela 
-- Equalizar o objeto de GP's com a API
+.
