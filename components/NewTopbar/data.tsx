@@ -9,6 +9,6 @@ export const menuItemsData: Array<MenuItemProps> = [
   { id: 'graficos', value: 'Gráficos' },
   { id: 'apostas', value: 'Apostas' },
   { id: 'estatisticas', value: 'Estatísticas' },
-  { id: 'circuitos', value: 'Circuitos' },
+  { id: 'circuitos', value: 'Circuitos' }
 ]
 

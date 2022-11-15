@@ -1,7 +1,7 @@
+import { map } from 'lodash'
 import React, { useContext } from 'react'
 import { Block, Typography } from '@xprog/prensa'
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
-import { map } from 'lodash'
 
 import { MenuContext } from '../../providers/Menu'
 import { menuItemsData, titleStrings } from './data'
@@ -25,7 +25,8 @@ const NewTopbar: React.FC<NewTopbarProps> = (props) => {
       <Block
         className='logo'
         css={logoProps}>
-        <Typography>{titleStrings.topbarTitle}</Typography>
+        <Typography
+        >{titleStrings.topbarTitle}</Typography>
         <Typography
           css={logoDescriptionProps}>
           {titleStrings.logoDescription}</Typography>
