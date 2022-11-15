@@ -3,8 +3,8 @@ import { PageBlockTypes as t } from '@xprog/prensa/types'
 const TemplateNeutral: t.PageBlockProps = {
   css: {
     container: {
-      backgroundColor: '$neutral100',
-      color: '$basicWhite',
+      backgroundColor: '$Primary100',
+      color: '$Primary100',
       width: '100%',
       p: '0',
       m: '0'

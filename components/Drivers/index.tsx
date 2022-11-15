@@ -127,6 +127,7 @@ const Drivers = () => {
       </ContentWrap>
       <TableTitle>Pilotos</TableTitle>
       <MyTable>
+        <thead>
         <TableRow>
           <HeaderTable>Nome</HeaderTable>
           <HeaderTable>Apelido</HeaderTable>
@@ -135,6 +136,7 @@ const Drivers = () => {
           <HeaderTable>Equipe</HeaderTable>
           <HeaderTable>Última Vitória</HeaderTable>
         </TableRow>
+        </thead>
         <TableBody>
           {map(driverList, (item: DriverItemProps, key) => {
             return (

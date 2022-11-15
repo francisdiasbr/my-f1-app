@@ -1,4 +1,4 @@
-import Teams from '../src/Teams'
+import Teams from '../components/Teams'
 import React from 'react'
 import Head from 'next/head'
 

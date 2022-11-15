@@ -117,6 +117,10 @@ export const TableRow = styled.tr`
   text-align: center;
   width: 100%;
 `
+export const TableHead = styled.thead`
+  text-align: center;
+  width: 100%;
+`
 
 // Divs input formulários
 

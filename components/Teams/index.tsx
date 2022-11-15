@@ -114,12 +114,14 @@ const Teams = () => {
         </InputWrap>
         <TableTitle>Equipes</TableTitle>
         <MyTable>
+          <thead>
           <TableRow>
             <HeaderTable>Nome</HeaderTable>
             <HeaderTable>Nome anterior</HeaderTable>
             <HeaderTable>Primeiro GP</HeaderTable>
             <HeaderTable>Motor</HeaderTable>
           </TableRow>
+          </thead>
           <TableBody>
             {map(teamList, (item: TeamItemProps, key) => {
               return (

@@ -16,6 +16,7 @@ import {
   TableBody,
   TableRow,
   TableTitle,
+  TableHead
 } from '../Styleguide/styled'
 
 const Circuits = () => {
@@ -130,18 +131,21 @@ const Circuits = () => {
       <TableTitle>Circuitos</TableTitle>
       <ContentWrap>
         <MyTable>
-          <TableRow>
-            <HeaderTable>Nome</HeaderTable>
-            <HeaderTable>País</HeaderTable>
-            <HeaderTable>Cidade</HeaderTable>
-            <HeaderTable>Volta mais rápida (tempo)</HeaderTable>
-            <HeaderTable>Volta mais rápida (ano)</HeaderTable>
-            <HeaderTable>Volta mais rápida (piloto)</HeaderTable>
-          </TableRow>
+          <TableHead>
+            <TableRow>
+              <HeaderTable>Nome</HeaderTable>
+              <HeaderTable>País</HeaderTable>
+              <HeaderTable>Cidade</HeaderTable>
+              <HeaderTable>Volta mais rápida (tempo)</HeaderTable>
+              <HeaderTable>Volta mais rápida (ano)</HeaderTable>
+              <HeaderTable>Volta mais rápida (piloto)</HeaderTable>
+            </TableRow>
+          </TableHead>
           <TableBody>
             {map(circuitList, (item: CircuitItemProps, key) => {
               return (
                 <CircuitItem
+                  key={key}
                   circuitname={item?.circuitname}
                   circuitcountry={item?.circuitcountry}
                   circuitcity={item?.circuitcity}

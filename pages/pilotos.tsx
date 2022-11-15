@@ -1,4 +1,4 @@
-import Drivers from '../src/Drivers'
+import Drivers from '../components/Drivers'
 import React from 'react'
 import Head from 'next/head'
 

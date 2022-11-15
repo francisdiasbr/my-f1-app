@@ -1,4 +1,4 @@
-import Races from '../src/Races'
+import Races from '../components/Races'
 import React from 'react'
 import Head from 'next/head'
 

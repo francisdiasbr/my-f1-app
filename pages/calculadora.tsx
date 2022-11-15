@@ -1,4 +1,5 @@
-import Positions from '../src/Positioncalc'
+import Positions from '../components/Positioncalc'
+import PositionsCalculator from '../components/PositionCalculator'
 import React from 'react'
 import Head from 'next/head'
 
@@ -8,7 +9,8 @@ const MainPage = (props) => {
       <Head>
         <title>My F1 App - Positions</title>
       </Head>
-      <Positions />
+      {/* <Positions /> */}
+      <PositionsCalculator />
     </>
   )
 }
