@@ -1,15 +1,15 @@
+import { Block, Button } from '@xprog/prensa'
 import axios from 'axios'
+import { map, get } from 'lodash'
 import React from 'react'
-import { map } from 'lodash'
-import { get } from 'lodash'
-import { Block, Button, Typography } from '@xprog/prensa'
-import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
-import CircuitItem, { CircuitItemProps } from './circuitItem'
-import { circuitContentProps, circuitInputProps, circuitInputTitleProps, circuitTitleProps, inputItemProps, inputLabelProps, inputWrapProps, tableTitleProps } from './props'
-import { circuitsFormInputs, tableTitles, titleStrings, circuitsTableHeaders } from 'components/NewCircuits/data'
-import { FormInput, FormInputProps } from 'components/FormInput'
-import Table from 'components/Table'
+import { FormInput, FormInputProps } from '../FormInput'
+import { circuitsFormInputs } from '../NewCircuits/data'
+import Table from '../Table'
+import {circuitsTableHeaders} from '../Table/data'
+import Title from '../Title'
+import { titleStrings } from '../Title/data'
+import { inputWrapProps, sectionContentProps } from './props'
 
 type circuitsFormValues = {
   CircuitLabel?: FormInputProps,
@@ -60,21 +60,18 @@ const NewCircuits = () => {
       circuitfastestlapdriver: formValues?.FastestLapDriverLabel,
     }
 
-    console.log('circuitBody', circuitBody)
     // // salva (post) o novo circuito
     await axios.post('http://localhost:3001/circuits/', circuitBody)
     // // chama a função de carregar os circuitos para atualizar a tabela
-    // loadCircuitFromApi()
+    loadCircuitFromApi()
   }
 
   // função que carrega os circuitos da API
   const loadCircuitFromApi = async () => {
-    console.log('before api')
     // carregar os circuits da api
     const requestCircuits = await axios.get('http://localhost:3001/circuits/')
     // prepara o dado dos circuitos (data)
     const resultCircuits = get(requestCircuits, 'data', [])
-    // console.log('inside api', resultCircuits)
     const parsedCircuits = map(resultCircuits, (item) => (
       {
         "values": [
@@ -96,34 +93,22 @@ const NewCircuits = () => {
     // chama a função de carregar os circuitos
     loadCircuitFromApi()
   }, [])
-  console.log('circuitList', circuitList)
   return (
     <Block
-      className='circuitContent'
-      css={circuitContentProps}>
+      className='sectionContent'
+      css={sectionContentProps}>
+      <Title value={titleStrings.circuitsTitle} />
       <Block
-        className='circuitInput'
-        css={circuitInputProps}>
-        <Block
-          className='circuitInputTitle'
-          css={circuitInputTitleProps}>
-          <Typography
-            className='circuitTitle'
-            css={circuitTitleProps}>{titleStrings.circuitsTitle}
-          </Typography>
-        </Block>
-        <Block
-          className='inputWrap'
-          css={inputWrapProps}>
-          {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-          <Button
-            onClick={handleFormSubmit}
-            roundedCorners='alternative'
-            size='xs'
-            color='basicBlackAlpha700'>
-            Enviar dados
-          </Button>
-        </Block>
+        className='inputWrap'
+        css={inputWrapProps}>
+        {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
+        <Button
+          onClick={handleFormSubmit}
+          roundedCorners='alternative'
+          size='xs'
+          color='basicBlackAlpha700'>
+          Enviar dados
+        </Button>
       </Block>
       <Table headers={circuitsTableHeaders} items={circuitList} />
     </Block>

@@ -9,4 +9,3 @@ export const sectionContentProps: PrensaEngineCSSProp = {
   align: ['column', 'center', 'top'],
   width: '100%'
 }
-
