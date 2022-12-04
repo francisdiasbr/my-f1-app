@@ -1,18 +1,20 @@
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
 
-export const logoProps: PrensaEngineCSSProp = {
+export const logoWrapperProps: PrensaEngineCSSProp = {
   align: ['column', 'left', 'top'],
+  width: '550px'
+}
+export const logoProps: PrensaEngineCSSProp = {
   color: '$Primary200',
   fontFamily: '$secondary',
   fontSize: '40px'
 }
-
 export const logoDescriptionProps: PrensaEngineCSSProp = {
+  color: '$Neutral900',
   fontFamily: '$primary',
   fontSize: '18px', 
   fontWeight: '300', 
-  color: '$Neutral900' 
 }
 export const menuIconProps: PrensaEngineCSSProp = {
   align: ['row', 'right', 'top'],
@@ -29,24 +31,19 @@ export const menuItemsProps: PrensaEngineCSSProp = {
     display: 'flex',
   }
 }
-export const topBarProps: PrensaEngineCSSProp = {
-  backgroundColor: '$Neutral50',
-  fontFamily: '$Primary',
-  height: '110px',
-  width: '100%',
-  '@lg': {
-    align: ['row', 'evenly', 'middle'],
-    height: '100px',
-    width: '100%'
-  }
-}
 export const topBarItemsProps: PrensaEngineCSSProp = {
   align: ['row', 'right', 'middle'],
   width: '100%',
-  pl: '8px',
-  pr: '8px',
-  maxWidth: '1280px',
+}
+export const topBarProps: PrensaEngineCSSProp = {
+  backgroundColor: '$Neutral50',
+  height: '110px',
+  align: ['row', 'center', 'middle'],
+  width: '100%'
+}
+export const topBarWrapperProps: PrensaEngineCSSProp = {
+  width: 'calc(100% - 32px)',
   '@lg': {
-    width: 'calc(100% - 176px)'
+    align: ['row', 'evenly', 'middle'],
   }
 }
