@@ -11,5 +11,6 @@ export const colors = {
   Neutral600: "#567176",
   Neutral700: "#405559",
   Neutral800: "#2D2A26",
-  Neutral900: "#1E1A15"
+  Neutral900: "#1E1A15",
+  Text100: "#000000DE"
 }
