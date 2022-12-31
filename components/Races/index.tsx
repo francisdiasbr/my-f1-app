@@ -4,7 +4,7 @@ import { get, map } from 'lodash'
 import React from 'react'
 
 import { FormInput, FormInputProps } from '../FormInput'
-import { racesFormInputs } from '../NewRaces/data'
+import { racesFormInputs } from './data'
 import Table from '../Table'
 import { racesTableHeaders } from '../Table/data'
 import Title from '../Title'

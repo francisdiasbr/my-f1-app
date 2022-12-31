@@ -4,12 +4,12 @@ import { get, map } from 'lodash'
 import React from 'react'
 
 import { FormInput, FormInputProps } from '../FormInput'
-import { teamsFormInputs } from '../NewTeams/data'
+import { teamsFormInputs } from './data'
 import Table from '../Table'
 import { teamsTableHeaders } from '../Table/data'
 import Title from '../Title'
 import { titleStrings } from '../Title/data'
-import { inputWrapProps, sectionContentProps } from './props'
+import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
 
 
 // types dos inputs do formulário
@@ -20,7 +20,7 @@ type teamsFormValues = {
   teamEngineLabel?: FormInputProps
 }
 
-const NewTeams = () => {
+const Teams = () => {
   // state da lista de corridas e inicializa como array vazio
   const [teamList, setTeamList] = React.useState([])
 
@@ -83,23 +83,27 @@ const NewTeams = () => {
 
   return (
     <Block
-      className='sectionContent'
-      css={sectionContentProps}>
+      className='sectionWrapper'
+      css={sectionWrapperProps}>
       <Title value={titleStrings.teamsTitle} />
       <Block
-        className='inputWrap'
-        css={inputWrapProps}>
-        {map(teamsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-        <Button
-          onClick={handleFormSubmit}
-          roundedCorners='alternative'
-          size='xs'
-          color='basicBlackAlpha700'>
-          Enviar dados
-        </Button>
+        className='contentWrapper'
+        css={contentWrapperProps}>
+        <Block
+          className='inputWrap'
+          css={inputWrapProps}>
+          {map(teamsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
+          <Button
+            onClick={handleFormSubmit}
+            roundedCorners='alternative'
+            size='xs'
+            color='basicBlackAlpha700'>
+            Enviar dados
+          </Button>
+        </Block>
+        <Table headers={teamsTableHeaders} items={teamList} />
       </Block>
-      <Table headers={teamsTableHeaders} items={teamList} />
     </Block>
   )
 }
-export default NewTeams
+export default Teams

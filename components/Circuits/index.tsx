@@ -4,12 +4,12 @@ import { map, get } from 'lodash'
 import React from 'react'
 
 import { FormInput, FormInputProps } from '../FormInput'
-import { circuitsFormInputs } from '../NewCircuits/data'
+import { circuitsFormInputs } from './data'
 import Table from '../Table'
-import {circuitsTableHeaders} from '../Table/data'
+import { circuitsTableHeaders } from '../Table/data'
 import Title from '../Title'
 import { titleStrings } from '../Title/data'
-import { inputWrapProps, sectionContentProps } from './props'
+import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
 
 type circuitsFormValues = {
   CircuitLabel?: FormInputProps,
@@ -20,7 +20,7 @@ type circuitsFormValues = {
   FastestLapDriverLabel?: FormInputProps
 }
 
-const NewCircuits = () => {
+const Circuits = () => {
   // list circuit state
   const [circuitList, setCircuitList] = React.useState([])
 
@@ -95,26 +95,30 @@ const NewCircuits = () => {
   }, [])
   return (
     <Block
-      className='sectionContent'
-      css={sectionContentProps}>
-      <Title value={titleStrings.circuitsTitle} />
+      className='sectionWrapper'
+      css={sectionWrapperProps}>
+        <Title value={titleStrings.circuitsTitle} />
       <Block
-        className='inputWrap'
-        css={inputWrapProps}>
-        {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-        <Button
-          onClick={handleFormSubmit}
-          roundedCorners='alternative'
-          size='xs'
-          color='basicBlackAlpha700'>
-          Enviar dados
-        </Button>
+        className='contentWrapper'
+        css={contentWrapperProps}>
+        <Block
+          className='inputWrap'
+          css={inputWrapProps}>
+          {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
+          <Button
+            onClick={handleFormSubmit}
+            roundedCorners='alternative'
+            size='xs'
+            color='basicBlackAlpha700'>
+            Enviar dados
+          </Button>
+        </Block>
+        <Table headers={circuitsTableHeaders} items={circuitList} />
       </Block>
-      <Table headers={circuitsTableHeaders} items={circuitList} />
     </Block>
   )
 }
-export default NewCircuits
+export default Circuits
 
 // const tableMockHeaders = [{ value: 'Head1' }, { value: 'Head2' }, { value: 'Head3' }, { value: 'Head4' }, { value: 'Head5' }, { value: 'Head6' }]
 const tableMockItems = [

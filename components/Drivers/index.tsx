@@ -1,159 +1,115 @@
+import { Block, Button } from '@xprog/prensa'
 import axios from 'axios'
+import { get, map } from 'lodash'
 import React from 'react'
-import { get } from 'lodash'
-import { map } from 'lodash'
-import DriverItem, { DriverItemProps } from './item'
-import { Button } from '../Button'
-import {
-  Container,
-  ContentWrap,
-  FormTitle,
-  HeaderTable,
-  Input,
-  InputTag,
-  InputWrap,
-  MyTable,
-  TableTitle,
-  TableRow,
-  TableBody,
-} from '../Styleguide/styled'
 
-const Drivers = () => {
-  // list driver state
-  const [driverList, setDriverList] = React.useState([])
-  // pilot states
-  const [driverBirth, setDriverBirth] = React.useState('')
-  const [driverCountry, setDriverCountry] = React.useState('')
-  const [driverLastWin, setDriverLastWin] = React.useState('')
-  const [driverName, setDriverName] = React.useState('')
-  const [driverNickname, setDriverNickname] = React.useState('')
-  const [driverTeam, setDriverTeam] = React.useState('')
+import { FormInput, FormInputProps } from '../FormInput'
+import { driversFormInputs } from './data'
+import Table from '../Table'
+import { driversTableHeaders } from '../Table/data'
+import Title from '../Title'
+import { titleStrings } from '../Title/data'
+import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
 
-  // função que carrega os pilotos da API
-  const loadDriverFromApi = async () => {
-    // carrega os pilotos da api
-    const requestDriver = await axios.get('http://localhost:3001/drivers/')
-    // prepara o dado dos pilotos (data)
-    const resultDriver = get(requestDriver, 'data', [])
-    // salva os pilotos no driverList
-    setDriverList(resultDriver)
-  }
 
-  // driver handles
-  const handleDriverBirthChange = (event: any) => {
-    setDriverBirth(event.target.value)
-  }
-  const handleDriverCountryChange = (event: any) => {
-    setDriverCountry(event.target.value)
-  }
-  const handleDriverLastWinChange = (event: any) => {
-    setDriverLastWin(event.target.value)
-  }
-  const handleDriverNameChange = (event: any) => {
-    setDriverName(event.target.value)
-  }
-  const handleDriverNicknameChange = (event: any) => {
-    setDriverNickname(event.target.value)
-  }
-  const handleDriverTeamChange = (event: any) => {
-    setDriverTeam(event.target.value)
-  }
-  // driver button submit
-  const handleDriverSubmit = async () => {
-    // define o modelo de dados a ser salvo
-    const driverBody = {
-      name: driverName,
-      nickname: driverNickname,
-      birth: driverBirth,
-      country: driverCountry,
-      team: driverTeam,
-      lastwin: driverLastWin,
-    }
-    // salva o novo piloto
-    await axios.post('http://localhost:3001/drivers/', driverBody)
-    // função de carregar os pilotos para atualizar a tabela
-    loadDriverFromApi()
-  }
-  // toda a vez que a página carregar
-  React.useEffect(() => {
-    // chama a função de carregar os pilotos
-    loadDriverFromApi()
-  }, [])
-  return (
-    <Container>
-      <FormTitle>Pilotos</FormTitle>
-      <ContentWrap>
-        <InputWrap>
-          <InputTag>Nome</InputTag>
-          <Input
-            name='driverName'
-            onChange={handleDriverNameChange}
-            type='text'
-          ></Input>
-          <InputTag>Apelido</InputTag>
-          <Input
-            name='driverNickname'
-            onChange={handleDriverNicknameChange}
-            type='text'
-          ></Input>
-          <InputTag>Data de Nascimento</InputTag>
-          <Input
-            name='driverBirth'
-            onChange={handleDriverBirthChange}
-            type='text'
-          ></Input>
-          <InputTag>País</InputTag>
-          <Input
-            name='driverCountry'
-            onChange={handleDriverCountryChange}
-            type='text'
-          ></Input>
-          <InputTag>Equipe</InputTag>
-          <Input
-            name='driverTeam'
-            onChange={handleDriverTeamChange}
-            type='text'
-          ></Input>
-          <InputTag>Última Vitória</InputTag>
-          <Input
-            name='driverLastWin'
-            onChange={handleDriverLastWinChange}
-            type='text'
-          ></Input>
-          <Button onClick={handleDriverSubmit} primary={true} type='button'>
-            Enviar
-          </Button>
-        </InputWrap>
-      </ContentWrap>
-      <TableTitle>Pilotos</TableTitle>
-      <MyTable>
-        <thead>
-        <TableRow>
-          <HeaderTable>Nome</HeaderTable>
-          <HeaderTable>Apelido</HeaderTable>
-          <HeaderTable>Data de Nascimento</HeaderTable>
-          <HeaderTable>País</HeaderTable>
-          <HeaderTable>Equipe</HeaderTable>
-          <HeaderTable>Última Vitória</HeaderTable>
-        </TableRow>
-        </thead>
-        <TableBody>
-          {map(driverList, (item: DriverItemProps, key) => {
-            return (
-              <DriverItem
-                name={item?.name}
-                nickname={item?.nickname}
-                birth={item?.birth}
-                country={item?.country}
-                team={item?.team}
-                lastwin={item?.lastwin}
-              />
-            )
-          })}
-        </TableBody>
-      </MyTable>
-    </Container>
-  )
+// types dos inputs do formulário
+type driversFormValues = {
+  driverNameLabel?: FormInputProps,
+  driverNickname?: FormInputProps,
+  driverBirthLabel?: FormInputProps,
+  driverCountryLabel?: FormInputProps
+  driverTeamLabel?: FormInputProps
+  driverLastWinLabel?: FormInputProps
 }
 
+const Drivers = () => {
+  // state da lista de pilotos e inicializa como array vazio
+  const [driverList, setDriverList] = React.useState([])
+
+  // state do formulário, tipando com as propriedades do formulário, e inicializa como objeto vazio
+  const [formValues, setFormValues] = React.useState<driversFormValues>({})
+
+  // handler do formulário para a mudança no campo de input
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const name = event?.target?.name
+    const value = event?.target?.value
+    // setFormValues necessita estar no formato [{},{},{}], então:
+    setFormValues({
+      ...formValues,
+      [`${name}`]: value
+    })
+  }
+
+
+  //handler de submissão do botão de envio dos dados do formulário
+  const handleFormSubmit = async () => {
+    // console de formValues aqui para ver os dados salvando no formato correto
+    // console.log('raceFormValues', FormValues)
+
+    // define o modelo de dados a ser salvo
+    const driverBody = {
+      drivername: formValues?.driverNameLabel,
+      drivernickname: formValues?.driverNickname,
+      driverbirth: formValues?.driverBirthLabel,
+      drivercountry: formValues?.driverCountryLabel,
+      driverteam: formValues?.driverTeamLabel,
+      driverlastwin: formValues?.driverLastWinLabel,
+    }
+
+    // salva o circuito inserido
+    await axios.post('http://localhost:3001/drivers', driverBody)
+    loadTeamFromApi()
+  }
+  const loadTeamFromApi = async () => {
+    console.log('antes api')
+    // carrega as corridas da api
+    const requestDrivers = await axios.get('http://localhost:3001/drivers')
+    // prepara o dado das corridas (data)
+    const resultDrivers = get(requestDrivers, 'data', [])
+    const parsedDrivers = map(resultDrivers, (item) => (
+      {
+        "values": [
+          item.drivername,
+          item.drivernickname,
+          item.driverbirth,
+          item.drivercountry,
+          item.driverteam,
+          item.driverlastwin
+        ]
+      }
+    ))
+    // inclui os circuitos no raceList
+    setDriverList(parsedDrivers)
+  }
+
+  // no carregamento da página:
+  React.useEffect(() => {
+    loadTeamFromApi()
+  }, [])
+
+  return (
+    <Block
+      className='sectionWrapper'
+      css={sectionWrapperProps}>
+      <Title value={titleStrings.driversTitle} />
+      <Block
+        className='contentWrapper'
+        css={contentWrapperProps}>
+        <Block
+          className='inputWrap'
+          css={inputWrapProps}>
+          {map(driversFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
+          <Button
+            onClick={handleFormSubmit}
+            roundedCorners='alternative'
+            size='xs'
+            color='basicBlackAlpha700'>
+            Enviar dados
+          </Button>
+        </Block>
+        <Table headers={driversTableHeaders} items={driverList} />
+      </Block>
+    </Block>
+  )
+}
 export default Drivers
