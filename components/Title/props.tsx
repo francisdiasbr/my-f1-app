@@ -5,3 +5,9 @@ export const titleProps: PrensaEngineCSSProp = {
   fontFamily: '$secondary',
   fontSize: '32px'
 }
+export const titleWrapperProps: PrensaEngineCSSProp = {
+  align: ['row', 'left', 'top'],
+  maxWidth: '1280px',
+  pb: '8px',
+  width: '100%'
+}

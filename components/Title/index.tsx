@@ -1,5 +1,5 @@
 import { Block, Typography } from '@xprog/prensa'
-import { titleProps } from './props'
+import { titleProps, titleWrapperProps } from './props'
 
 export type TitleProps = {
   value: string
@@ -7,11 +7,14 @@ export type TitleProps = {
 
 const Title = ({ value }) => {
   return (
-    <Typography
-      className='title'
-      css={titleProps}>
-      {value}
-    </Typography>
+    <Block
+      css={titleWrapperProps}>
+      <Typography
+        className='title'
+        css={titleProps}>
+        {value}
+      </Typography>
+    </Block>
   )
 }
 
