@@ -1,4 +1,4 @@
-import { FormInputProps } from "components/FormInput"
+import { FormInputProps } from "components/BasicComponents/FormInput"
 
 export const circuitsFormInputs: Array<FormInputProps> = [
   { name: 'CircuitLabel', value: 'Nome do circuito'},

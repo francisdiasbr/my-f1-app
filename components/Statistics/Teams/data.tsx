@@ -1,4 +1,4 @@
-import { FormInputProps } from 'components/FormInput'
+import { FormInputProps } from 'components/BasicComponents/FormInput'
 
 // nomes dos inputs do formulário
 

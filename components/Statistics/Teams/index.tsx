@@ -3,12 +3,12 @@ import axios from 'axios'
 import { get, map } from 'lodash'
 import React from 'react'
 
-import { FormInput, FormInputProps } from '../FormInput'
+import { FormInput, FormInputProps } from '../../BasicComponents/FormInput'
 import { teamsFormInputs } from './data'
-import Table from '../Table'
-import { teamsTableHeaders } from '../Table/data'
-import Title from '../Title'
-import { titleStrings } from '../Title/data'
+import Table from '../../BasicComponents/Table'
+import { teamsTableHeaders } from '../../BasicComponents/Table/data'
+import Title from '../../BasicComponents/Title'
+import { titleStrings } from '../../BasicComponents/Title/data'
 import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
 
 
