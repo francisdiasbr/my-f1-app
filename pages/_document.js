@@ -25,14 +25,14 @@ class DocumentComponent extends Document {
           <link rel='shortcut icon' href='/favicon.png' />
           <style>
             {`
+            * {
+              box-sizing: border-box;
+            }
             html, body, #__next {
               height: 100%;
             }
             #__next {
               margin: 0 auto;
-            }
-            h1 {
-              text-align: center;
             }
             @media (prefers-reduced-motion: no-preference) {
               body {
