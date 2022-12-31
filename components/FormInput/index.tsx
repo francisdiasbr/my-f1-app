@@ -1,5 +1,5 @@
 import { Block, Typography } from "@xprog/prensa"
-import { inputItemProps, inputLabelProps } from "./props"
+import { inputItemProps, inputLabelProps, Input } from "./props"
 
 export type FormInputProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -18,11 +18,11 @@ export const FormInput: React.FC<FormInputProps> = ({ onChange, name, value }) =
         css={inputLabelProps}>
         {value}
       </Typography>
-      <input
+      <Input
         name={name}
         type='text'
         onChange={onChange}>
-      </input>
+      </Input>
     </Block>
   )
 }
