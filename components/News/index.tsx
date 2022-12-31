@@ -5,7 +5,7 @@ import { Block } from '@xprog/prensa'
 import { newsContainerProps } from "./styles";
 import data from './data.json'
 import Item from "./item";
-import Title from '../Title'
+import Title from '../BasicComponents/Title'
 
 type NewsBlock = {}
 

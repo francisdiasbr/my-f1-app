@@ -1,10 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
 
-import Circuits from '../../components/Circuits'
-import Drivers from '../../components/Drivers'
-import Races from '../../components/Races'
-import Teams from '../../components/Teams'
+import Circuits from '../../components/Statistics/Circuits'
+import Drivers from '../../components/Statistics/Drivers'
+import Races from '../../components/Statistics/Races'
+import Teams from '../../components/Statistics/Teams'
 
 
 const StatisticsPage = (props) => {
