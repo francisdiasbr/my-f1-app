@@ -2,13 +2,14 @@ import { MenuItemProps } from './menuItem'
 
 export const titleStrings = {
   topbarTitle: 'Last Lap',
-  logoDescription: 'Estatísticas e palpites do mundo da Fórmula 1'
+  logoDescription: 'Estatísticas do mundo da Fórmula 1'
 }
 export const menuItemsData: Array<MenuItemProps> = [
-  { id: 'emalta', value: 'Em Alta' },
-  { id: 'graficos', value: 'Gráficos' },
-  { id: 'apostas', value: 'Apostas' },
-  { id: 'estatisticas', value: 'Estatísticas' },
-  { id: 'circuitos', value: 'Circuitos' }
+  { id: 'notícias', value: 'NOTÍCIAS' },
+  { id: 'telemetria', value: 'TELEMETRIA' },
+  { id: 'campeonato', value: 'CAMPEONATO' },
+  { id: 'estatisticas', value: 'ESTATÍSTICAS' },
+  { id: 'circuitos', value: 'CIRCUITOS' },
+  { id: 'resultados', value: 'RESULTADOS' },
 ]
 

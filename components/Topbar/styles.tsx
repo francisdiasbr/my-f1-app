@@ -8,17 +8,17 @@ export const logoWrapperProps: PrensaEngineCSSProp = {
 export const logoProps: PrensaEngineCSSProp = {
   color: '$Primary200',
   fontFamily: '$secondary',
-  fontSize: '40px'
+  fontSize: '30px'
 }
 export const logoDescriptionProps: PrensaEngineCSSProp = {
   color: '$Neutral900',
   fontFamily: '$primary',
-  fontSize: '18px', 
+  fontSize: '16px', 
   fontWeight: '300', 
 }
 export const menuIconProps: PrensaEngineCSSProp = {
   align: ['row', 'right', 'top'],
-  mr: '8px',
+  mr: '6px',
   width: '100%',
   '@lg': {
     display: 'none'
@@ -36,13 +36,16 @@ export const topBarItemsProps: PrensaEngineCSSProp = {
   width: '100%',
 }
 export const topBarProps: PrensaEngineCSSProp = {
-  backgroundColor: '$Neutral50',
-  height: '110px',
   align: ['row', 'center', 'middle'],
-  width: '100%'
+  backdropFilter: 'blur(4px)',
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  boxShadow: 'rgb(0 0 0 / 16%) 0px 0px 24px',
+  height: '100px',
+  position: 'fixed',
+  width: '100%',
 }
 export const topBarWrapperProps: PrensaEngineCSSProp = {
-  width: 'calc(100% - 32px)',
+  width: '1280px',
   '@lg': {
     align: ['row', 'evenly', 'middle'],
   }

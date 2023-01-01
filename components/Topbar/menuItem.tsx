@@ -9,8 +9,9 @@ export type MenuItemProps = {
 
 export const MenuItem: React.FC<MenuItemProps> = ({ id, value }) => {
   const menuItemProps: PrensaEngineCSSProp = {
-    fontSize: '18px',
-    ml: '48px',
+    fontSize: '12px',
+    fontWeight: '600',
+    ml: '30px',
     my: '0'
   }
   return (

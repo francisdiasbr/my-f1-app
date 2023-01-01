@@ -6,7 +6,7 @@ import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 import { MenuContext } from '../../providers/Menu'
 import { menuItemsData, titleStrings } from './data'
 import { MenuItem } from './menuItem'
-import { logoProps, logoWrapperProps, logoDescriptionProps, menuIconProps, menuItemsProps, topBarProps, topBarItemsProps, topBarWrapperProps } from './props'
+import { logoProps, logoWrapperProps, logoDescriptionProps, menuIconProps, menuItemsProps, topBarProps, topBarItemsProps, topBarWrapperProps } from './styles'
 
 type TopbarProps = {
   css?: PrensaEngineCSSProp
