@@ -1,0 +1,13 @@
+[
+  {
+    "grand_prix": "Saudi Arabia",
+    "venue": "Jeddah",
+    "events": [
+      { "name": "Treino Livre 1", "date": "17/03 sex", "time": "06:00", "image": "images/bandsports.png" },
+      { "name": "Treino Livre 2", "date": "18/03 sab", "time": "09:00", "image": "images/bandsports.png" },
+      { "name": "Treino Livre 3", "date": "18/03 sab", "time": "09:00", "image": "images/bandsports.png" },
+      { "name": "Qualifying", "date": "18/03 sab", "time": "09:00", "image": "/images/band.png" },
+      { "name": "Corrida", "date": "19/03 dom", "time": "10:15", "image": "/images/band.png" }
+    ]
+  }
+]
