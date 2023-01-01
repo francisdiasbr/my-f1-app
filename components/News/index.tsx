@@ -15,9 +15,7 @@ const News: React.FC<NewsBlock> = () => {
       <Title value='Últimas Notícias'/>
       {map(data, (item, key) => {
         return (
-          <Block>
             <Item {...item} key={key} />
-          </Block>
         )
       })}
     </Block>
