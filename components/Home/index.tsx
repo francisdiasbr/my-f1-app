@@ -1,17 +1,21 @@
 import React from 'react';
-import {Block} from '@xprog/prensa'
+import { Block } from '@xprog/prensa'
 
-import {HomeContainerProps} from './styles'
+import { leftColumnProps, rightColumnProps } from './styles'
 import News from '../News'
 import NextRace from 'components/NextRace';
+import Spacer from 'components/BasicComponents/Spacer'
 
 const Home = () => {
   return (
     <>
-      <Block css={HomeContainerProps}>
-        <NextRace />
-        <News />
-      </Block>
+        <Block css={leftColumnProps}>
+          <NextRace />
+          <Spacer />
+          <News />
+        </Block>
+        <Block css={rightColumnProps}>
+        </Block>
     </>
   )
 }
