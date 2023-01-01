@@ -7,19 +7,17 @@ export const newsContainerProps: PrensaEngineCSSProp = {
   }
 }
 export const newsBlockWrapperProps: PrensaEngineCSSProp = {
-  align: ['row', 'center', 'top'],
+  align: ['row', 'left', 'top'],
   backgroundColor: '$Neutral100',
   borderRadius: '6px',
   mb: '20px',
   width: '100%',
 }
 export const newsContentProps: PrensaEngineCSSProp = {
-  align: ['column', 'center', 'top'],
   paddingLeft: '16px',
   px: '12px',
 }
 export const newsTitleProps: PrensaEngineCSSProp = {
-  align: ['row', 'left', 'top'],
   color: '$Text100',
   fontFamily: '$primary',
   fontSize: '18px',
