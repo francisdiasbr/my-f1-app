@@ -1,7 +1,10 @@
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
 export const newsContainerProps: PrensaEngineCSSProp = {
-  width: '700px',
+  width: 'auto',
+  '@lg': {
+    width: '700px',
+  }
 }
 export const newsBlockWrapperProps: PrensaEngineCSSProp = {
   align: ['row', 'center', 'top'],
