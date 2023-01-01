@@ -1,14 +1,15 @@
-import Topbar from '../components/Topbar'
 import '../styles/globals.css'
 import StylesProvider from '../providers/Styles'
+import MainContainer from '../components/MainContainer'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <StylesProvider>
+      <MainContainer>
         {/* TIP: set viewport head meta tag in _app.js, otherwise it will show a warning */}
-        <Topbar />
         <Component {...pageProps} />
+      </MainContainer>
       </StylesProvider>
     </>
   )

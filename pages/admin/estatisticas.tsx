@@ -6,7 +6,6 @@ import Drivers from '../../components/Statistics/Drivers'
 import Races from '../../components/Statistics/Races'
 import Teams from '../../components/Statistics/Teams'
 
-
 const StatisticsPage = (props) => {
   return (
     <>
