@@ -1,11 +1,7 @@
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
-export const contentWrapperProps: PrensaEngineCSSProp = {
-  align: ['row', 'center', 'top'],
-  width: '100%'
-}
 export const inputWrapProps: PrensaEngineCSSProp = {
-  align: ['column', 'left', 'top'],
+  align: ['row', 'left', 'top'],
   mr: '32px'
 }
 export const sectionWrapperProps: PrensaEngineCSSProp = {

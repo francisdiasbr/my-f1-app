@@ -23,7 +23,7 @@ export const resultProps: PrensaEngineCSSProp = {
   fontSize: '18px'
 }
 export const titleProps: PrensaEngineCSSProp = {
-  color: '$Primary200',
+  color: '$Primary',
   fontFamily: '$secondary',
   fontSize: '28px',
   mb: '12px'

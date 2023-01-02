@@ -9,15 +9,13 @@ import Table from '../../BasicComponents/Table'
 import { teamsTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
-
+import { inputWrapProps, sectionWrapperProps } from './styles'
+import PrimaryButton from '../../BasicComponents/Button'
 
 // types dos inputs do formulário
 type teamsFormValues = {
   teamNameLabel?: FormInputProps,
-  teamPreviousNameLabel?: FormInputProps,
-  teamFirstRaceLabel?: FormInputProps,
-  teamEngineLabel?: FormInputProps
+  teamCountryLabel?: FormInputProps,
 }
 
 const Teams = () => {
@@ -47,9 +45,7 @@ const Teams = () => {
     // define o modelo de dados a ser salvo
     const teamBody = {
       teamname: formValues?.teamNameLabel,
-      teampreviousname: formValues?.teamPreviousNameLabel,
-      teamfirstrace: formValues?.teamFirstRaceLabel,
-      teamengine: formValues?.teamEngineLabel
+      teamcountry: formValues?.teamCountryLabel,
     }
 
     // salva o circuito inserido
@@ -66,9 +62,7 @@ const Teams = () => {
       {
         "values": [
           item.teamname,
-          item.teampreviousname,
-          item.teamfirstrace,
-          item.teamengine,
+          item.teamcountry,
         ]
       }
     ))
@@ -86,23 +80,13 @@ const Teams = () => {
       className='sectionWrapper'
       css={sectionWrapperProps}>
       <Title value={titleStrings.teamsTitle} />
-      <Block
-        className='contentWrapper'
-        css={contentWrapperProps}>
         <Block
           className='inputWrap'
           css={inputWrapProps}>
           {map(teamsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-          <Button
-            onClick={handleFormSubmit}
-            roundedCorners='alternative'
-            size='xs'
-            color='basicBlackAlpha700'>
-            Enviar dados
-          </Button>
+        <PrimaryButton handleFormSubmit={handleFormSubmit}/>
         </Block>
         <Table headers={teamsTableHeaders} items={teamList} />
-      </Block>
     </Block>
   )
 }

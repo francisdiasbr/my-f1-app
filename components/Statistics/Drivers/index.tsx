@@ -1,4 +1,4 @@
-import { Block, Button } from '@xprog/prensa'
+import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { get, map } from 'lodash'
 import React from 'react'
@@ -9,17 +9,16 @@ import Table from '../../BasicComponents/Table'
 import { driversTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
+import { inputWrapProps, sectionWrapperProps } from './styles'
+import PrimaryButton from '../../BasicComponents/Button'
 
 
 // types dos inputs do formulário
 type driversFormValues = {
   driverNameLabel?: FormInputProps,
-  driverNickname?: FormInputProps,
   driverBirthLabel?: FormInputProps,
   driverCountryLabel?: FormInputProps
   driverTeamLabel?: FormInputProps
-  driverLastWinLabel?: FormInputProps
 }
 
 const Drivers = () => {
@@ -49,11 +48,9 @@ const Drivers = () => {
     // define o modelo de dados a ser salvo
     const driverBody = {
       drivername: formValues?.driverNameLabel,
-      drivernickname: formValues?.driverNickname,
       driverbirth: formValues?.driverBirthLabel,
       drivercountry: formValues?.driverCountryLabel,
       driverteam: formValues?.driverTeamLabel,
-      driverlastwin: formValues?.driverLastWinLabel,
     }
 
     // salva o circuito inserido
@@ -70,11 +67,9 @@ const Drivers = () => {
       {
         "values": [
           item.drivername,
-          item.drivernickname,
           item.driverbirth,
           item.drivercountry,
           item.driverteam,
-          item.driverlastwin
         ]
       }
     ))
@@ -93,22 +88,12 @@ const Drivers = () => {
       css={sectionWrapperProps}>
       <Title value={titleStrings.driversTitle} />
       <Block
-        className='contentWrapper'
-        css={contentWrapperProps}>
-        <Block
-          className='inputWrap'
-          css={inputWrapProps}>
-          {map(driversFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-          <Button
-            onClick={handleFormSubmit}
-            roundedCorners='alternative'
-            size='xs'
-            color='basicBlackAlpha700'>
-            Enviar dados
-          </Button>
-        </Block>
-        <Table headers={driversTableHeaders} items={driverList} />
+        className='inputWrap'
+        css={inputWrapProps}>
+        {map(driversFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
+        <PrimaryButton handleFormSubmit={handleFormSubmit} />
       </Block>
+      <Table headers={driversTableHeaders} items={driverList} />
     </Block>
   )
 }

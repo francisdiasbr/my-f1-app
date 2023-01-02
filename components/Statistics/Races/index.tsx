@@ -1,4 +1,4 @@
-import { Block, Button } from '@xprog/prensa'
+import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { get, map } from 'lodash'
 import React from 'react'
@@ -9,13 +9,13 @@ import Table from '../../BasicComponents/Table'
 import { racesTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { inputWrapProps, sectionContentProps } from './props'
+import { inputWrapProps, sectionContentProps } from './styles'
+import PrimaryButton from '../../BasicComponents/Button'
 
 
 // types dos inputs do formulário
 type racesFormValues = {
-  CircuitLabel?: FormInputProps,
-  CountryLabel?: FormInputProps,
+  circuitLabel?: FormInputProps,
   raceDateLabel?: FormInputProps,
   raceWinnerLabel?: FormInputProps
 }
@@ -38,7 +38,6 @@ const NewRaces = () => {
     })
   }
 
-
   //handler de submissão do botão de envio dos dados do formulário
   const handleFormSubmit = async () => {
     // console de formValues aqui para ver os dados salvando no formato correto
@@ -46,10 +45,9 @@ const NewRaces = () => {
 
     // define o modelo de dados a ser salvo
     const raceBody = {
-      circuitname: formValues?.CircuitLabel,
-      circuitcountry: formValues?.CountryLabel,
-      racedate: formValues?.CountryLabel,
-      racewinner: formValues?.CountryLabel
+      circuitname: formValues?.circuitLabel,
+      racedate: formValues?.raceDateLabel,
+      racewinner: formValues?.raceWinnerLabel
     }
 
     // salva o circuito inserido
@@ -66,7 +64,6 @@ const NewRaces = () => {
       {
         "values": [
           item.circuitname,
-          item.circuitcountry,
           item.racedate,
           item.racewinner,
         ]
@@ -90,13 +87,7 @@ const NewRaces = () => {
         className='inputWrap'
         css={inputWrapProps}>
         {map(racesFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-        <Button
-          onClick={handleFormSubmit}
-          roundedCorners='alternative'
-          size='xs'
-          color='basicBlackAlpha700'>
-          Enviar dados
-        </Button>
+        <PrimaryButton handleFormSubmit={handleFormSubmit} />
       </Block>
       <Table headers={racesTableHeaders} items={raceList} />
     </Block>

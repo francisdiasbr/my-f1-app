@@ -9,15 +9,13 @@ import Table from '../../BasicComponents/Table'
 import { circuitsTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { inputWrapProps, contentWrapperProps, sectionWrapperProps } from './props'
+import { inputWrapProps, sectionWrapperProps } from './styles'
+import PrimaryButton from '../../BasicComponents/Button'
 
 type circuitsFormValues = {
-  CircuitLabel?: FormInputProps,
-  CountryLabel?: FormInputProps,
-  CityLabel?: FormInputProps,
-  FastestLapTimeLabel?: FormInputProps,
-  FastestLapYearLabel?: FormInputProps,
-  FastestLapDriverLabel?: FormInputProps
+  circuitLabel?: FormInputProps,
+  countryLabel?: FormInputProps,
+  cityLabel?: FormInputProps,
 }
 
 const Circuits = () => {
@@ -52,12 +50,9 @@ const Circuits = () => {
 
     // define o modelo de dados a ser salvo
     const circuitBody = {
-      circuitname: formValues?.CircuitLabel,
-      circuitcountry: formValues?.CountryLabel,
-      circuitcity: formValues?.CityLabel,
-      circuitfastestlaptime: formValues?.FastestLapTimeLabel,
-      circuitfastestlapyear: formValues?.FastestLapYearLabel,
-      circuitfastestlapdriver: formValues?.FastestLapDriverLabel,
+      circuitname: formValues?.circuitLabel,
+      circuitcountry: formValues?.countryLabel,
+      circuitcity: formValues?.cityLabel,
     }
 
     // // salva (post) o novo circuito
@@ -78,9 +73,6 @@ const Circuits = () => {
           item.circuitname,
           item.circuitcountry,
           item.circuitcity,
-          item.circuitfastestlaptime,
-          item.circuitfastestlapyear,
-          item.circuitfastestlapdriver,
         ]
       }
     ))
@@ -97,24 +89,14 @@ const Circuits = () => {
     <Block
       className='sectionWrapper'
       css={sectionWrapperProps}>
-        <Title value={titleStrings.circuitsTitle} />
+      <Title value={titleStrings.circuitsTitle} />
       <Block
-        className='contentWrapper'
-        css={contentWrapperProps}>
-        <Block
-          className='inputWrap'
-          css={inputWrapProps}>
-          {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-          <Button
-            onClick={handleFormSubmit}
-            roundedCorners='alternative'
-            size='xs'
-            color='basicBlackAlpha700'>
-            Enviar dados
-          </Button>
-        </Block>
-        <Table headers={circuitsTableHeaders} items={circuitList} />
+        className='inputWrap'
+        css={inputWrapProps}>
+        {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
+        <PrimaryButton handleFormSubmit={handleFormSubmit} />
       </Block>
+      <Table headers={circuitsTableHeaders} items={circuitList} />
     </Block>
   )
 }
