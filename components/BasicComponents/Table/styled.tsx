@@ -4,7 +4,7 @@ export const Table = PrensaEngine.styled(
   'table',
   {
     border: '1px solid',
-    color: '$Neutral100',
+    color: '$Neutral200',
     borderRadius: '4px',
     fontFamily: '$primary',
     width: '800px'
@@ -12,19 +12,31 @@ export const Table = PrensaEngine.styled(
 )
 export const Tr = PrensaEngine.styled(
   'tr',
-  {}
+  {
+    align: ['row', 'center', 'between'],
+    borderBottomWidth: '1px',
+    borderBottomColor: '$secondary',
+    borderBottomStyle: 'solid',
+    py: '12px',
+    px: '16px',
+  }
 )
 export const Thead = PrensaEngine.styled(
   'thead',
-  {}
+  {
+    backgroundColor: 'white',
+  }
 )
 export const Th = PrensaEngine.styled(
   'th',
-  { 
-    color: '$Neutral800', 
-    fontFamily: '$primary', 
-    fontSize: '18px',
-    fontWeight: '400'
+  {
+    color: '$Primary',
+    fontFamily: '$tertiary',
+    fontSize: '16px',
+    fontWeight: '600',
+    px: '12px',
+    py: '28px',
+    width: '100%'
   }
 )
 export const Tbody = PrensaEngine.styled(
@@ -35,11 +47,12 @@ export const Tbody = PrensaEngine.styled(
 )
 export const Td = PrensaEngine.styled(
   'td',
-  { 
-    border: '1px solid', 
-    borderColor: '$Neutral300', 
-    borderRadius: '4px', 
+  {
+    align: ['row', 'center', 'middle'],
+    color: 'Black',
     fontFamily: '$primary',
-    height: '18px'
+    fontSize: '12px',
+    height: '18px',
+    width: '100%'
   }
 )

@@ -14,7 +14,7 @@ export const boxAreaProps: PrensaEngineCSSProp = {
 }
 export const titleProps: PrensaEngineCSSProp = {
   align: ['row', 'left', 'top' ],
-  color: '$Primary200',
+  color: '$Primary',
   fontFamily: '$secondary',
   fontSize: '30px'
 }

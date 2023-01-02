@@ -1,7 +1,7 @@
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
 export const titleProps: PrensaEngineCSSProp = {
-  color: '$Primary200',
+  color: '$Primary',
   fontFamily: '$secondary',
   fontSize: '32px'
 }

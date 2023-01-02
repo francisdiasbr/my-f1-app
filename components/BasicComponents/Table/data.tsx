@@ -1,31 +1,23 @@
 export const circuitsTableHeaders = [
-  { value: 'Nome do circuito'}, 
-  {value: 'País'}, 
-  {value: 'Cidade' }, 
-  {value: 'Volta + rápida (tempo)' }, 
-  {value: 'Volta + rápida (ano)'}, 
-  {value: 'Volta + rápida (piloto)'} 
+  {value: 'CIRCUITO'}, 
+  {value: 'PAÍS'}, 
+  {value: 'CIDADE' }, 
 ]
 
 export const driversTableHeaders = [
-  {value: 'Nome do Piloto'},
-  {value: 'Apelido'},
-  {value: 'Data de nascimento'},
-  {value: 'País'},
-  {value: 'Equipe'},
-  {value: 'Última vitória'},
+  {value: 'PILOTO'},
+  {value: 'DATA DE NASCIMENTO'},
+  {value: 'PAÍS'},
+  {value: 'EQUIPE'},
 ]
 
 export const racesTableHeaders = [
-  {value: 'Nome do circuito'},
-  {value: 'País'},
-  {value: 'Data da corrida'},
-  {value: 'Vencedor'},
+  {value: 'CIRCUITO'},
+  {value: 'DATA DA CORRIDA'},
+  {value: 'VENCEDOR'},
 ]
 
 export const teamsTableHeaders = [
-  {value: 'Nome da Equipe'},
-  {value: 'Nome anterior da Equipe'},
-  {value: 'Primeira corrida'},
-  {value: 'Motor'},
+  {value: 'EQUIPE'},
+  {value: 'PAÍS'},
 ]
