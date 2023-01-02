@@ -4,15 +4,19 @@ import { Block, Typography } from '@xprog/prensa'
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
 import { MenuContext } from '../../providers/Menu'
-import { menuItemsData, titleStrings } from './data'
+import { titleStrings } from './data'
 import { MenuItem } from './menuItem'
 import { logoProps, logoWrapperProps, logoDescriptionProps, menuIconProps, menuItemsProps, topBarProps, topBarItemsProps, topBarWrapperProps } from './styles'
 
 type TopbarProps = {
-  css?: PrensaEngineCSSProp
+  css?: PrensaEngineCSSProp,
+  items?: Array<{
+    id: string,
+    value: string
+  }>
 }
 
-const Topbar: React.FC<TopbarProps> = (props) => {
+const Topbar: React.FC<TopbarProps> = ({ items }) => {
   const { menuProvider }: any = useContext(MenuContext)
   const { menuLeft } = menuProvider
 
@@ -47,7 +51,7 @@ const Topbar: React.FC<TopbarProps> = (props) => {
           <Block
             className='menuItems'
             css={menuItemsProps}>
-            {map(menuItemsData, (item, key) => <MenuItem {...item} key={key} />)}
+            {map(items, (item, key) => <MenuItem {...item} key={key} />)}
           </Block>
         </Block>
       </Block>

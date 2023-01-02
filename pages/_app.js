@@ -6,10 +6,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <StylesProvider>
-      <MainContainer>
-        {/* TIP: set viewport head meta tag in _app.js, otherwise it will show a warning */}
-        <Component {...pageProps} />
-      </MainContainer>
+        <MainContainer>
+          {/* TIP: set viewport head meta tag in _app.js, otherwise it will show a warning */}
+          <Component {...pageProps} />
+        </MainContainer>
       </StylesProvider>
     </>
   )

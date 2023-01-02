@@ -6,7 +6,7 @@ export const logoWrapperProps: PrensaEngineCSSProp = {
   width: '550px'
 }
 export const logoProps: PrensaEngineCSSProp = {
-  color: '$Primary200',
+  color: '$Primary',
   fontFamily: '$secondary',
   fontSize: '30px'
 }
