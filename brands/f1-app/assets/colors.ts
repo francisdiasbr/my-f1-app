@@ -1,8 +1,8 @@
 export const colors = {  
-  Primary50: "#E2BFEF",
-  Primary100: "#A672B9",
-  Primary200: "#440099",
-  Secondary200: "#D9FA00",
+  Primary: "#440099",
+  PrimaryDark: "#360079",
+  PrimaryLight: "##5b00cc",
+  Secondary: "#D9FA00",
   Neutral50: "#F9F9F9",
   Neutral100: "#F1F1F1",
   Neutral200: "#E9E9E9",
