@@ -2,19 +2,19 @@ import React from 'react'
 import Head from 'next/head'
 
 import AdminContainer from 'components/AdminContainer'
-import Races from '../../components/Statistics/Races'
+import Teams from '../../components/Statistics/Teams'
 
-const RacesPage = (props) => {
+const TeamsPage = (props) => {
   return (
     <>
       <Head>
-        <title>My F1 App - Statistics - Corridas</title>
+        <title>My F1 App - Statistics</title>
       </Head>
       <AdminContainer>
-        <Races/>
+        <Teams/>
       </AdminContainer>
     </>
   )
 }
 
-export default RacesPage
+export default TeamsPage
