@@ -1,7 +1,7 @@
 import { FormInputType } from 'components/BasicComponents/FormInput/types'
 
-export type circuitsFormValuesType = {
+export type racesFormValues = {
   circuitLabel?: FormInputType,
-  countryLabel?: FormInputType,
-  cityLabel?: FormInputType,
+  raceDateLabel?: FormInputType,
+  raceWinnerLabel?: FormInputType
 }

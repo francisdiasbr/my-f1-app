@@ -11,12 +11,11 @@ import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { circuitsFormInputs } from './data'
 import { inputWrapProps, sectionWrapperProps } from './styles'
-import { circuitsFormValues } from './types'
-
+import { circuitsFormValuesType } from './types'
 
 const Circuits = () => {
   const [circuitList, setCircuitList] = React.useState([])
-  const [formValues, setFormValues] = React.useState<circuitsFormValues>({})
+  const [formValues, setFormValues] = React.useState<circuitsFormValuesType>({})
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
@@ -28,8 +27,11 @@ const Circuits = () => {
   }
 
   const handleFormSubmit = async () => {
-    
-    console.log('formValues', formValues)
+    if (!formValues?.circuitLabel || !formValues?.countryLabel || !formValues?.cityLabel) {
+      alert("Circuit name, country and city are required fields.")
+      return
+  }
+
     const circuitBody = {
       circuitName: formValues?.circuitLabel,
       circuitCountry: formValues?.countryLabel,
@@ -42,6 +44,7 @@ const Circuits = () => {
   }
 
   const loadCircuitFromApi = async () => {
+    console.log('antes api')
     const requestCircuits = await axios.post('http://localhost:3001/circuits/filter')
     console.log('requestCircuits', requestCircuits)
     const resultCircuits = get(requestCircuits, 'data', [])

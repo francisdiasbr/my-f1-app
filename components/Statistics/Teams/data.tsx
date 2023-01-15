@@ -1,8 +1,8 @@
-import { FormInputProps } from 'components/BasicComponents/FormInput'
+import { FormInputType } from 'components/BasicComponents/FormInput/types'
 
 // nomes dos inputs do formulário
 
-export const teamsFormInputs: Array<FormInputProps> = [
+export const teamsFormInputs: Array<FormInputType> = [
   { name: 'teamNameLabel', value: 'EQUIPE'},
   { name: 'teamCountryLabel', value: 'PAÍS' },
 ]

@@ -6,6 +6,6 @@ export const inputWrapProps: PrensaEngineCSSProp = {
 }
 export const sectionWrapperProps: PrensaEngineCSSProp = {
   align: ['column', 'center', 'top'],
-  mb: '50px',
+  mt: '130px',
   width: '100%'
 }

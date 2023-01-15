@@ -3,27 +3,25 @@ import axios from 'axios'
 import { get, map } from 'lodash'
 import React from 'react'
 
-import { FormInput, FormInputProps } from '../../BasicComponents/FormInput'
-import { teamsFormInputs } from './data'
+import PrimaryButton from '../../BasicComponents/Button'
+import { FormInput } from '../../BasicComponents/FormInput'
 import Table from '../../BasicComponents/Table'
 import { teamsTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
+import { teamsFormInputs } from './data'
 import { inputWrapProps, sectionWrapperProps } from './styles'
-import PrimaryButton from '../../BasicComponents/Button'
+import { teamsFormValuesType } from './types'
 
 // types dos inputs do formulário
-type teamsFormValues = {
-  teamNameLabel?: FormInputProps,
-  teamCountryLabel?: FormInputProps,
-}
+
 
 const Teams = () => {
   // state da lista de corridas e inicializa como array vazio
   const [teamList, setTeamList] = React.useState([])
 
   // state do formulário, tipando com as propriedades do formulário, e inicializa como objeto vazio
-  const [formValues, setFormValues] = React.useState<teamsFormValues>({})
+  const [formValues, setFormValues] = React.useState<teamsFormValuesType>({})
 
   // handler do formulário para a mudança no campo de input
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,42 +33,53 @@ const Teams = () => {
       [`${name}`]: value
     })
   }
-
-
   //handler de submissão do botão de envio dos dados do formulário
   const handleFormSubmit = async () => {
     // console de formValues aqui para ver os dados salvando no formato correto
     // console.log('raceFormValues', FormValues)
 
+    // 1-alterar a nomenclatura da api
+    // 2-fazer um parse do formValues para o objeto da api
+    // e-adicionar validação
+
+    // if(!formValues?.CountryLabel) {
+    //   console.log("CountryLabel não existe!!!")
+    //   return null
+    // }
+    if (!formValues?.teamNameLabel || !formValues?.teamCountryLabel) {
+      alert("Driver name, date birth, country and team are required fields.")
+      return
+  }
     // define o modelo de dados a ser salvo
     const teamBody = {
-      teamname: formValues?.teamNameLabel,
-      teamcountry: formValues?.teamCountryLabel,
+      teamName: formValues?.teamNameLabel,
+      teamCountry: formValues?.teamCountryLabel,
     }
 
-    // salva o circuito inserido
+    // salva os dados inseridos
     await axios.post('http://localhost:3001/teams', teamBody)
+    // chama a função de carregar os circuitos para atualizar a tabela
     loadTeamFromApi()
   }
+  // função que carrega os dados da API
   const loadTeamFromApi = async () => {
     console.log('antes api')
-    // carrega as corridas da api
     const requestTeams = await axios.get('http://localhost:3001/teams')
     // prepara o dado das corridas (data)
     const resultTeams = get(requestTeams, 'data', [])
     const parsedTeams = map(resultTeams, (item) => (
       {
         "values": [
-          item.teamname,
-          item.teamcountry,
+          item.teamName,
+          item.teamCountry,
         ]
       }
     ))
-    // inclui os circuitos no raceList
+    // inclui a equipe no teamList
     setTeamList(parsedTeams)
   }
 
-  // no carregamento da página:
+  // no carregamento da página carrega os dados:
   React.useEffect(() => {
     loadTeamFromApi()
   }, [])

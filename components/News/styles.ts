@@ -3,7 +3,7 @@ import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 export const newsContainerProps: PrensaEngineCSSProp = {
   width: 'auto',
   '@lg': {
-    width: '700px',
+    maxWidth: '700px',
   }
 }
 export const newsBlockWrapperProps: PrensaEngineCSSProp = {

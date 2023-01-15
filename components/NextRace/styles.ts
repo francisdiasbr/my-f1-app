@@ -7,6 +7,7 @@ export const nextRaceContainerProps: PrensaEngineCSSProp = {
   height: '190px',
   borderRadius: '4px',
   p: '10px',
+  mt: '120px',
   width: 'auto',
   '@lg': {
     width: '700px',

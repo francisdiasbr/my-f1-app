@@ -3,77 +3,61 @@ import axios from 'axios'
 import { get, map } from 'lodash'
 import React from 'react'
 
-import { FormInput, FormInputProps } from '../../BasicComponents/FormInput'
-import { racesFormInputs } from './data'
+import PrimaryButton from '../../BasicComponents/Button'
+import { FormInput } from '../../BasicComponents/FormInput'
 import Table from '../../BasicComponents/Table'
 import { racesTableHeaders } from '../../BasicComponents/Table/data'
-import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
+import Title from '../../BasicComponents/Title'
+import { racesFormInputs } from './data'
 import { inputWrapProps, sectionContentProps } from './styles'
-import PrimaryButton from '../../BasicComponents/Button'
+import { racesFormValues } from './types'
 
-
-// types dos inputs do formulário
-type racesFormValues = {
-  circuitLabel?: FormInputProps,
-  raceDateLabel?: FormInputProps,
-  raceWinnerLabel?: FormInputProps
-}
-
-const NewRaces = () => {
-  // state da lista de corridas e inicializa como array vazio
+const Races = () => {
   const [raceList, setRaceList] = React.useState([])
-
-  // state do formulário, tipando com as propriedades do formulário, e inicializa como objeto vazio
   const [formValues, setFormValues] = React.useState<racesFormValues>({})
 
-  // handler do formulário para a mudança no campo de input
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
     const value = event?.target?.value
-    // setFormValues necessita estar no formato [{},{},{}], então:
     setFormValues({
       ...formValues,
       [`${name}`]: value
     })
   }
 
-  //handler de submissão do botão de envio dos dados do formulário
   const handleFormSubmit = async () => {
-    // console de formValues aqui para ver os dados salvando no formato correto
-    // console.log('raceFormValues', FormValues)
-
-    // define o modelo de dados a ser salvo
+    if (!formValues?.circuitLabel || !formValues?.raceDateLabel || !formValues?.raceWinnerLabel) {
+      alert("Circuit name, country and city are required fields.")
+      return
+  }
     const raceBody = {
-      circuitname: formValues?.circuitLabel,
-      racedate: formValues?.raceDateLabel,
-      racewinner: formValues?.raceWinnerLabel
+      circuitName: formValues?.circuitLabel,
+      raceDate: formValues?.raceDateLabel,
+      raceWinner: formValues?.raceWinnerLabel
     }
 
-    // salva o circuito inserido
-    await axios.post('http://localhost:3001/races', raceBody)
+    await axios.post('http://localhost:3001/races/save', raceBody)
     loadRaceFromApi()
   }
   const loadRaceFromApi = async () => {
     console.log('antes api')
-    // carrega as corridas da api
-    const requestRaces = await axios.get('http://localhost:3001/races')
-    // prepara o dado das corridas (data)
+    const requestRaces = await axios.post('http://localhost:3001/races/filter')
+    console.log('requestRaces', requestRaces)
     const resultRaces = get(requestRaces, 'data', [])
+    console.log('resultRaces', resultRaces)
     const parsedRaces = map(resultRaces, (item) => (
       {
         "values": [
-          item.circuitname,
-          item.racedate,
-          item.racewinner,
+          item.circuitName,
+          item.raceDate,
+          item.raceWinner,
         ]
       }
     ))
-    // inclui os circuitos no raceList
     setRaceList(parsedRaces)
   }
 
-  // no carregamento da página:
   React.useEffect(() => {
     loadRaceFromApi()
   }, [])
@@ -93,4 +77,4 @@ const NewRaces = () => {
     </Block>
   )
 }
-export default NewRaces
+export default Races

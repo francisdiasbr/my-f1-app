@@ -1,8 +1,6 @@
-import { FormInputProps } from 'components/BasicComponents/FormInput'
+import { FormInputType } from 'components/BasicComponents/FormInput/types'
 
-// nomes dos inputs do formulário
-
-export const driversFormInputs: Array<FormInputProps> = [
+export const driversFormInputs: Array<FormInputType> = [
   { name: 'driverNameLabel', value: 'PILOTO'},
   { name: 'driverBirthLabel', value: 'DATA DE NASCIMENTO' },
   { name: 'driverCountryLabel', value: 'PAÍS' },
