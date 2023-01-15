@@ -1,31 +1,23 @@
 import { Block, Button } from '@xprog/prensa'
 import axios from 'axios'
-import { map, get } from 'lodash'
+import { get, map } from 'lodash'
 import React from 'react'
 
-import { FormInput, FormInputProps } from '../../BasicComponents/FormInput'
-import { circuitsFormInputs } from './data'
+import PrimaryButton from '../../BasicComponents/Button'
+import { FormInput } from '../../BasicComponents/FormInput'
 import Table from '../../BasicComponents/Table'
 import { circuitsTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
+import { circuitsFormInputs } from './data'
 import { inputWrapProps, sectionWrapperProps } from './styles'
-import PrimaryButton from '../../BasicComponents/Button'
+import { circuitsFormValues } from './types'
 
-type circuitsFormValues = {
-  circuitLabel?: FormInputProps,
-  countryLabel?: FormInputProps,
-  cityLabel?: FormInputProps,
-}
 
 const Circuits = () => {
-  // list circuit state
   const [circuitList, setCircuitList] = React.useState([])
-
-  // form circuit state
   const [formValues, setFormValues] = React.useState<circuitsFormValues>({})
 
-  // form circuit handler
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
     const value = event?.target?.value
@@ -35,54 +27,38 @@ const Circuits = () => {
     })
   }
 
-  // circuit button submit
   const handleFormSubmit = async () => {
-
+    
     console.log('formValues', formValues)
-    // 1-alterar a nomenclatura da api
-    // 2-fazer um parse do formValues para o objeto da api
-    // e-adicionar validação
-
-    // if(!formValues?.CountryLabel) {
-    //   console.log("CountryLabel não existe!!!")
-    //   return null
-    // }
-
-    // define o modelo de dados a ser salvo
     const circuitBody = {
-      circuitname: formValues?.circuitLabel,
-      circuitcountry: formValues?.countryLabel,
-      circuitcity: formValues?.cityLabel,
+      circuitName: formValues?.circuitLabel,
+      circuitCountry: formValues?.countryLabel,
+      circuitCity: formValues?.cityLabel,
     }
 
-    // // salva (post) o novo circuito
-    await axios.post('http://localhost:3001/circuits/', circuitBody)
-    // // chama a função de carregar os circuitos para atualizar a tabela
+    const result = await axios.post('http://localhost:3001/circuits/save', circuitBody)
+    console.log('result', result)
     loadCircuitFromApi()
   }
 
-  // função que carrega os circuitos da API
   const loadCircuitFromApi = async () => {
-    // carregar os circuits da api
-    const requestCircuits = await axios.get('http://localhost:3001/circuits/')
-    // prepara o dado dos circuitos (data)
+    const requestCircuits = await axios.post('http://localhost:3001/circuits/filter')
+    console.log('requestCircuits', requestCircuits)
     const resultCircuits = get(requestCircuits, 'data', [])
+    console.log('resultCircuits', resultCircuits)
     const parsedCircuits = map(resultCircuits, (item) => (
       {
         "values": [
-          item.circuitname,
-          item.circuitcountry,
-          item.circuitcity,
+          item.circuitName,
+          item.circuitCountry,
+          item.circuitCity,
         ]
       }
     ))
-    // salvar os circuitos no circuitList
     setCircuitList(parsedCircuits)
   }
 
-  //toda vez que a pág carrega
   React.useEffect(() => {
-    // chama a função de carregar os circuitos
     loadCircuitFromApi()
   }, [])
   return (
@@ -101,10 +77,3 @@ const Circuits = () => {
   )
 }
 export default Circuits
-
-// const tableMockHeaders = [{ value: 'Head1' }, { value: 'Head2' }, { value: 'Head3' }, { value: 'Head4' }, { value: 'Head5' }, { value: 'Head6' }]
-const tableMockItems = [
-  {
-    values: ['Cell1', 'Cell2', 'Cell3', 'Cell4', 'Cell5', 'Cell6']
-  },
-  { values: ['Cell7', 'Cell8', 'Cell9', 'Cell10', 'Cell11', 'Cell12'] }]
