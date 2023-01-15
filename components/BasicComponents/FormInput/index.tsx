@@ -1,13 +1,10 @@
 import { Block, Typography } from "@xprog/prensa"
+
 import { inputItemProps, inputLabelProps, Input } from "./styles"
+import { FormInputType } from "./types"
 
-export type FormInputProps = {
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  name: string
-  value: string
-}
 
-export const FormInput: React.FC<FormInputProps> = ({ onChange, name, value }) => {
+export const FormInput: React.FC<FormInputType> = ({ onChange, name, value }) => {
 
   return (
     <Block
