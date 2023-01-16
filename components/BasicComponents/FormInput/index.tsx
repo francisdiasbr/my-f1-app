@@ -12,7 +12,9 @@ export const FormInput: React.FC<FormInputType> = ({ onChange, name, value }) =>
       css={inputItemProps}>
       <Typography
         className='inputLabel'
-        css={inputLabelProps}>
+        css={inputLabelProps}
+        variant="menuItem-default"
+        >
         {value}
       </Typography>
       <Input

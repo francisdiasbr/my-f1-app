@@ -1,24 +1,23 @@
 import React from 'react'
 import { Button } from '@xprog/prensa'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-type PrimaryButtonProps = {
-  handleFormSubmit: () => void,
-  backgroundColor?: string,
-}
+import { PrimaryButtonType } from './types'
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ handleFormSubmit }) => {
+const PrimaryButton: React.FC<PrimaryButtonType> = ({ handleFormSubmit }) => {
   return (
     <Button
+      iconRight={<ExpandMoreIcon/>}
       onClick={handleFormSubmit}
-      style={{ borderRadius: 0, color: '$PrimaryDark', height: 36, width: 100 }}>
+      style={{ borderRadius: 2, borderWidth: 0,  backgroundColor: '#440099', height: 36, width: 100 }}
+      size= 'sm'
+    >
       ENVIAR
-    </Button>
+    </Button >
   )
 }
 
 PrimaryButton.defaultProps = {
-  backgroundColor: 'Secondary'
-
 }
 
 export default PrimaryButton

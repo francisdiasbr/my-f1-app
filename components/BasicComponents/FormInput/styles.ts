@@ -6,10 +6,9 @@ export const inputItemProps: PrensaEngineCSSProp = {
   mr: '8px',
 }
 export const inputLabelProps: PrensaEngineCSSProp = {
-  color: '$Neutral900', 
-  fontFamily: '$tertiary',
+  color: '#440099', 
   fontSize: '12px', 
-  fontWeight: '300', 
+  fontWeight: '600', 
   mb: '6px'
 }
 export const Input = PrensaEngine.styled(
@@ -18,6 +17,5 @@ export const Input = PrensaEngine.styled(
     border: '1px solid $Neutral200', 
     color: 'black', 
     borderRadius: '2px', 
-    fontFamily: '$tertiary',
   }
 )
