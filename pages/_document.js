@@ -30,7 +30,7 @@ class DocumentComponent extends Document {
             }
             html, body, #__next {
               height: 100%;
-              width: 1280px;
+              {/* width: 1280px; */}
             }
             #__next {
               margin: 0 auto;
