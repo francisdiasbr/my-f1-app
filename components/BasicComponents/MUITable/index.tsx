@@ -20,6 +20,7 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { Block } from '@xprog/prensa';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -169,7 +170,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   );
 }
 // recebe headCells e rows como prop
-export default function EnhancedTable({ headCells, rows }) {
+export default function EnhancedTable({ headCells, handleEditItem, rows }) {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<any>('name');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -257,9 +258,9 @@ export default function EnhancedTable({ headCells, rows }) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
+                  console.log('row' ,row)
                   const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
                       hover
@@ -284,6 +285,12 @@ export default function EnhancedTable({ headCells, rows }) {
                           <TableCell key={key}>{row[cell.id]}</TableCell>
                         )
                       })}
+
+                      <TableCell>
+                        <Block onClick={() => handleEditItem(row.id)}>
+                          editar
+                        </Block>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
