@@ -83,14 +83,6 @@ const Circuits = () => {
           <PrimaryButton handleFormSubmit={handleFormSubmit} />
         </Block>
         <Block style={{ height: 400, width: '100%' }}>
-          {/* <DataGrid
-            rows={circuitList}
-            getRowId={(row) => row._id}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-          /> */}
         </Block>
       </Block>
       <EnhancedTable
