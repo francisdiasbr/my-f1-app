@@ -4,7 +4,7 @@ import { inputItemProps, inputLabelProps, Input } from "./styles"
 import { FormInputType } from "./types"
 
 
-export const FormInput: React.FC<FormInputType> = ({ onChange, name, value }) => {
+export const FormInput: React.FC<FormInputType> = ({ onChange, name, textValue, value }) => {
 
   return (
     <Block
@@ -20,6 +20,7 @@ export const FormInput: React.FC<FormInputType> = ({ onChange, name, value }) =>
       <Input
         name={name}
         type='text'
+        value={textValue}
         onChange={onChange}>
       </Input>
     </Block>
