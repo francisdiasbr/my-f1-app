@@ -1,21 +1,21 @@
+import { GridColDef } from '@mui/x-data-grid';
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { get, map } from 'lodash'
 import React from 'react'
 
+import EnhancedTable from 'components/BasicComponents/MUITable';
+import PrimaryButton from '../../BasicComponents/Button'
 import { FormInput } from '../../BasicComponents/FormInput'
-import { driversFormInputs } from './data'
-import Table from '../../BasicComponents/Table'
-import { driversTableHeaders } from '../../BasicComponents/Table/data'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { inputWrapProps, sectionWrapperProps } from './styles'
-import PrimaryButton from '../../BasicComponents/Button'
-import {driversFormValues} from './types'
+import { driversFormInputs, headCells } from './data'
+import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
+import {driversFormValuesType} from './types'
 
 const Drivers = () => {
   const [driverList, setDriverList] = React.useState([])
-  const [formValues, setFormValues] = React.useState<driversFormValues>({})
+  const [formValues, setFormValues] = React.useState<driversFormValuesType>({})
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
@@ -48,12 +48,10 @@ const Drivers = () => {
     const resultDrivers = get(requestDrivers, 'data', [])
     const parsedDrivers = map(resultDrivers, (item) => (
       {
-        "values": [
-          item.driverName,
-          item.driverBirth,
-          item.driverCountry,
-          item.driverTeam,
-        ]
+          name: item.driverName,
+          birth: item.driverBirth,
+          country: item.driverCountry,
+          team: item.driverTeam,
       }
     ))
     setDriverList(parsedDrivers)
@@ -63,18 +61,34 @@ const Drivers = () => {
     loadDriverFromApi()
   }, [])
 
+  const columns: GridColDef[] = [
+    { field: 'driverName', headerName: 'Piloto', width: 80 },
+    { field: 'driverBirth', headerName: 'Data de nascimento', width: 80 },
+    { field: 'driverCountry', headerName: 'Cidade', width: 80 },
+    { field: 'driverTeam', headerName: 'Equipe', width: 80 }
+  ];
+
   return (
     <Block
       className='sectionWrapper'
       css={sectionWrapperProps}>
       <Title value={titleStrings.driversTitle} />
       <Block
+        className='blockDisposition'
+        css={blockDispositionProps}>
+      <Block
         className='inputWrap'
         css={inputWrapProps}>
         {map(driversFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
         <PrimaryButton handleFormSubmit={handleFormSubmit} />
       </Block>
-      <Table headers={driversTableHeaders} items={driverList} />
+      <Block style={{ height: 400, width: '100%' }}>
+        </Block>
+      </Block>
+      <EnhancedTable
+        headCells={headCells}
+        rows={driverList}
+      />
     </Block>
   )
 }
