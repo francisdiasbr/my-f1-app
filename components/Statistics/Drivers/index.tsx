@@ -9,7 +9,7 @@ import PrimaryButton from '../../BasicComponents/Button'
 import { FormInput } from '../../BasicComponents/FormInput'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { driversFormInputs, headCells } from './data'
+import { driversFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
 import { driversFormValuesType } from './types'
 
@@ -102,7 +102,7 @@ const Drivers = () => {
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(driversFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} textValue={formValues[`${item.name}`]} />)}
+          {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} textValue={formValues[`${item.name}`]} />)}
           <PrimaryButton handleFormSubmit={handleFormSubmit} />
         </Block>
         <Block style={{ height: 400, width: '100%' }}>
