@@ -2,6 +2,7 @@ import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
 export const widthWrapperProps: PrensaEngineCSSProp = {
   width: '100%',
+  align: ['column', 'center', 'top'],
 }
 export const contentWrapperProps: PrensaEngineCSSProp = {
   height: '100%',

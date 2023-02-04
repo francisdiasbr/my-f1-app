@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
+import AdminContainer from 'components/AdminContainer'
 import Drivers from '../../components/Statistics/Drivers'
 
 const DriversPage = (props) => {
@@ -9,7 +10,9 @@ const DriversPage = (props) => {
       <Head>
         <title>My F1 App - Statistics - Pilotos</title>
       </Head>
-      <Drivers/>
+      <AdminContainer>
+        <Drivers />
+      </AdminContainer>
     </>
   )
 }

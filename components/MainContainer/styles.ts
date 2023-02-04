@@ -5,10 +5,10 @@ export const widthWrapperProps: PrensaEngineCSSProp = {
   width: '100%',
 }
 export const contentWrapperProps: PrensaEngineCSSProp = {
-  px: '24px',
-  pb: '24px',
-  maxWidth: '1280px',
   height: '100%',
+  maxWidth: '1280px',
   mt: '100px',
+  pb: '24px',
+  px: '24px',
   width: '100%',
 }

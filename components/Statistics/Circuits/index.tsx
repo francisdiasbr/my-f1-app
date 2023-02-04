@@ -82,8 +82,8 @@ const Circuits = () => {
           {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
           <PrimaryButton handleFormSubmit={handleFormSubmit} />
         </Block>
-        <Block style={{ height: 400, width: '100%' }}>
-        </Block>
+        {/* <Block style={{ height: 400, width: '100%' }}>
+        </Block> */}
       </Block>
       <EnhancedTable
         headCells={headCells}

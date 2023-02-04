@@ -14,8 +14,8 @@ import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './st
 import { driversFormValuesType } from './types'
 
 const Drivers = () => {
-  const [driverList, setDriverList] = React.useState([])
   const [formValues, setFormValues] = React.useState<driversFormValuesType>({})
+  const [driverList, setDriverList] = React.useState([])
 
   const parseDriverFromApi = (item) => {
     return {
@@ -105,8 +105,8 @@ const Drivers = () => {
           {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} textValue={formValues[`${item.name}`]} />)}
           <PrimaryButton handleFormSubmit={handleFormSubmit} />
         </Block>
-        <Block style={{ height: 400, width: '100%' }}>
-        </Block>
+        {/* <Block style={{ height: 400, width: '100%' }}>
+        </Block> */}
       </Block>
       <EnhancedTable
         handleEditItem={handleEditItem}
