@@ -13,14 +13,14 @@ export const FormInput: React.FC<FormInputType> = ({ onChange, name, value, labe
       className={classes.root}
       css={inputItemProps}>
       <Typography
-        className={classes.primary.main}
+        className={classes.primary}
         css={inputLabelProps}
         variant="menuItem-default"
       >
         {label}
       </Typography>
       <Input
-        color="primary"
+        className={classes.primary}
         name={name}
         type='text'
         onChange={onChange}
