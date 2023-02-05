@@ -3,6 +3,8 @@ import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
 import React from 'react'
+import Button from '@mui/joy/button'
+
 
 import EnhancedTable from 'components/BasicComponents/MUITable';
 import PrimaryButton from '../../BasicComponents/Button'
@@ -103,8 +105,8 @@ const Drivers = () => {
           className='inputWrap'
           css={inputWrapProps}>
           {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
-          <PrimaryButton handleFormSubmit={handleFormSubmit} />
         </Block>
+      <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
       </Block>
       <EnhancedTable
         handleEditItem={handleEditItem}
