@@ -1,9 +1,9 @@
 import { FormInputType } from "components/BasicComponents/FormInput/types"
 
-export const circuitsFormInputs: Array<FormInputType> = [
-  { name: 'circuitLabel', value: 'CIRCUITO'},
-  { name: 'countryLabel', value: 'PAÍS' },
-  { name: 'cityLabel', value: 'CIDADE' },
+export const circuitsFormFields: Array<FormInputType> = [
+  { name: 'circuitNameLabel', label: 'Circuito'},
+  { name: 'circuitCountryLabel', label: 'País' },
+  { name: 'circuitCityLabel', label: 'Cidade' },
 ]
 
 // data-table

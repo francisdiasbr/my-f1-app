@@ -4,6 +4,6 @@ export type driversFormValuesType = {
   driverId?: string,
   driverNameLabel?: FormInputType,
   driverBirthLabel?: FormInputType,
-  driverCountryLabel?: FormInputType
-  driverTeamLabel?: FormInputType
+  driverCountryLabel?: FormInputType,
+  driverTeamLabel?: FormInputType,
 }

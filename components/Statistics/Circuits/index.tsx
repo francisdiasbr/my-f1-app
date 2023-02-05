@@ -1,21 +1,57 @@
+import Button from '@mui/joy/button'
+import { GridColDef } from '@mui/x-data-grid';
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
-import { get, map } from 'lodash'
+import { first, get, map } from 'lodash'
 import React from 'react'
-import { GridColDef } from '@mui/x-data-grid';
 
-import EnhancedTable from 'components/BasicComponents/MUITable';
-import PrimaryButton from '../../BasicComponents/Button'
 import { FormInput } from '../../BasicComponents/FormInput'
+import EnhancedTable from 'components/BasicComponents/MUITable';
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { circuitsFormInputs, headCells } from './data'
+import { circuitsFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
 import { circuitsFormValuesType } from './types'
 
 const Circuits = () => {
-  const [circuitList, setCircuitList] = React.useState([]) //array de circuitos
   const [formValues, setFormValues] = React.useState<circuitsFormValuesType>({}) //objeto do input
+  const [circuitList, setCircuitList] = React.useState([]) //array de circuitos
+
+  const parseCircuitFromApi = (item) => {
+    return {
+      id: item._id,
+      name: item.circuitName,
+      city: item.circuitCountry,
+      country: item.circuitCity,
+    }
+  }
+
+  const loadCircuitFromApi = async () => {
+    console.log('loadCircuitFromApi before API', loadCircuitFromApi)
+    const requestCircuits = await axios.post('http://localhost:3001/circuits/filter')
+    console.log('loadCircuitFromApi after request', loadCircuitFromApi)
+    const resultCircuits = get(requestCircuits, 'data', [])
+    console.log('loadCircuitFromApi after parsed', loadCircuitFromApi)
+    const parsedCircuits = map(resultCircuits, (item) => parseCircuitFromApi(item))
+    console.log('loadCircuitFromApi after result', loadCircuitFromApi)
+    setCircuitList(parsedCircuits)
+  }
+
+  const loadCircuitById = async (id) => {
+    const requestFilter = { filters: { _id: id } }
+    const requestCircuits = await axios.post('http://localhost:3001/circuits/filter', requestFilter)
+    const resultCircuits = get(requestCircuits, 'data', [])
+    const parsedCircuits = map(resultCircuits, (item) => parseCircuitFromApi(item))
+    const circuitSelected = first(parsedCircuits)
+    setFormValues({
+      ...formValues,
+      circuitId: circuitSelected.id,
+      circuitNameLabel: circuitSelected.name,
+      circuitCityLabel: circuitSelected.city,
+      circuitCountryLabel: circuitSelected.country,
+    })
+    console.log('parsedCircuits', parsedCircuits)
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
@@ -25,36 +61,24 @@ const Circuits = () => {
       [`${name}`]: value
     })
   }
+  const handleEditItem = async (id) => {
+    await loadCircuitById(id)
+  }
 
   const handleFormSubmit = async () => {
-    if (!formValues?.circuitLabel || !formValues?.countryLabel || !formValues?.cityLabel) {
+    if (!formValues?.circuitNameLabel || !formValues?.circuitCountryLabel || !formValues?.circuitCityLabel) {
       alert("Circuit name, country and city are required fields.")
       return
     }
     const circuitBody = {
-      circuitName: formValues?.circuitLabel,
-      circuitCountry: formValues?.countryLabel,
-      circuitCity: formValues?.cityLabel,
+      _id: formValues?.circuitId,
+      circuitName: formValues?.circuitNameLabel,
+      circuitCountry: formValues?.circuitCountryLabel,
+      circuitCity: formValues?.circuitCityLabel,
     }
     const result = await axios.post('http://localhost:3001/circuits/save', circuitBody)
     console.log('result', result)
     loadCircuitFromApi()
-  }
-
-  const loadCircuitFromApi = async () => {
-    // console.log('antes api')
-    const requestCircuits = await axios.post('http://localhost:3001/circuits/filter')
-    // console.log('requestCircuits', requestCircuits)
-    const resultCircuits = get(requestCircuits, 'data', [])
-    // console.log('resultCircuits', resultCircuits)
-    const parsedCircuits = map(resultCircuits, (item) => (
-      {
-        name: item.circuitName,
-        country: item.circuitCountry,
-        city: item.circuitCity,
-      }
-    ))
-    setCircuitList(parsedCircuits)
   }
 
   React.useEffect(() => {
@@ -62,7 +86,7 @@ const Circuits = () => {
   }, [])
 
   const columns: GridColDef[] = [
-    { field: 'circuitName', headerName: 'Circuito', width: 130 },
+    { field: 'circuitName', headerName: 'Circuito', width: 80 },
     { field: 'circuitCountry', headerName: 'País', width: 130 },
     { field: 'circuitCity', headerName: 'Cidade', width: 130 }
   ];
@@ -79,13 +103,12 @@ const Circuits = () => {
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(circuitsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-          <PrimaryButton handleFormSubmit={handleFormSubmit} />
+          {map(circuitsFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
         </Block>
-        {/* <Block style={{ height: 400, width: '100%' }}>
-        </Block> */}
       </Block>
+      <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
       <EnhancedTable
+        handleEditItem={handleEditItem}
         headCells={headCells}
         rows={circuitList}
       />
