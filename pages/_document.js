@@ -77,9 +77,11 @@ class DocumentComponent extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='crossOrigin' />
           <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@600&family=Inter&family=Nunito+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
           <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin></link>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Viga&display=swap" rel="stylesheet"></link>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"></link>
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin></link>
+          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Viga&display=swap" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"></link>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Public+Sans&display=swap" />
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"></link>
         </Head>
         <body className='scroll'>
           <Main />

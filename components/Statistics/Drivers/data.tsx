@@ -1,10 +1,10 @@
 import { FormInputType } from 'components/BasicComponents/FormInput/types'
 
 export const driversFormFields: Array<FormInputType> = [
-  { name: 'driverNameLabel', value: 'PILOTO'},
-  { name: 'driverBirthLabel', value: 'DATA DE NASCIMENTO' },
-  { name: 'driverCountryLabel', value: 'PAÍS' },
-  { name: 'driverTeamLabel', value: 'EQUIPE' },
+  { name: 'driverNameLabel', label: 'Piloto' },
+  { name: 'driverBirthLabel', label: 'Data de nascimento' },
+  { name: 'driverCountryLabel', label: 'País' },
+  { name: 'driverTeamLabel', label: 'Equipe' },
 ]
 
 // data-table

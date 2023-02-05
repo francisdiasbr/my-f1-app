@@ -7,7 +7,6 @@ export const titleProps: PrensaEngineCSSProp = {
 }
 export const titleWrapperProps: PrensaEngineCSSProp = {
   align: ['row', 'left', 'top'],
-  maxWidth: '1280px',
   pb: '8px',
   width: '100%'
 }

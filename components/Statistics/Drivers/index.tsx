@@ -102,11 +102,9 @@ const Drivers = () => {
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} textValue={formValues[`${item.name}`]} />)}
+          {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
           <PrimaryButton handleFormSubmit={handleFormSubmit} />
         </Block>
-        {/* <Block style={{ height: 400, width: '100%' }}>
-        </Block> */}
       </Block>
       <EnhancedTable
         handleEditItem={handleEditItem}
