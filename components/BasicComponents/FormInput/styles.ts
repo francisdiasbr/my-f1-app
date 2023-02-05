@@ -5,8 +5,8 @@ export const inputItemProps: PrensaEngineCSSProp = {
   mr: '8px',
 }
 export const inputLabelProps: PrensaEngineCSSProp = {
-  color: "primary",
   fontSize: '14px', 
+  color: '$Gray100', 
   fontFamily: "$primary",
   fontWeight: '400', 
   mb: '6px'
