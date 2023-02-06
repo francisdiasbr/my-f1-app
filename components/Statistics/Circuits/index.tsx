@@ -61,6 +61,7 @@ const Circuits = () => {
       [`${name}`]: value
     })
   }
+
   const handleEditItem = async (id) => {
     await loadCircuitById(id)
   }
@@ -105,8 +106,8 @@ const Circuits = () => {
           css={inputWrapProps}>
           {map(circuitsFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
         </Block>
+        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
       </Block>
-      <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
       <EnhancedTable
         handleEditItem={handleEditItem}
         headCells={headCells}

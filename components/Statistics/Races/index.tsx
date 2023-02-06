@@ -1,21 +1,51 @@
+import Button from '@mui/joy/button'
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
-import { get, map } from 'lodash'
+import { first, get, map } from 'lodash'
 import React from 'react'
 
-import PrimaryButton from '../../BasicComponents/Button'
 import { FormInput } from '../../BasicComponents/FormInput'
-import Table from '../../BasicComponents/Table'
-import { racesTableHeaders } from '../../BasicComponents/Table/data'
-import { titleStrings } from '../../BasicComponents/Title/data'
+import EnhancedTable from '../../BasicComponents/MUITable';
 import Title from '../../BasicComponents/Title'
-import { racesFormInputs } from './data'
-import { inputWrapProps, sectionContentProps } from './styles'
-import { racesFormValues } from './types'
+import { titleStrings } from '../../BasicComponents/Title/data'
+import { racesFormFields, headCells } from './data'
+import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
+import { racesFormValuesType } from './types'
 
 const Races = () => {
+  const [formValues, setFormValues] = React.useState<racesFormValuesType>({})
   const [raceList, setRaceList] = React.useState([])
-  const [formValues, setFormValues] = React.useState<racesFormValues>({})
+
+  const parseRaceFromApi = (item) => {
+    return {
+      id: item._id,
+      name: item.raceName,
+      date: item.raceDate,
+      winner: item.raceWinner,
+    }
+  }
+
+  const loadRaceFromApi = async () => {
+    const requestRaces = await axios.post('http://localhost:3001/races/filter')
+    const resultRaces = get(requestRaces, 'data', [])
+    const parsedRaces = map(resultRaces, (item) => parseRaceFromApi(item))
+    setRaceList(parsedRaces)
+  }
+
+  const loadRaceById = async (id) => {
+    const requestFilter = { filters: { _id: id } }
+    const requestRace = await axios.post('http://localhost:3001/races/filter', requestFilter)
+    const resultRaces = get(requestRace, 'data', [])
+    const parsedRaces = map(resultRaces, (item) => parseRaceFromApi(item))
+    const raceSelected = first(parsedRaces)
+    setFormValues({
+      ...formValues,
+      raceId: raceSelected.id,
+      raceNameLabel: raceSelected.name,
+      raceDateLabel: raceSelected.date,
+      raceWinnerLabel: raceSelected.winner,
+    })
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
@@ -26,36 +56,24 @@ const Races = () => {
     })
   }
 
-  const handleFormSubmit = async () => {
-    if (!formValues?.circuitLabel || !formValues?.raceDateLabel || !formValues?.raceWinnerLabel) {
-      alert("Circuit name, country and city are required fields.")
-      return
+  const handleEditItem = async (id) => {
+    await loadRaceById(id)
   }
+
+  const handleFormSubmit = async () => {
+    if (!formValues?.raceNameLabel || !formValues?.raceDateLabel) {
+      alert("Race name, and date are required fields.")
+      return
+    }
     const raceBody = {
-      circuitName: formValues?.circuitLabel,
+      _id: formValues?.raceId,
+      raceName: formValues?.raceNameLabel,
       raceDate: formValues?.raceDateLabel,
-      raceWinner: formValues?.raceWinnerLabel
+      raceWinner: formValues?.raceWinnerLabel,
     }
 
-    await axios.post('http://localhost:3001/races/save', raceBody)
+    const result = await axios.post('http://localhost:3001/races/save', raceBody)
     loadRaceFromApi()
-  }
-  const loadRaceFromApi = async () => {
-    console.log('antes api')
-    const requestRaces = await axios.post('http://localhost:3001/races/filter')
-    console.log('requestRaces', requestRaces)
-    const resultRaces = get(requestRaces, 'data', [])
-    console.log('resultRaces', resultRaces)
-    const parsedRaces = map(resultRaces, (item) => (
-      {
-        "values": [
-          item.circuitName,
-          item.raceDate,
-          item.raceWinner,
-        ]
-      }
-    ))
-    setRaceList(parsedRaces)
   }
 
   React.useEffect(() => {
@@ -64,16 +82,24 @@ const Races = () => {
 
   return (
     <Block
-      className='sectionContent'
-      css={sectionContentProps}>
+      className='sectionWrapper'
+      css={sectionWrapperProps}>
       <Title value={titleStrings.racesTitle} />
       <Block
-        className='inputWrap'
-        css={inputWrapProps}>
-        {map(racesFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-        <PrimaryButton handleFormSubmit={handleFormSubmit} />
+        className='blockDisposition'
+        css={blockDispositionProps}>
+        <Block
+          className='inputWrap'
+          css={inputWrapProps}>
+          {map(racesFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
+        </Block>
+        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
       </Block>
-      <Table headers={racesTableHeaders} items={raceList} />
+      <EnhancedTable
+        handleEditItem={handleEditItem}
+        headCells={headCells}
+        rows={raceList}
+      />
     </Block>
   )
 }

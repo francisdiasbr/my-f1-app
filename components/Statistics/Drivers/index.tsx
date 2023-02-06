@@ -1,13 +1,11 @@
 import Button from '@mui/joy/button'
-import { GridColDef } from '@mui/x-data-grid';
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
 import React from 'react'
 
-
 import { FormInput } from '../../BasicComponents/FormInput'
-import EnhancedTable from 'components/BasicComponents/MUITable';
+import EnhancedTable from '../../BasicComponents/MUITable';
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { driversFormFields, headCells } from './data'
@@ -49,7 +47,6 @@ const Drivers = () => {
       driverCountryLabel: driverSelected.country,
       driverTeamLabel: driverSelected.team,
     })
-    console.log('parsedDrivers', parsedDrivers)
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,13 +82,6 @@ const Drivers = () => {
     loadDriverFromApi()
   }, [])
 
-  const columns: GridColDef[] = [
-    { field: 'driverName', headerName: 'Piloto', width: 80 },
-    { field: 'driverBirth', headerName: 'Data de nascimento', width: 80 },
-    { field: 'driverCountry', headerName: 'Cidade', width: 80 },
-    { field: 'driverTeam', headerName: 'Equipe', width: 80 }
-  ];
-
   return (
     <Block
       className='sectionWrapper'
@@ -105,7 +95,7 @@ const Drivers = () => {
           css={inputWrapProps}>
           {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
         </Block>
-      <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
+        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
       </Block>
       <EnhancedTable
         handleEditItem={handleEditItem}
