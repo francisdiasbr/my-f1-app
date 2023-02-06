@@ -1,85 +1,78 @@
-import { Block, Button } from '@xprog/prensa'
+import Button from '@mui/joy/button'
+import { Block } from '@xprog/prensa'
 import axios from 'axios'
-import { get, map } from 'lodash'
+import { first, get, map } from 'lodash'
 import React from 'react'
 
-import PrimaryButton from '../../BasicComponents/Button'
 import { FormInput } from '../../BasicComponents/FormInput'
-import Table from '../../BasicComponents/Table'
-import { teamsTableHeaders } from '../../BasicComponents/Table/data'
+import EnhancedTable from '../../BasicComponents/MUITable';
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
-import { teamsFormInputs } from './data'
-import { inputWrapProps, sectionWrapperProps } from './styles'
+import { teamsFormFields, headCells } from './data'
+import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
 import { teamsFormValuesType } from './types'
 
-// types dos inputs do formulário
-
-
 const Teams = () => {
-  // state da lista de corridas e inicializa como array vazio
+  const [formValues, setFormValues] = React.useState<teamsFormValuesType>({})
   const [teamList, setTeamList] = React.useState([])
 
-  // state do formulário, tipando com as propriedades do formulário, e inicializa como objeto vazio
-  const [formValues, setFormValues] = React.useState<teamsFormValuesType>({})
+  const parseTeamFromApi = (item) => {
+    return {
+      id: item._id,
+      name: item.teamName,
+      country: item.teamCountry,
+    }
+  }
 
-  // handler do formulário para a mudança no campo de input
+  const loadTeamFromApi = async () => {
+    const requestTeams = await axios.post('http://localhost:3001/teams/filter')
+    const resultTeams = get(requestTeams, 'data', [])
+    const parsedTeams = map(resultTeams, (item) => parseTeamFromApi(item))
+    setTeamList(parsedTeams)
+  }
+
+  const loadTeamById = async (id) => {
+    const requestFilter = { filters: { _id: id } }
+    const requestTeam = await axios.post('http://localhost:3001/teams/filter', requestFilter)
+    const resultTeams = get(requestTeam, 'data', [])
+    const parsedTeams = map(resultTeams, (item) => parseTeamFromApi(item))
+    const teamSelected = first(parsedTeams)
+    setFormValues({
+      ...formValues,
+      teamId: teamSelected.id,
+      teamNameLabel: teamSelected.name,
+      teamCountryLabel: teamSelected.country,
+    })
+  }
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event?.target?.name
     const value = event?.target?.value
-    // setFormValues necessita estar no formato [{},{},{}], então:
     setFormValues({
       ...formValues,
       [`${name}`]: value
     })
   }
-  //handler de submissão do botão de envio dos dados do formulário
-  const handleFormSubmit = async () => {
-    // console de formValues aqui para ver os dados salvando no formato correto
-    // console.log('raceFormValues', FormValues)
 
-    // 1-alterar a nomenclatura da api
-    // 2-fazer um parse do formValues para o objeto da api
-    // e-adicionar validação
-
-    // if(!formValues?.CountryLabel) {
-    //   console.log("CountryLabel não existe!!!")
-    //   return null
-    // }
-    if (!formValues?.teamNameLabel || !formValues?.teamCountryLabel) {
-      alert("Driver name, date birth, country and team are required fields.")
-      return
+  const handleEditItem = async (id) => {
+    await loadTeamById(id)
   }
-    // define o modelo de dados a ser salvo
+
+  const handleFormSubmit = async () => {
+    if (!formValues?.teamNameLabel || !formValues?.teamCountryLabel) {
+      alert("Team name, and country are required fields.")
+      return
+    }
     const teamBody = {
+      _id: formValues?.teamId,
       teamName: formValues?.teamNameLabel,
       teamCountry: formValues?.teamCountryLabel,
     }
 
-    // salva os dados inseridos
-    await axios.post('http://localhost:3001/teams', teamBody)
-    // chama a função de carregar os circuitos para atualizar a tabela
+    const result = await axios.post('http://localhost:3001/teams/save', teamBody)
     loadTeamFromApi()
   }
-  // função que carrega os dados da API
-  const loadTeamFromApi = async () => {
-    console.log('antes api')
-    const requestTeams = await axios.get('http://localhost:3001/teams')
-    // prepara o dado das corridas (data)
-    const resultTeams = get(requestTeams, 'data', [])
-    const parsedTeams = map(resultTeams, (item) => (
-      {
-        "values": [
-          item.teamName,
-          item.teamCountry,
-        ]
-      }
-    ))
-    // inclui a equipe no teamList
-    setTeamList(parsedTeams)
-  }
 
-  // no carregamento da página carrega os dados:
   React.useEffect(() => {
     loadTeamFromApi()
   }, [])
@@ -89,13 +82,21 @@ const Teams = () => {
       className='sectionWrapper'
       css={sectionWrapperProps}>
       <Title value={titleStrings.teamsTitle} />
+      <Block
+        className='blockDisposition'
+        css={blockDispositionProps}>
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(teamsFormInputs, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} />)}
-        <PrimaryButton handleFormSubmit={handleFormSubmit}/>
+          {map(teamsFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
         </Block>
-        <Table headers={teamsTableHeaders} items={teamList} />
+        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
+      </Block>
+      <EnhancedTable
+        handleEditItem={handleEditItem}
+        headCells={headCells}
+        rows={teamList}
+      />
     </Block>
   )
 }
