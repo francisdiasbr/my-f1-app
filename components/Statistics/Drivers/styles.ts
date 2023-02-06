@@ -1,23 +1,16 @@
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
 export const blockDispositionProps: PrensaEngineCSSProp = {
-  align: ['column', 'center', 'top'],
-  height: '100%',
-  width: '100%',
-  '@lg': {
-    align: ['row', 'center', 'top']
-  }
+  align: ['column', 'left', 'top'],
+  mb: '24px',
 }
 
 export const inputWrapProps: PrensaEngineCSSProp = {
   align: ['column', 'left', 'middle'],
   height: '100%',
   mr: '32px',
-  width: '30%'
 }
 
 export const sectionWrapperProps: PrensaEngineCSSProp = {
-  align: ['column', 'center', 'top'],
-  height: '100%',
-  width: '80%'
+  width: 'calc(100% - 240px)'
 }
