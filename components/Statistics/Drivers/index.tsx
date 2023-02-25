@@ -5,16 +5,16 @@ import { first, get, map } from 'lodash'
 import React from 'react'
 
 import { FormInput } from '../../BasicComponents/FormInput'
-import EnhancedTable from '../../BasicComponents/MUITable';
+import Table from './Table'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { driversFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
-import { driversFormValuesType } from './types'
+import { DriverFormType, DriverListType } from './types'
 
 const Drivers = () => {
-  const [formValues, setFormValues] = React.useState<driversFormValuesType>({})
-  const [driverList, setDriverList] = React.useState([])
+  const [formValues, setFormValues] = React.useState<DriverFormType>({})
+  const [driverList, setDriverList] = React.useState<DriverListType>([])
 
   const parseDriverFromApi = (item) => {
     return {
@@ -83,34 +83,38 @@ const Drivers = () => {
   }, [])
 
   return (
-    <>
+    <Block
+      className='sectionWrapper'
+      css={sectionWrapperProps}>
+      <Title value={titleStrings.driversTitle} />
       <Block
-        className='sectionWrapper'
-        css={sectionWrapperProps}>
-        <Title value={titleStrings.driversTitle} />
+        className='blockDisposition'
+        css={blockDispositionProps}>
         <Block
-          className='blockDisposition'
-          css={blockDispositionProps}>
-          <Block
-            className='inputWrap'
-            css={inputWrapProps}>
-            {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
-          </Block>
-          <Button
-            onClick={handleFormSubmit}
-            color='info'
-            variant='soft'
-          >
-            Enviar
-          </Button>
+          className='inputWrap'
+          css={inputWrapProps}>
+          {map(driversFormFields, (item, key) =>
+            <FormInput
+              {...item}
+              key={key}
+              onChange={handleInputChange}
+              value={formValues[`${item.name}`]}
+            />)}
         </Block>
-        <EnhancedTable
-          handleEditItem={handleEditItem}
-          headCells={headCells}
-          rows={driverList}
-        />
+        <Button
+          onClick={handleFormSubmit}
+          color='info'
+          variant='soft'
+        >
+          Enviar
+        </Button>
       </Block>
-    </>
+      <Table
+        headCells={headCells}
+        handleEditItem={handleEditItem}
+        rows={driverList}
+      />
+    </Block>
   )
 }
 export default Drivers
