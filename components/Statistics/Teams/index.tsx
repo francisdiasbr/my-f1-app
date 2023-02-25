@@ -5,16 +5,16 @@ import { first, get, map } from 'lodash'
 import React from 'react'
 
 import { FormInput } from '../../BasicComponents/FormInput'
-import EnhancedTable from '../../BasicComponents/MUITable';
+import Table from './Table'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { teamsFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
-import { teamsFormValuesType } from './types'
+import { TeamFormType, TeamListType } from './types'
 
 const Teams = () => {
-  const [formValues, setFormValues] = React.useState<teamsFormValuesType>({})
-  const [teamList, setTeamList] = React.useState([])
+  const [formValues, setFormValues] = React.useState<TeamFormType>({})
+  const [teamList, setTeamList] = React.useState<TeamListType>([])
 
   const parseTeamFromApi = (item) => {
     return {
@@ -104,9 +104,9 @@ const Teams = () => {
           Enviar
         </Button>
       </Block>
-      <EnhancedTable
-        handleEditItem={handleEditItem}
+      <Table
         headCells={headCells}
+        handleEditItem={handleEditItem}
         rows={teamList}
       />
     </Block>
