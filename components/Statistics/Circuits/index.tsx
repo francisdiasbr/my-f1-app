@@ -2,7 +2,7 @@ import Button from '@mui/joy/button'
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
-import React from 'react'
+import React, { useState } from 'react'
 
 
 import { FormInput } from '../../BasicComponents/FormInput'
@@ -15,9 +15,9 @@ import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './st
 import { CircuitFormType, CircuitListType } from './types'
 
 const Circuits = () => {
-  const [formValues, setFormValues] = React.useState<CircuitFormType>({})
-  const [circuitList, setCircuitList] = React.useState<CircuitListType>([])
-  const [formIncomplete, setFormIncomplete] = React.useState<boolean>(false)
+  const [formValues, setFormValues] = useState<CircuitFormType>({})
+  const [circuitList, setCircuitList] = useState<CircuitListType>([])
+  const [formIncomplete, setFormIncomplete] = useState<boolean>(false)
 
   const parseCircuitFromApi = (item) => {
     return {
@@ -107,16 +107,20 @@ const Circuits = () => {
         >
           Enviar
         </Button>
-       {formIncomplete && ( // renderiza o componente CustomAlert somente se formIncomplete for verdadeiro
-        <CustomAlert
-          message='Circuito, país e cidade são campos requeridos.'
-          onClose={() => {
-            setFormIncomplete(false); // define o estado para false ao fechar o alerta
-          }}
-        />
-      )}
+        {formIncomplete && ( // renderiza o componente CustomAlert somente se formIncomplete for verdadeiro
+          <CustomAlert
+            message='Todos os campos são obrigatórios.'
+            onClose={() => {
+              setFormIncomplete(false); // define o estado para false ao fechar o alerta
+            }}
+          />
+        )}
       </Block>
-      <Table headCells={headCells} handleEditItem={handleEditItem} rows={circuitList} />
+      <Table
+        headCells={headCells}
+        handleEditItem={handleEditItem}
+        rows={circuitList}
+      />
     </Block>
   )
 }

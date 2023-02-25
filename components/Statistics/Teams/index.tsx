@@ -2,8 +2,9 @@ import Button from '@mui/joy/button'
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
-import React from 'react'
+import React, { useState } from 'react'
 
+import CustomAlert from '../../BasicComponents/MUIAlert'
 import { FormInput } from '../../BasicComponents/FormInput'
 import Table from './Table'
 import Title from '../../BasicComponents/Title'
@@ -13,8 +14,9 @@ import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './st
 import { TeamFormType, TeamListType } from './types'
 
 const Teams = () => {
-  const [formValues, setFormValues] = React.useState<TeamFormType>({})
-  const [teamList, setTeamList] = React.useState<TeamListType>([])
+  const [formValues, setFormValues] = useState<TeamFormType>({})
+  const [teamList, setTeamList] = useState<TeamListType>([])
+  const [formIncomplete, setFormIncomplete] = useState<boolean>(false)
 
   const parseTeamFromApi = (item) => {
     return {
@@ -60,9 +62,10 @@ const Teams = () => {
 
   const handleFormSubmit = async () => {
     if (!formValues?.teamNameLabel || !formValues?.teamCountryLabel) {
-      alert("Team name, and country are required fields.")
-      return
+      setFormIncomplete(true);
+      return;
     }
+    setFormIncomplete(false);
     const teamBody = {
       _id: formValues?.teamId,
       teamName: formValues?.teamNameLabel,
@@ -103,6 +106,14 @@ const Teams = () => {
         >
           Enviar
         </Button>
+        {formIncomplete && (
+          <CustomAlert
+            message='Todos os campos são obrigatórios.'
+            onClose={() => {
+              setFormIncomplete(false);
+            }}
+          />
+        )}
       </Block>
       <Table
         headCells={headCells}

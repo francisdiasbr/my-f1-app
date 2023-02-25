@@ -2,19 +2,21 @@ import Button from '@mui/joy/button'
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { FormInput } from '../../BasicComponents/FormInput'
 import Table from './Table'
 import Title from '../../BasicComponents/Title'
+import CustomAlert from '../../BasicComponents/MUIAlert'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { driversFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
 import { DriverFormType, DriverListType } from './types'
 
 const Drivers = () => {
-  const [formValues, setFormValues] = React.useState<DriverFormType>({})
-  const [driverList, setDriverList] = React.useState<DriverListType>([])
+  const [formValues, setFormValues] = useState<DriverFormType>({})
+  const [driverList, setDriverList] = useState<DriverListType>([])
+  const [formIncomplete, setFormIncomplete] = useState<boolean>(false)
 
   const parseDriverFromApi = (item) => {
     return {
@@ -64,9 +66,10 @@ const Drivers = () => {
 
   const handleFormSubmit = async () => {
     if (!formValues?.driverNameLabel || !formValues?.driverBirthLabel || !formValues?.driverCountryLabel || !formValues?.driverTeamLabel) {
-      alert("Driver name, date birth, country and team are required fields.")
-      return
+      setFormIncomplete(true);
+      return;
     }
+    setFormIncomplete(false);
     const driverBody = {
       _id: formValues?.driverId,
       driverName: formValues?.driverNameLabel,
@@ -108,6 +111,14 @@ const Drivers = () => {
         >
           Enviar
         </Button>
+        {formIncomplete && (
+          <CustomAlert
+            message='Todos os campos são obrigatórios.'
+            onClose={() => {
+              setFormIncomplete(false);
+            }}
+          />
+        )}
       </Block>
       <Table
         headCells={headCells}

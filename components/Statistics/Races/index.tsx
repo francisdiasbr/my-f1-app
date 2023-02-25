@@ -2,19 +2,22 @@ import Button from '@mui/joy/button'
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
-import React from 'react'
+import React, {useState} from 'react'
 
+import CustomAlert from '../../BasicComponents/MUIAlert'
 import { FormInput } from '../../BasicComponents/FormInput'
-import Table from './Table'
+import EnhancedTable from '../../BasicComponents/MUITable';
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { racesFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
+import Table from './Table'
 import { RaceFormType, RaceListType } from './types'
 
 const Races = () => {
-  const [formValues, setFormValues] = React.useState<RaceFormType>({})
-  const [raceList, setRaceList] = React.useState<RaceListType>([])
+  const [formValues, setFormValues] = useState<RaceFormType>({})
+  const [raceList, setRaceList] = useState<RaceListType>([])
+  const [formIncomplete, setFormIncomplete] = useState<boolean>(false)
 
   const parseRaceFromApi = (item) => {
     return {
@@ -62,9 +65,10 @@ const Races = () => {
 
   const handleFormSubmit = async () => {
     if (!formValues?.raceNameLabel || !formValues?.raceDateLabel) {
-      alert("Race name, and date are required fields.")
-      return
+      setFormIncomplete(true); 
+      return;
     }
+    setFormIncomplete(false);
     const raceBody = {
       _id: formValues?.raceId,
       raceName: formValues?.raceNameLabel,
@@ -97,7 +101,8 @@ const Races = () => {
               {...item}
               key={key}
               onChange={handleInputChange}
-              value={formValues[`${item.name}`]} />
+              value={formValues[`${item.name}`]} 
+            />
           )}
         </Block>
         <Button
@@ -107,6 +112,14 @@ const Races = () => {
         >
           Enviar
         </Button>
+        {formIncomplete && ( 
+          <CustomAlert
+            message='Todos os campos são obrigatórios.'
+            onClose={() => {
+              setFormIncomplete(false);
+            }}
+          />
+        )}
       </Block>
       <Table
         headCells={headCells}
