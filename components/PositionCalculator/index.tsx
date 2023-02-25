@@ -2,24 +2,23 @@ import { Block, Button, Typography } from '@xprog/prensa'
 import React from 'react'
 import axios from 'axios'
 import { get } from 'lodash'
-// import { Button } from '../Button'
 
 import { containerWrapProps, inputContentProps, inputLabelProps, inputProps, resultLabelProps, resultProps, titleProps } from './props'
 
 const PositionsCalculator = () => {
-  // position states
+
   const [points, setPoints] = React.useState('')
   const [position, setPosition] = React.useState('')
-  // position handle
+
   const handlePositionChange = (event: any) => {
     setPosition(event.target.value)
   }
-  // position submit
+
   const handlePositionSubmit = async () => {
     const response = await axios.get(
       `http://localhost:3001/standings/${position}`
     )
-    // cálculo
+
     const result = get(response, 'data.points', 0)
     setPoints(result)
   }
@@ -30,40 +29,51 @@ const PositionsCalculator = () => {
       css={containerWrapProps}>
       <Typography
         className='title'
-        css={titleProps}>
+        css={titleProps}
+      >
         Número de pontos obtidos na corrida
       </Typography>
       <Block
         className='input'
-        css={inputProps}>
+        css={inputProps}
+      >
         <Typography
           className='inputLabel'
-          css={inputLabelProps}>
+          css={inputLabelProps}
+        >
           Posição na corrida
         </Typography>
         <Block
           className='inputContent'
-          css={inputContentProps}>
+          css={inputContentProps}
+        >
           <input
             name='posição'
             onChange={handlePositionChange}
-            type='text'>
+            type='text'
+          >
           </input>
         </Block>
         <Button
           onClick={handlePositionSubmit}
           roundedCorners='alternative'
-          size='xs'>
+          size='xs'
+        >
           Calcular
         </Button>
       </Block>
       <Typography
         className='resultLabel'
-        css={resultLabelProps}>
-        Resultado:</Typography>
+        css={resultLabelProps}
+      >
+        Resultado:
+      </Typography>
       <Typography
         className='resultNumber'
-        css={resultProps}>{points}</Typography>
+        css={resultProps}
+      >
+        {points}
+      </Typography>
     </Block>
   )
 }

@@ -14,8 +14,8 @@ import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './st
 import { circuitsFormValuesType } from './types'
 
 const Circuits = () => {
-  const [formValues, setFormValues] = React.useState<circuitsFormValuesType>({}) //objeto do input
-  const [circuitList, setCircuitList] = React.useState([]) //array de circuitos
+  const [formValues, setFormValues] = React.useState<circuitsFormValuesType>({})
+  const [circuitList, setCircuitList] = React.useState([])
 
   const parseCircuitFromApi = (item) => {
     return {
@@ -27,13 +27,9 @@ const Circuits = () => {
   }
 
   const loadCircuitFromApi = async () => {
-    console.log('loadCircuitFromApi before API', loadCircuitFromApi)
     const requestCircuits = await axios.post('http://localhost:3001/circuits/filter')
-    console.log('loadCircuitFromApi after request', loadCircuitFromApi)
     const resultCircuits = get(requestCircuits, 'data', [])
-    console.log('loadCircuitFromApi after parsed', loadCircuitFromApi)
     const parsedCircuits = map(resultCircuits, (item) => parseCircuitFromApi(item))
-    console.log('loadCircuitFromApi after result', loadCircuitFromApi)
     setCircuitList(parsedCircuits)
   }
 
@@ -50,7 +46,6 @@ const Circuits = () => {
       circuitCityLabel: circuitSelected.city,
       circuitCountryLabel: circuitSelected.country,
     })
-    console.log('parsedCircuits', parsedCircuits)
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +73,6 @@ const Circuits = () => {
       circuitCity: formValues?.circuitCityLabel,
     }
     const result = await axios.post('http://localhost:3001/circuits/save', circuitBody)
-    console.log('result', result)
     loadCircuitFromApi()
   }
 
@@ -104,9 +98,18 @@ const Circuits = () => {
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(circuitsFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
+          {map(circuitsFormFields, (item, key) => <FormInput {...item} key={key}
+            onChange={handleInputChange}
+            value={formValues[`${item.name}`]}
+          />)}
         </Block>
-        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
+        <Button
+          onClick={handleFormSubmit}
+          color='info'
+          variant='soft'
+        >
+          Enviar
+        </Button>
       </Block>
       <EnhancedTable
         handleEditItem={handleEditItem}

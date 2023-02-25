@@ -1,16 +1,18 @@
 import { Block } from '@xprog/prensa'
-import React, {PropsWithChildren} from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import Topbar from 'components/Topbar'
-import {contentWrapperProps, widthWrapperProps} from './styles'
+import { contentWrapperProps, widthWrapperProps } from './styles'
 import { menuItemsData } from '../Topbar/data'
 
-const MainContainer = ({children}: PropsWithChildren) => {
+const MainContainer = ({ children }: PropsWithChildren) => {
   return (
-      <Block css={widthWrapperProps}>
-        <Topbar items={menuItemsData} />
-        <Block css={contentWrapperProps}>{children}</Block>
+    <Block css={widthWrapperProps}>
+      <Topbar items={menuItemsData} />
+      <Block css={contentWrapperProps}>
+        {children}
       </Block>
+    </Block>
   )
 }
 

@@ -2,10 +2,10 @@ import map from 'lodash/map'
 import React from "react";
 import { Block } from '@xprog/prensa'
 
-import { newsContainerProps } from "./styles";
+import Title from '../BasicComponents/Title'
 import data from './data.json'
 import Item from "./item";
-import Title from '../BasicComponents/Title'
+import { newsContainerProps } from "./styles";
 
 type NewsBlock = {}
 

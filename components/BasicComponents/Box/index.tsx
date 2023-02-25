@@ -1,8 +1,8 @@
 import { Block, Typography } from '@xprog/prensa'
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
-import { boxAreaProps, boxContainerProps, boxWrapProps, titleProps } from './props'
 import { boxTitles } from './data'
+import { boxAreaProps, boxContainerProps, boxWrapProps, titleProps } from './props'
 
 type BoxProps = {
   css?: PrensaEngineCSSProp
@@ -19,7 +19,9 @@ const Box: React.FC<BoxProps> = (props) => {
         css={boxWrapProps}>
         <Typography
           className='title'
-          css={titleProps}>{boxTitles.defaultTitle}</Typography>
+          css={titleProps}>
+          {boxTitles.defaultTitle}
+        </Typography>
         <Block
           className='boxArea'
           css={boxAreaProps}></Block>

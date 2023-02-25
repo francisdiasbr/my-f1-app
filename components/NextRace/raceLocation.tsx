@@ -1,11 +1,11 @@
 import React from "react";
 import { Block, Typography } from "@xprog/prensa";
 
-import { NextRaceObject } from "./types";
+import { NextRaceObjectType } from "./types";
 import { grandprixProps, venueProps } from './styles'
 
 
-const RaceLocation: React.FC<NextRaceObject> = (item) => {
+const RaceLocation: React.FC<NextRaceObjectType> = (item) => {
   return (
     <Block>
       <Typography css={grandprixProps}>{item.grand_prix}</Typography>

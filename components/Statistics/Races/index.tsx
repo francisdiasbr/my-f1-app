@@ -78,7 +78,7 @@ const Races = () => {
 
   React.useEffect(() => {
     loadRaceFromApi()
-  }, [])
+  }, [loadRaceFromApi])
 
   return (
     <Block
@@ -90,10 +90,23 @@ const Races = () => {
         css={blockDispositionProps}>
         <Block
           className='inputWrap'
-          css={inputWrapProps}>
-          {map(racesFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
+          css={inputWrapProps}
+        >
+          {map(racesFormFields, (item, key) => 
+          <FormInput
+          {...item}
+          key={key}
+          onChange={handleInputChange}
+          value={formValues[`${item.name}`]} />
+          )}
         </Block>
-        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
+        <Button
+          onClick={handleFormSubmit}
+          color='info'
+          variant='soft'
+        >
+          Enviar
+        </Button>
       </Block>
       <EnhancedTable
         handleEditItem={handleEditItem}

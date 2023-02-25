@@ -293,13 +293,13 @@ export default function EnhancedTable({ headCells, handleEditItem, rows }) {
           '--TableCell-headBackground': 'transparent',
           '--TableCell-selectedBackground': (theme) =>
             theme.vars.palette.info.softBg,
-          '& thead th:nth-child(1)': {
+          '& thead th:nth-of-type(1)': {
             width: '40px',
           },
-          '& thead th:nth-child(2)': {
+          '& thead th:nth-of-type(2)': {
             width: '30%',
           },
-          '& tr > *:nth-child(n+3)': { textAlign: 'right' },
+          '& tr > *:nth-of-type(n+3)': { textAlign: 'right' },
         }}
       >
         <EnhancedTableHead
@@ -315,7 +315,6 @@ export default function EnhancedTable({ headCells, handleEditItem, rows }) {
           {stableSort(rows, getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row, index) => {
-              console.log('row', row)
               const isItemSelected = isSelected(row.name);
               const labelId = `enhanced-table-checkbox-${index}`;
               return (
@@ -384,13 +383,11 @@ export default function EnhancedTable({ headCells, handleEditItem, rows }) {
                   </Select>
                 </FormControl>
                 <Typography textAlign="center" sx={{ minWidth: 80 }}>
-                  <Typo style={{fontFamily: 'Roboto'}}>
                   {labelDisplayedRows({
                     from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
                     to: getLabelDisplayedRowsTo(),
                     count: rows.length === -1 ? -1 : rows.length,
                   })}
-                  </Typo>
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1 }}>
                   <IconButton

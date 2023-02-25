@@ -3,9 +3,6 @@ import { PrensaEngineCSSProp } from "@xprog/prensa/types";
 export const containerWrapProps: PrensaEngineCSSProp = {
   align: ['column', 'center', 'top']
 }
-export const inputProps: PrensaEngineCSSProp = {
-  align: ['row', 'evenly', 'top']
-}
 export const inputContentProps: PrensaEngineCSSProp = {
   fontFamily: '$primary',
   mr: '20px'
@@ -14,6 +11,9 @@ export const inputLabelProps: PrensaEngineCSSProp = {
   color: '$Neutral900',
   fontFamily: '$primary',
   mr: '20px'
+}
+export const inputProps: PrensaEngineCSSProp = {
+  align: ['row', 'evenly', 'top']
 }
 export const resultLabelProps: PrensaEngineCSSProp = {
   fontFamily: '$primary'

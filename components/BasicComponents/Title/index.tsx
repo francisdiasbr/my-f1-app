@@ -11,7 +11,8 @@ const Title = ({ value }) => {
       css={titleWrapperProps}>
       <Typography
         className='title'
-        css={titleProps}>
+        css={titleProps}
+      >
         {value}
       </Typography>
     </Block>

@@ -28,10 +28,12 @@ const Topbar: React.FC<TopbarType> = ({ items }) => {
           css={logoWrapperProps}>
           <Typography
             css={logoProps}>
-            {titleStrings.topbarTitle}</Typography>
+            {titleStrings.topbarTitle}
+          </Typography>
           <Typography
             css={logoDescriptionProps}>
-            {titleStrings.logoDescription}</Typography>
+            {titleStrings.logoDescription}
+          </Typography>
         </Block>
         <Block
           className='topBarItems'
@@ -39,13 +41,16 @@ const Topbar: React.FC<TopbarType> = ({ items }) => {
           <Block
             className='menuIcon'
             css={menuIconProps}
-            onClick={handleOpenMenu}>
-            <CloseIcon/>
+            onClick={handleOpenMenu}
+          >
+            <CloseIcon />
           </Block>
           <Block
             className='menuItems'
             css={menuItemsProps}>
-            {map(items, (item, key) => <MenuItem {...item} key={key} />)}
+            {map(items, (item, key) =>
+              <MenuItem {...item} key={key} />
+            )}
           </Block>
         </Block>
       </Block>

@@ -9,13 +9,14 @@ import Spacer from 'components/BasicComponents/Spacer'
 const Home = () => {
   return (
     <>
-        <Block css={leftColumnProps}>
-          <NextRace />
-          <Spacer />
-          <News />
-        </Block>
-        <Block css={rightColumnProps}>
-        </Block>
+      <Block css={leftColumnProps}>
+        <NextRace/>
+        <Spacer/>
+        <News/>
+      </Block>
+      <Block css={rightColumnProps}>
+        <Spacer/>
+      </Block>
     </>
   )
 }

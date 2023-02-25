@@ -1,11 +1,11 @@
 import { Block, Typography } from '@xprog/prensa'
 import React from 'react'
 
-import { NewsObject } from './types'
+import { NewsObjectType } from './types'
 import { newsAuthorProps, newsContentProps, newsInfoProps, newsBlockWrapperProps, newsPreviewProps, newsTitleProps } from "./styles";
 
 
-const Item: React.FC<NewsObject> = (item) => {
+const Item: React.FC<NewsObjectType> = (item) => {
   return (
     <Block
       className='news-item'

@@ -83,26 +83,34 @@ const Drivers = () => {
   }, [])
 
   return (
-    <Block
-      className='sectionWrapper'
-      css={sectionWrapperProps}>
-      <Title value={titleStrings.driversTitle} />
+    <>
       <Block
-        className='blockDisposition'
-        css={blockDispositionProps}>
+        className='sectionWrapper'
+        css={sectionWrapperProps}>
+        <Title value={titleStrings.driversTitle} />
         <Block
-          className='inputWrap'
-          css={inputWrapProps}>
-          {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
+          className='blockDisposition'
+          css={blockDispositionProps}>
+          <Block
+            className='inputWrap'
+            css={inputWrapProps}>
+            {map(driversFormFields, (item, key) => <FormInput {...item} key={key} onChange={handleInputChange} value={formValues[`${item.name}`]} />)}
+          </Block>
+          <Button
+            onClick={handleFormSubmit}
+            color='info'
+            variant='soft'
+          >
+            Enviar
+          </Button>
         </Block>
-        <Button onClick={handleFormSubmit} color='info' variant='soft'>Enviar</Button>
+        <EnhancedTable
+          handleEditItem={handleEditItem}
+          headCells={headCells}
+          rows={driverList}
+        />
       </Block>
-      <EnhancedTable
-        handleEditItem={handleEditItem}
-        headCells={headCells}
-        rows={driverList}
-      />
-    </Block>
+    </>
   )
 }
 export default Drivers

@@ -1,10 +1,7 @@
 import { PrensaEngineCSSProp } from '@xprog/prensa/types'
 
-export const newsContainerProps: PrensaEngineCSSProp = {
-  width: 'auto',
-  '@lg': {
-    maxWidth: '700px',
-  }
+export const newsAuthorProps: PrensaEngineCSSProp = {
+  mr: '8px',
 }
 export const newsBlockWrapperProps: PrensaEngineCSSProp = {
   align: ['row', 'left', 'top'],
@@ -12,6 +9,12 @@ export const newsBlockWrapperProps: PrensaEngineCSSProp = {
   borderRadius: '6px',
   mb: '20px',
   width: '100%',
+}
+export const newsContainerProps: PrensaEngineCSSProp = {
+  width: 'auto',
+  '@lg': {
+    maxWidth: '700px',
+  }
 }
 export const newsContentProps: PrensaEngineCSSProp = {
   paddingLeft: '16px',
@@ -42,7 +45,4 @@ export const newsInfoProps: PrensaEngineCSSProp = {
   fontWeight: '300',
   lineHeight: '22px',
   width: '100%',
-}
-export const newsAuthorProps: PrensaEngineCSSProp = {
-  mr: '8px',
 }
