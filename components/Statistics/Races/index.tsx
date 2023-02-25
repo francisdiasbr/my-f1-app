@@ -5,16 +5,16 @@ import { first, get, map } from 'lodash'
 import React from 'react'
 
 import { FormInput } from '../../BasicComponents/FormInput'
-import EnhancedTable from '../../BasicComponents/MUITable';
+import Table from './Table'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { racesFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
-import { racesFormValuesType } from './types'
+import { RaceFormType, RaceListType } from './types'
 
 const Races = () => {
-  const [formValues, setFormValues] = React.useState<racesFormValuesType>({})
-  const [raceList, setRaceList] = React.useState([])
+  const [formValues, setFormValues] = React.useState<RaceFormType>({})
+  const [raceList, setRaceList] = React.useState<RaceListType>([])
 
   const parseRaceFromApi = (item) => {
     return {
@@ -78,7 +78,7 @@ const Races = () => {
 
   React.useEffect(() => {
     loadRaceFromApi()
-  }, [loadRaceFromApi])
+  }, [])
 
   return (
     <Block
@@ -92,12 +92,12 @@ const Races = () => {
           className='inputWrap'
           css={inputWrapProps}
         >
-          {map(racesFormFields, (item, key) => 
-          <FormInput
-          {...item}
-          key={key}
-          onChange={handleInputChange}
-          value={formValues[`${item.name}`]} />
+          {map(racesFormFields, (item, key) =>
+            <FormInput
+              {...item}
+              key={key}
+              onChange={handleInputChange}
+              value={formValues[`${item.name}`]} />
           )}
         </Block>
         <Button
@@ -108,9 +108,9 @@ const Races = () => {
           Enviar
         </Button>
       </Block>
-      <EnhancedTable
-        handleEditItem={handleEditItem}
+      <Table
         headCells={headCells}
+        handleEditItem={handleEditItem}
         rows={raceList}
       />
     </Block>
