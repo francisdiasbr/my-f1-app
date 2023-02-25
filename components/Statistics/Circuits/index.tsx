@@ -4,9 +4,11 @@ import axios from 'axios'
 import { first, get, map } from 'lodash'
 import React from 'react'
 
+
 import { FormInput } from '../../BasicComponents/FormInput'
 import Table from './Table'
 import Title from '../../BasicComponents/Title'
+import CustomAlert from '../../BasicComponents/MUIAlert'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { circuitsFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
@@ -15,6 +17,7 @@ import { CircuitFormType, CircuitListType } from './types'
 const Circuits = () => {
   const [formValues, setFormValues] = React.useState<CircuitFormType>({})
   const [circuitList, setCircuitList] = React.useState<CircuitListType>([])
+  const [formIncomplete, setFormIncomplete] = React.useState<boolean>(false)
 
   const parseCircuitFromApi = (item) => {
     return {
@@ -62,9 +65,10 @@ const Circuits = () => {
 
   const handleFormSubmit = async () => {
     if (!formValues?.circuitNameLabel || !formValues?.circuitCountryLabel || !formValues?.circuitCityLabel) {
-      alert("Circuit name, country and city are required fields.")
-      return
+      setFormIncomplete(true); // atualiza o estado para true se o formulário estiver incompleto
+      return;
     }
+    setFormIncomplete(false); // atualiza o estado para false se o formulário estiver completo
     const circuitBody = {
       _id: formValues?.circuitId,
       circuitName: formValues?.circuitNameLabel,
@@ -90,11 +94,11 @@ const Circuits = () => {
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(circuitsFormFields, (item, key) => 
-          <FormInput {...item} key={key}
-            onChange={handleInputChange}
-            value={formValues[`${item.name}`]}
-          />)}
+          {map(circuitsFormFields, (item, key) =>
+            <FormInput {...item} key={key}
+              onChange={handleInputChange}
+              value={formValues[`${item.name}`]}
+            />)}
         </Block>
         <Button
           onClick={handleFormSubmit}
@@ -103,8 +107,16 @@ const Circuits = () => {
         >
           Enviar
         </Button>
+       {formIncomplete && ( // renderiza o componente CustomAlert somente se formIncomplete for verdadeiro
+        <CustomAlert
+          message='Circuito, país e cidade são campos requeridos.'
+          onClose={() => {
+            setFormIncomplete(false); // define o estado para false ao fechar o alerta
+          }}
+        />
+      )}
       </Block>
-      <Table headCells={headCells} handleEditItem={handleEditItem} rows={circuitList}/>
+      <Table headCells={headCells} handleEditItem={handleEditItem} rows={circuitList} />
     </Block>
   )
 }

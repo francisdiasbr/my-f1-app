@@ -35,7 +35,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/BasicComponents/MUIAlert/index.js"  ],
   "exclude": [
     "node_modules"
   ]
