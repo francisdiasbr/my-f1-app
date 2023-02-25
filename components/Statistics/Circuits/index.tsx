@@ -1,21 +1,20 @@
 import Button from '@mui/joy/button'
-import { GridColDef } from '@mui/x-data-grid';
 import { Block } from '@xprog/prensa'
 import axios from 'axios'
 import { first, get, map } from 'lodash'
 import React from 'react'
 
 import { FormInput } from '../../BasicComponents/FormInput'
-import EnhancedTable from 'components/BasicComponents/MUITable';
+import Table from './Table'
 import Title from '../../BasicComponents/Title'
 import { titleStrings } from '../../BasicComponents/Title/data'
 import { circuitsFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
-import { circuitsFormValuesType } from './types'
+import { CircuitFormType, CircuitListType } from './types'
 
 const Circuits = () => {
-  const [formValues, setFormValues] = React.useState<circuitsFormValuesType>({})
-  const [circuitList, setCircuitList] = React.useState([])
+  const [formValues, setFormValues] = React.useState<CircuitFormType>({})
+  const [circuitList, setCircuitList] = React.useState<CircuitListType>([])
 
   const parseCircuitFromApi = (item) => {
     return {
@@ -43,8 +42,8 @@ const Circuits = () => {
       ...formValues,
       circuitId: circuitSelected.id,
       circuitNameLabel: circuitSelected.name,
-      circuitCityLabel: circuitSelected.city,
       circuitCountryLabel: circuitSelected.country,
+      circuitCityLabel: circuitSelected.city,
     })
   }
 
@@ -80,13 +79,6 @@ const Circuits = () => {
     loadCircuitFromApi()
   }, [])
 
-  const columns: GridColDef[] = [
-    { field: 'circuitName', headerName: 'Circuito', width: 80 },
-    { field: 'circuitCountry', headerName: 'País', width: 130 },
-    { field: 'circuitCity', headerName: 'Cidade', width: 130 }
-  ];
-
-
   return (
     <Block
       className='sectionWrapper'
@@ -98,7 +90,8 @@ const Circuits = () => {
         <Block
           className='inputWrap'
           css={inputWrapProps}>
-          {map(circuitsFormFields, (item, key) => <FormInput {...item} key={key}
+          {map(circuitsFormFields, (item, key) => 
+          <FormInput {...item} key={key}
             onChange={handleInputChange}
             value={formValues[`${item.name}`]}
           />)}
@@ -111,11 +104,7 @@ const Circuits = () => {
           Enviar
         </Button>
       </Block>
-      <EnhancedTable
-        handleEditItem={handleEditItem}
-        headCells={headCells}
-        rows={circuitList}
-      />
+      <Table headCells={headCells} handleEditItem={handleEditItem} rows={circuitList}/>
     </Block>
   )
 }
