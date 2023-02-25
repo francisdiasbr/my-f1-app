@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
+import MainContainer from '../components/MainContainer'
 import Home from '../components/Home'
 
 const MainPage = (props) => {
@@ -9,7 +10,9 @@ const MainPage = (props) => {
       <Head>
         <title>My F1 App - New Page</title>
       </Head>
+      <MainContainer>
         <Home />
+        </MainContainer>
     </>
   )
 }

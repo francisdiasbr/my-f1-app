@@ -3,10 +3,10 @@ import { Typography } from "@xprog/prensa"
 import { menuItemProps } from "./styles"
 import { MenuItemType } from "./types"
 
-export const MenuItem: React.FC<MenuItemType> = ({ id, value }) => {
+export const MenuItem: React.FC<MenuItemType> = ({ id, href, value }) => {
   return (
     <div>
-      <a href={`#${id}`}>
+      <a href={href}>
         <Typography
           css={menuItemProps}
           variant="menuItem-default">
