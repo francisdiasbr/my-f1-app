@@ -4,7 +4,7 @@ import axios from 'axios'
 import { first, get, map } from 'lodash'
 import React, {useState} from 'react'
 
-import CustomAlert from '../../BasicComponents/MUIAlert'
+import CustomAlert from '../../BasicComponents/MUIAlertert'
 import { FormInput } from '../../BasicComponents/FormInput'
 import EnhancedTable from '../../BasicComponents/MUITable';
 import Title from '../../BasicComponents/Title'

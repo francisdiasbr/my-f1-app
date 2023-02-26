@@ -5,7 +5,7 @@ import { inputItemProps, inputLabelProps } from "./styles"
 import { FormInputType } from "./types"
 
 
-export const FormInput: React.FC<FormInputType> = ({ onChange, name, label, value }) => {
+export const FormInput: React.FC = ({ onChange, name, label, value }: any) => {
 
   return (
     <Block

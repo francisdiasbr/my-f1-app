@@ -7,45 +7,40 @@ export const titleStrings = {
 export const menuItemsData: Array<MenuItemType> = [
   { 
     id: 'home',
-    href: '#home',
-    value: 'HOME',
-  },
-  { 
-    id: 'noticias',
-    href: '#noticias',
-    value: 'NOTÍCIAS'
-  },
-  { 
-    id: 'telemetria',
-    href: '#telemetria',
-    value: 'TELEMETRIA'
+    href: '/home',
+    value: 'Home',
   },
   { 
     id: 'campeonato',
-    href: '#campeonato',
-    value: 'CAMPEONATO'
-  },
-  { 
-    id: 'estatisticas',
-    href: '#estatisticas',
-    value: 'ESTATÍSTICAS'
+    href: '/home/campeonato',
+    value: 'Campeonato'
   },
   { 
     id: 'circuitos',
-    href: '#circuitos',
-    value: 'CIRCUITOS'
+    href: '/home/circuitos',
+    value: 'Circuitos'
   },
   { 
     id: 'resultados',
     href: '#resultados',
-    value: 'RESULTADOS'
+    value: 'Resultados'
+  },
+  { 
+    id: 'estatisticas',
+    href: '/admin',
+    value: 'ADMIN'
   },
 ]
 export const menuAdminItemsData: Array<MenuItemType> = [
   { 
     id: 'home',
-    href: '/',
+    href: '/home',
     value: 'HOME'
+  },
+  { 
+    id: 'materia',
+    href: '/admin/materias',
+    value: 'MATÉRIAS'
   },
   { 
     id: 'corridas',

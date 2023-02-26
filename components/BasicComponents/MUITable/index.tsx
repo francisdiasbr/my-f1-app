@@ -216,6 +216,7 @@ export default function EnhancedTable({ headCells, handleEditItem, rows }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  // console.log('rows', rows)
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: any,

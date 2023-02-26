@@ -1,0 +1,140 @@
+[
+  {
+
+    "nome": "GP do Bahrein",
+    "data": "05/03/2023",
+    "cidade": "Sakhir (Bahrein)",
+    "país": "Bahrein"
+  },
+  {
+    "nome": "GP da Arábia Saudita",
+    "data": "19/03/2023",
+    "cidade": "Jeddah (Arábia Saudita)",
+    "país": "Arábia Saudita"
+  },
+  {
+    "nome": "GP da Austrália",
+    "data": "02/04/2023",
+    "cidade": "Melbourne (Austrália)",
+    "país": "Austrália"
+  },
+  {
+    "nome": "GP do Azerbaijão",
+    "data": "30/04/2023",
+    "cidade": "Baku (Azerbaijão)",
+    "país": "Azerbaijão"
+  },
+  {
+    "nome": "GP de Miami",
+    "data": "07/05/2023",
+    "cidade": "Miami (Estados Unidos)",
+    "país": "Estados Unidos"
+  },
+  {
+    "nome": "GP da Emilia-Romanha",
+    "data": "21/05/2023",
+    "cidade": "Ímola (Itália)",
+    "país": "Itália"
+  },
+  {
+    "nome": "GP de Mônaco",
+    "data": "28/05/2023",
+    "cidade": "Monte Carlo (Mônaco)",
+    "país": "Mônaco"
+  },
+  {
+    "nome": "GP da Espanha",
+    "data": "04/06/2023",
+    "cidade": "Barcelona (Espanha)",
+    "país": "Espanha"
+  },
+  {
+    "nome": "GP do Canadá",
+    "data": "18/06/2023",
+    "cidade": "Montreal (Canadá)",
+    "país": "Canadá"
+  },
+  {
+    "nome": "GP da Áustria",
+    "data": "02/07/2023",
+    "cidade": "Red Bull Ring (Áustria)",
+    "país": "Áustria"
+  },
+  {
+    "nome": "GP da Grã-Bretanha",
+    "data": "09/07/2023",
+    "cidade": "Silverstone (Inglaterra)",
+    "país": "Inglaterra"
+  },
+  {
+    "nome": "GP da Hungria",
+    "data": "23/07/2023",
+    "cidade": "Hungaroring (Hungria)",
+    "país": "Hungria"
+  },
+  {
+    "nome": "GP da Bélgica",
+    "data": "30/07/2023",
+    "cidade": "Spa-Francorchamps (Bélgica)",
+    "país": "Bélgica"
+  },
+  {
+    "nome": "GP da Holanda",
+    "data": "27/08/2023",
+    "cidade": "Zandvoort (Holanda)",
+    "país": "Holanda"
+  },
+  { "nome": "GP da Itália",
+    "data": "03/09/2023",
+    "cidade": "Monza (Itália)",
+    "pais": "Itália"  
+  },    
+  {
+    "nome": "GP de Singapura",
+    "data": "17/09/2023",
+    "cidade": "Marina Bay (Singapura)",
+    "pais": "Singapura"
+  },
+  {
+    "nome": "GP do Japão",
+    "data": "24/09/2023",
+    "cidade": "Suzuka (Japão)",
+    "pais": "Japão"  
+  },
+    {
+    "nome": "GP do Qatar",
+    "data": "08/10/2023",
+    "cidade": "Lusail (Qatar)",
+    "pais": "Qatar"  
+    },
+  {
+    "nome": "GP dos Estados Unidos",
+    "data": "22/10/2023",
+    "cidade": "COTA (Estados Unidos)",
+    "pais": "United States"  
+  },
+  {
+    "nome": "GP do México",
+    "data": "29/10/2023",
+    "cidade": "Cidade do México (México)",
+    "pais": "México"  
+  },
+  {
+    "nome": "GP de São Paulo",
+    "data": "05/11/2023",
+    "cidade": "Interlagos (Brasil)",
+    "pais": "Brazil"  
+  },
+  {
+    "nome": "GP de Las Vegas",
+    "data": "18/11/2023",
+    "cidade": "Las Vegas (Estados Unidos)",
+    "pais": "The United States - The USA - America"  
+  },
+  {
+    "nome": "GP de Abu Dhabi",
+    "data": "26/11/2023",
+    "cidade": "Yas Marina (Emirados Árabes Unidos)",
+    "pais": "Emirados Árabes Unidos"  
+  }
+]

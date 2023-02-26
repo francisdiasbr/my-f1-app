@@ -1,23 +1,24 @@
 import React from 'react';
 import { Block } from '@xprog/prensa'
 
-import { leftColumnProps, rightColumnProps } from './styles'
+import { homeProps, leftColumnProps, rightColumnProps } from './styles'
+import Calendar from '../Calendar'
 import News from '../News'
-import NextRace from 'components/NextRace';
-import Spacer from 'components/BasicComponents/Spacer'
+import NextRace from '../NextRace'
+import Spacer from '../BasicComponents/Spacer'
 
 const Home = () => {
   return (
-    <>
+    <Block css={homeProps}>
       <Block css={leftColumnProps}>
-        <NextRace/>
-        <Spacer/>
         <News/>
+        <Spacer/>
       </Block>
       <Block css={rightColumnProps}>
-        <Spacer/>
+        <NextRace/>
+        <Calendar/>
       </Block>
-    </>
+    </Block>
   )
 }
 

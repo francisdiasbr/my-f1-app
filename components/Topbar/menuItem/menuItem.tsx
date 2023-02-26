@@ -9,7 +9,8 @@ export const MenuItem: React.FC<MenuItemType> = ({ id, href, value }) => {
       <a href={href}>
         <Typography
           css={menuItemProps}
-          variant="menuItem-default">
+          variant="menuItem-default"
+        >
           {value}
         </Typography>
       </a>

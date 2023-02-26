@@ -10,7 +10,8 @@ export const nextRaceContainerProps: PrensaEngineCSSProp = {
   mt: '120px',
   width: 'auto',
   '@lg': {
-    width: '700px',
+    width: '540px',
+    m: '8px'
   }
 }
 export const leftContainerProps: PrensaEngineCSSProp = {

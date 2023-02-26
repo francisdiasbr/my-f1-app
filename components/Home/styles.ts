@@ -6,3 +6,6 @@ export const leftColumnProps: PrensaEngineCSSProp = {
 export const rightColumnProps: PrensaEngineCSSProp = {
   width: '540px'
 }
+export const homeProps: PrensaEngineCSSProp = {
+  align: ['row', 'center', 'top']
+}

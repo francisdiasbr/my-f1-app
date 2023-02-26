@@ -12,7 +12,7 @@ const CustomAlert = ({ message, onClose }) => {
         color="danger"
         onClose={onClose}
         endDecorator={
-          <IconButton variant="plain" size="sm" color="neutral" onClick={onClose}>
+          <IconButton variant="plain" size="sm" color="danger" onClick={onClose}>
             <CloseRoundedIcon />
           </IconButton>
         }

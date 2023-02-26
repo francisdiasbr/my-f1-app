@@ -4,7 +4,6 @@ import axios from 'axios'
 import { first, get, map } from 'lodash'
 import React, { useState } from 'react'
 
-
 import { FormInput } from '../../BasicComponents/FormInput'
 import Table from './Table'
 import Title from '../../BasicComponents/Title'

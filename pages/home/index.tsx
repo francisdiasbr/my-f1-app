@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 
-import MainContainer from '../components/MainContainer'
-import Home from '../components/Home'
+import MainContainer from '../../components/MainContainer'
+import Home from '../../components/Home'
 
 const MainPage = (props) => {
   return (
@@ -12,7 +12,7 @@ const MainPage = (props) => {
       </Head>
       <MainContainer>
         <Home />
-        </MainContainer>
+      </MainContainer>
     </>
   )
 }
