@@ -1,5 +1,25 @@
 import { PrensaEngineCSSProp } from "@xprog/prensa/types";
 
+export const alignTopProps: PrensaEngineCSSProp = {
+  align: ['column', 'left', 'top'],
+  mb: '16px',
+}
+
+export const alignItemsProps: PrensaEngineCSSProp = {
+  align: ['column', 'left', 'top'],
+  ml: '80px',
+}
+
+export const alignTextProps: PrensaEngineCSSProp = {
+  align: ['column', 'left', 'top'],
+  ml: '40px',
+}
+
+export const elementsProps: PrensaEngineCSSProp = {
+  align: ['row', 'left', 'top'],
+  ml: '0px',
+}
+
 export const calendarContainerProps: PrensaEngineCSSProp = {
   flexDirection: 'row',
   display: 'flex',
@@ -18,6 +38,10 @@ export const calendarContainerProps: PrensaEngineCSSProp = {
   }
 }
 
+export const flagProps: PrensaEngineCSSProp = {
+  mt: '8px',
+}
+
 export const infoProps: PrensaEngineCSSProp = {
   fontFamily: '$primary',
   fontSize: '12px',
@@ -28,14 +52,6 @@ export const infoProps: PrensaEngineCSSProp = {
 export const itemProps: PrensaEngineCSSProp = {
   align: ['column', 'left', 'top'],
   mb: '12px',
-}
-export const alignTopProps: PrensaEngineCSSProp = {
-  align: ['column', 'left', 'top'],
-  mb: '16px',
-}
-export const alignItemsProps: PrensaEngineCSSProp = {
-  align: ['column', 'left', 'top'],
-  ml: '80px',
 }
 
 export const titleProps: PrensaEngineCSSProp = {
@@ -48,10 +64,12 @@ export const raceTitleProps: PrensaEngineCSSProp = {
   ...titleProps,
   fontSize: '24px'
 }
+
 export const raceDateProps: PrensaEngineCSSProp = {
   ...titleProps,
   fontSize: '20px'
 }
+
 export const raceCityProps: PrensaEngineCSSProp = {
   ...titleProps,
   fontSize: '20px'

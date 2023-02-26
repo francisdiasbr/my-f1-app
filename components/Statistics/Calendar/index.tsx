@@ -14,8 +14,17 @@ import { calendarFormFields, headCells } from './data'
 import { blockDispositionProps, inputWrapProps, sectionWrapperProps } from './styles'
 import { CalendarFormType, CalendarListType } from './types'
 
+const initialFormValues: any = {
+  calendarOrderLabel: '',
+  calendarNameLabel: '',
+  calendarCountryLabel: '',
+  calendarDateLabel: '',
+  calendarFlagLabel: '',
+  calendarInfoLabel: '',
+};
+
 const Calendar = () => {
-  const [formValues, setFormValues] = useState<CalendarFormType>({})
+  const [formValues, setFormValues] = useState<CalendarFormType>(initialFormValues)
   const [calendarList, setCalendarList] = useState<CalendarListType>([])
   const [formIncomplete, setFormIncomplete] = useState<boolean>(false)
 
@@ -86,6 +95,7 @@ const Calendar = () => {
     }
     const result = await axios.post('http://localhost:3001/calendar/save', calendarBody)
     loadCalendarFromApi()
+    setFormValues(initialFormValues);
   }
 
   React.useEffect(() => {

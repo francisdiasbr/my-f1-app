@@ -211,7 +211,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 // recebe headCells e rows como prop
 export default function EnhancedTable({ headCells, handleEditItem, rows }) {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<any>('name');
+  const [orderBy, setOrderBy] = React.useState<any>('id');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
