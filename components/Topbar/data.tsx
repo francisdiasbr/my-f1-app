@@ -38,6 +38,11 @@ export const menuAdminItemsData: Array<MenuItemType> = [
     value: 'HOME'
   },
   { 
+    id: 'calendario',
+    href: '/admin/calendario',
+    value: 'CALENDÁRIO'
+  },
+  { 
     id: 'materia',
     href: '/admin/materias',
     value: 'MATÉRIAS'

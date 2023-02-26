@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { alignItemsProps, alignTopProps, calendarContainerProps, infoProps, itemProps, raceDateProps, raceCityProps, raceTitleProps, titleProps } from './styles'
 import mock from './calendario2023.json'
 
-const getFlagUrl = (countryCode) => `https://www.countryflags.com/${countryCode}/flat/32.png`
+const getFlagUrl = (countryCode) => `https://www.countryflags.io/${countryCode}/flat/32.png`
 
 const Calendar = () => {
   return (

@@ -2,8 +2,8 @@ import { FormInputType } from "components/BasicComponents/FormInput/types"
 
 export const articleFormFields: Array<FormInputType> = [
   { name: 'articleTitleLabel', label: 'Título', type: 'input'},
-  { name: 'articleTextLabel', label: 'Texto', type: 'textarea' },
   { name: 'articleAuthorLabel', label: 'Autor', type: 'input' },
+  { name: 'articleTextLabel', label: 'Texto', type: 'textarea' },
 ]
 
 // data-table
@@ -27,15 +27,15 @@ export const headCells: readonly HeadCell[] = [
     label: 'Título',
   },
   {
-    id: 'text',
-    numeric: false,
-    disablePadding: false,
-    label: 'Matéria',
-  },
-  {
     id: 'author',
     numeric: false,
     disablePadding: false,
     label: 'Autor',
+  },
+  {
+    id: 'text',
+    numeric: false,
+    disablePadding: false,
+    label: 'Matéria',
   }
 ];

@@ -1,11 +1,11 @@
 import Textarea from '@mui/joy/Textarea';
 import { Block, Typography } from "@xprog/prensa"
-import { inputLabelProps } from '../FormInput/styles';
+import { textAreaProps, textAreaLabelProps } from './styles';
 
 const TextArea = ({ onChange, name, title, value }: any) => {
   return (
-    <>
-      <Typography css={inputLabelProps} >{title}</Typography>
+    <Block css={textAreaProps}>
+      <Typography css={textAreaLabelProps}>{title}</Typography>
       <Textarea
         name={name}
         onChange={onChange}
@@ -16,7 +16,7 @@ const TextArea = ({ onChange, name, title, value }: any) => {
         size='md'
         sx={{ minWidth: 600 }}
       />
-    </>
+    </Block>
   );
 }
 
