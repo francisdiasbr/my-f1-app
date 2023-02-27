@@ -3,7 +3,7 @@ import { Block } from '@xprog/prensa'
 
 import { homeProps, leftColumnProps, rightColumnProps } from './styles'
 import Calendar from '../Calendar'
-import News from '../News'
+import News from '../Materias'
 import NextRace from '../NextRace'
 import Spacer from '../BasicComponents/Spacer'
 

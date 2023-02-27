@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Block, Typography } from '@xprog/prensa'
 import { map, orderBy } from 'lodash'
 import axios from 'axios'
+import Image from 'next/image';
 
-import { alignItemsProps, alignTextProps, alignTopProps, calendarContainerProps, elementsProps, flagProps, infoProps, itemProps, raceDateProps, raceCityProps, raceTitleProps, titleProps } from './styles'
-
-
+import { alignItemsProps, alignTextProps, alignTopProps, calendarContainerProps, elementsProps, flagProps, infoProps, itemProps, raceDateProps, raceTitleProps, titleProps } from './styles'
 
 const Calendar = () => {
   const [calendar, setCalendar] = useState([])
@@ -31,7 +30,7 @@ const Calendar = () => {
   return (
     <Block css={calendarContainerProps}>
       <Block css={alignTopProps}>
-        <Typography css={infoProps} className="Calendar">Vem aí</Typography>
+        <Typography css={infoProps} className='Calendar'>Vem aí</Typography>
         <Typography css={titleProps}>Calendário 2023</Typography>
       </Block>
       <Block css={alignItemsProps}>
@@ -40,7 +39,7 @@ const Calendar = () => {
             <Block css={itemProps} key={item.calendarId}>
               <Block css={elementsProps}>
                 <Block css={flagProps}>
-                  <img src={`/static/${item.calendarFlag.toLowerCase()}.jpeg`} alt={item.calendarCountry} height='40px' width='70px' />
+                  <Image src={`/static/${item.calendarFlag.toLowerCase()}.jpeg`} alt={item.calendarCountry} height='40px' width='70px' />
                 </Block>
                 <Block css={alignTextProps}>
                   <Typography css={raceTitleProps}>{item.calendarName}</Typography>

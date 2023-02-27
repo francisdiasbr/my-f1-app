@@ -75,7 +75,14 @@ const Calendar = () => {
   }
 
   const handleEditItem = async (id) => {
+    console.log('id no handleEdit', id)
     await loadCalendarById(id)
+  }
+  
+  const handleDeleteItem = async (id) => {
+    console.log('id no handleEdit', id)
+    await axios.delete(`http://localhost:3001/calendar/delete?id=${id}`);
+    loadCalendarFromApi();
   }
 
   const handleFormSubmit = async () => {
@@ -150,6 +157,7 @@ const Calendar = () => {
       </Block>
       <Table
         headCells={headCells}
+        handleDeleteItem={handleDeleteItem}
         handleEditItem={handleEditItem}
         rows={calendarList}
       />
