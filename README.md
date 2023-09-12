@@ -1,3 +1,11 @@
+# Rodando o projeto
+
+Instalar as dependências: `yarn`
+
+Rodar o projeto: `yarn dev`
+
+-----
+
 # 💻  Application Overview  
 
 ## The F1 App
